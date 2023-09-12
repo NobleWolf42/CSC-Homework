@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
     
-    //Initializing Variables
+    //Declaring variables
     int num0;
     int num1;
     int num2;

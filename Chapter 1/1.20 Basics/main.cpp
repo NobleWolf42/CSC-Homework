@@ -49,7 +49,7 @@ using namespace std;
 
 int main() {
     
-    //Initializing Variables
+    //Declaring variables
     int userNum;
     int userNumSquared;
 

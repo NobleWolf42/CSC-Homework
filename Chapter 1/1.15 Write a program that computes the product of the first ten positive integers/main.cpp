@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
 
-    //Initializing Variables, the input has to be float so we can divide by them and get decimals
+    //Declaring Variables, the input has to be float so we can divide by them and get decimals
     float num0;
     float num1;
     float num2;
@@ -27,7 +27,7 @@ int main() {
     double multiplied;
     float reciprocals;
 
-    // User Input
+    //Getting user input
     cin >> num0;
     cin >> num1;
     cin >> num2;

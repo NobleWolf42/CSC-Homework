@@ -18,7 +18,8 @@ the output is:
 using namespace std;
 
 int main() {
-    //Initializing Variables
+
+    //Declaring variables
     int baseDigit;
     int headDigit;
 

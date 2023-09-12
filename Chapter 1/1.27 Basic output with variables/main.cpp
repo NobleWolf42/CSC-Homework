@@ -26,7 +26,7 @@ using namespace std;
 
 int main() {
 
-    //Initializing Variables
+    //Declaring variables
     int userNum0;
     int userNum1;
 
