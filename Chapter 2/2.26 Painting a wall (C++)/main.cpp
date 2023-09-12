@@ -30,7 +30,7 @@ Note: This zyLab outputs a newline after each user-input prompt. For convenience
 
 */
 #include <iostream>
-#include <cmath>                   // Note: Needed for math functions in part (3)
+#include <cmath> // Note: Needed for math functions in part (3)
 using namespace std;
 
 int main() {
