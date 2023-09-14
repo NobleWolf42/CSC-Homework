@@ -36,6 +36,5 @@ int main() {
   
     //Printing diagonal
     cout << "The diagonal of a rectangle with height of " << height << " and width of " << width << " is " << sqrt(pow(height, 2) + pow(width, 2)) << "." << endl;
-
     return 0; 
 }
