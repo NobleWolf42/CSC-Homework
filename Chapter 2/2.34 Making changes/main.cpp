@@ -27,6 +27,7 @@ int main() {
     //Declaring variables
     double amountDue;
     double amountPaid;
+    double amountChange;
     int changeDollar;
     int changeQuarters;
     int changeDimes;
@@ -41,6 +42,16 @@ int main() {
     cout << endl;
 
     //Finding the change values
+    amountChange = amountPaid - amountDue;
+    changeDollar = static_cast<int>(amountChange);
+    amountChange = (amountChange - changeDollar) * 100;
+    changeQuarters = static_cast<int>(amountChange) / 25;
+    amountChange = amountChange - changeQuarters * 25;
+    changeDimes = static_cast<int>(amountChange) / 10;
+    amountChange = amountChange - changeDimes * 10;
+    changeNickels = static_cast<int>(amountChange) / 5;
+    amountChange = amountChange - changeNickels * 5;
+    changePennies = static_cast<int>(amountChange);
 
     //Printing change due
     cout << "The change due to the customer is " << changeDollar << " dollars, " << changeQuarters << " quarters, " << changeDimes << " dimes, " << changeNickels << " nickels, and " << changePennies << " pennies." << endl;
