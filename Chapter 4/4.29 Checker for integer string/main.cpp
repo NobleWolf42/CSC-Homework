@@ -28,11 +28,28 @@ Hint: Use a loop and the isdigit() function (don't forget to include the cctype 
 using namespace std;
 
 int main() {
-   string userString;
-   
-   cin >> userString;
+    
+    //Declaring variables
+    string userString;
+    int i;
+    bool isNumber;
+    
+    //Getting user input
+    cin >> userString;
 
-   /* Type your code here. */
+    isNumber = true;
+    for (i = 0; i < userString.length(); ++i) {
+        if (!isdigit(userString[i])) {
+            isNumber = false;
+            i = userString.length();
+        }
+    }
 
-   return 0;
+    if (isNumber) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
+
+    return 0;
 }
