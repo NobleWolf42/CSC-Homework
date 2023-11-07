@@ -18,7 +18,12 @@ Function SwapValues() swaps the values referenced by the parameters and does not
 using namespace std;
 
 void SwapValues(int& userVal1, int& userVal2, int& userVal3, int& userVal4) {
-    cout << userVal2 << " " << userVal1 << " " << userVal4 << " " << userVal3 << endl;
+    int temp1 = userVal1, temp2 = userVal2, temp3 = userVal3, temp4 = userVal4;
+
+    userVal1 = temp2;
+    userVal2 = temp1;
+    userVal3 = temp4;
+    userVal4 = temp3;
 }
 
 int main() {
@@ -31,6 +36,8 @@ int main() {
 
     //Running function that outputs the swapped numbers
     SwapValues(uIn1, uIn2, uIn3, uIn4);
+
+    cout << uIn1 << " " << uIn2 << " " << uIn3 << " " << uIn4 << endl;
 
     return 0;
 }
