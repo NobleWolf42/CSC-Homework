@@ -144,6 +144,11 @@ string spellTenth(size_t d2, size_t d1) {
     }
     return numstr;
 }
+
+string spellThree(int digits) {
+    
+}
+
 int main() {
     std::cout << "Enter a number:" << std::endl;
     size_t num;
