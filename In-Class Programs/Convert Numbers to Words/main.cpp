@@ -245,6 +245,35 @@ int main() {
     assert(spellTenth(8, 0) == "eighty");
     assert(spellTenth(9, 0) == "ninety");
 
+    assert(spellTenth(2, 1) == "twenty one");
+    assert(spellTenth(3, 2) == "thirty two");
+    assert(spellTenth(4, 3) == "forty three");
+    assert(spellTenth(5, 4) == "fifty four");
+    assert(spellTenth(6, 5) == "sixty five");
+    assert(spellTenth(7, 6) == "seventy six");
+    assert(spellTenth(8, 7) == "eighty seven");
+    assert(spellTenth(9, 8) == "ninety eight");
+
+    assert(spell3Digits(100) == "one hundred");
+    assert(spell3Digits(200) == "two hundred");
+    assert(spell3Digits(300) == "three hundred");
+    assert(spell3Digits(400) == "four hundred");
+    assert(spell3Digits(500) == "five hundred");
+    assert(spell3Digits(600) == "six hundred");
+    assert(spell3Digits(700) == "seven hundred");
+    assert(spell3Digits(800) == "eight hundred");
+    assert(spell3Digits(900) == "nine hundred");
+
+    assert(spell3Digits(111) == "one hundred eleven");
+    assert(spell3Digits(222) == "two hundred twenty two");
+    assert(spell3Digits(333) == "three hundred thirty three");
+    assert(spell3Digits(444) == "four hundred forty four");
+    assert(spell3Digits(555) == "five hundred fifty five");
+    assert(spell3Digits(666) == "six hundred sixty six");
+    assert(spell3Digits(777) == "seven hundred seventy seven");
+    assert(spell3Digits(888) == "eight hundred eighty eight");
+    assert(spell3Digits(999) == "nine hundred ninety nine");
+
     return 0;
 }
 
