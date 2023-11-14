@@ -89,13 +89,134 @@ Ex:
 */
 #include <iostream>
 #include <string>
+#include <cassert>
 using namespace std;
 
-/* Define your functions here. */
+void PrintMenu() {
+    cout << "MENU\nc - Number of non-whitespace characters\nw - Number of words\nf - Find text\nr - Replace all !\'s\ns - Shorten spaces\nq - Quit\n" << endl;
+}
+
+int GetNumOfNonWSCharacters(const string userValue) {
+    int nonSpace = 0;
+    for (size_t i = 0; i < userValue.length(); ++i) {
+        if (userValue[i] != ' ' && userValue[i] != '\t') {
+            nonSpace++;
+        }
+    }
+    return nonSpace;
+}
+
+int GetNumOfWords(const string userValue) {
+    int numWord = 0;
+    for (size_t i = 0; i < userValue.length(); ++i) {
+        if (userValue[i] == ' ' && userValue[i + 1] != ' ') {
+            numWord++;
+        }
+    }
+    return numWord + 1;
+}
+
+int FindText(const string findMe, const string userValue) {
+    int textOccurrence = 0;
+    for (size_t i = 0; i < userValue.length(); ++i) {
+        if (userValue[i] == findMe[0]) {
+            bool same = true;
+            int mainCharPos = i;
+            size_t findCharPos = 0;
+            while (same) {
+                if (findCharPos + 1 == findMe.length()) {
+                    textOccurrence++;
+                    same = false;
+                } else if (userValue[mainCharPos] != findMe[findCharPos]) {
+                    same = false;
+                }
+                mainCharPos++;
+                findCharPos++;
+            }
+        }
+    }
+    return textOccurrence;
+}
+
+void ReplaceExclamation(string& userValue) {
+    for (size_t i = 0; i < userValue.length(); ++i) {
+        if (userValue[i] == '!') {
+            userValue.replace(i, 1, ".");
+        }
+    }
+}
+
+void ShortenSpace(string& userValue) {
+    for (size_t i = 0; i < userValue.length(); ++i) {
+        if (userValue[i] == ' ' && (userValue[i + 1] == ' ')) {
+            int replace = 0;
+            size_t test = i;
+            bool space = true;
+            while (space) {
+                if (userValue[test] == ' ') {
+                    replace++;
+                } else {
+                    space = false;
+                }
+                test ++;
+            }
+            userValue.replace(i, replace, " ");
+        }
+    }
+}
+
+void ExecuteMenu(char choice, string& userIn) {
+    string uIn2;
+    switch (choice) {
+        case 'c':
+            cout << "Number of non-whitespace characters: " << GetNumOfNonWSCharacters(userIn) << endl << endl;
+            break;
+        case 'w':
+            cout << "Number of words: " << GetNumOfWords(userIn) << endl << endl;
+            break;
+        case 'f':
+            cout << "Enter a word or phrase to be found:" << endl;
+            cin.ignore();
+            getline(cin, uIn2);
+            cout << "\"" << uIn2 << "\" instances: " << FindText(uIn2, userIn) << endl << endl;
+            break;
+        case 'r':
+            ReplaceExclamation(userIn);
+            cout << endl << "Edited text: " << userIn << endl << endl;
+            break;
+        case 's':
+            ShortenSpace(userIn);
+            cout << endl << "Edited text: " << userIn << endl << endl;
+            break;
+        default:
+            cout << "Invalid Option" << endl;
+            break;
+        }
+}
 
 int main() {
 
-    /* Type your code here. */
+    //Declaring variables
+    string uIn;
+    bool running = true;
+
+    //Getting user input
+    cout << "Enter a sample text:" << endl;
+    getline(cin, uIn);
+
+    //Using user input
+    cout << endl << "You entered: " << uIn << endl << endl;
+    while (running == true) {
+        char uChoice;
+        PrintMenu();
+        cout << "Choose an option:" << endl;
+        cin >> uChoice;
+        if (uChoice == 'q') {
+            running = false;
+        } else {
+            ExecuteMenu(uChoice, uIn);
+        }
+    }
 
     return 0;
 }

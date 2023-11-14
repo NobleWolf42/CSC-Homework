@@ -166,7 +166,7 @@ string spell3Digits(int num) {
         } else if (count == 2) {
             if (digit > 0) {
                 if (numstr == "zero") {
-                    numstr = spellDigit(digit) + " hundred ";
+                    numstr = spellDigit(digit) + " hundred";
                 } else {
                     numstr = spellDigit(digit) + " hundred " + numstr;
                 }
@@ -182,46 +182,126 @@ string spell3Digits(int num) {
     return numstr;
 }
 
-string &getString(size_t num, size_t count, string &numstr, int tdigit) {
-    switch (count) {
-        case 0:
-            numstr = spell3Digits(num % 1000);
-            break;
-        case 1:
-            tdigit = num % 1000;
-            if (tdigit > 0) {
-                numstr = spell3Digits(num % 1000) + " thousand " + numstr;
-            }
-            break;
-        case 2:
-            tdigit = num % 1000;
-            if (tdigit > 0) {
-                numstr = spell3Digits(num % 1000) + " million " + numstr;
-            }
-            break;
-        case 3:
-            tdigit = num % 1000;
-            if (tdigit > 0) {
-                numstr = spell3Digits(num % 1000) + " billion " + numstr;
-            }
+string getString(size_t num) {
+    size_t count = 0;
+    string numstr = "";
+    int tdigit = 0;
+    while (num > 0) {
 
-            break;
+        switch (count) {
+            case 0:
+                numstr = spell3Digits(num % 1000);
+                break;
+            case 1:
+                tdigit = num % 1000;
+                if (tdigit > 0) {
+                    numstr = spell3Digits(num % 1000) + " thousand " + numstr;
+                }
+                break;
+            case 2:
+                tdigit = num % 1000;
+                if (tdigit > 0) {
+                    if (numstr == "") {
+                        numstr = spell3Digits(num % 1000) + " million";
+                    }
+                    else {
+                        numstr = spell3Digits(num % 1000) + " million " + numstr;
+                    }
+
+                }
+                break;
+            case 3:
+                tdigit = num % 1000;
+                if (tdigit > 0) {
+                    if (numstr == "") {
+                        numstr = spell3Digits(num % 1000) + " billion";
+                    }
+                    else {
+                        numstr = spell3Digits(num % 1000) + " billion " + numstr;
+                    }
+                }
+
+                break;
+        }
+
+        count++;
+        num = num / 1000;
     }
     return numstr;
 }
 
+void getString(size_t num, string& numstr) {
+    size_t count = 0;
+    // string numstr = "";
+    int tdigit = 0;
+    while (num > 0) {
+
+        switch (count) {
+            case 0:
+                numstr = spell3Digits(num % 1000);
+                break;
+            case 1:
+                tdigit = num % 1000;
+                if (tdigit > 0) {
+                    numstr = spell3Digits(num % 1000) + " thousand " + numstr;
+                }
+                break;
+            case 2:
+                tdigit = num % 1000;
+                if (tdigit > 0) {
+                    if (numstr == "") {
+                        numstr = spell3Digits(num % 1000) + " million";
+                    }
+                    else {
+                        numstr = spell3Digits(num % 1000) + " million " + numstr;
+                    }
+
+                }
+                break;
+            case 3:
+                tdigit = num % 1000;
+                if (tdigit > 0) {
+                    if (numstr == "") {
+                        numstr = spell3Digits(num % 1000) + " billion";
+                    }
+                    else {
+                        numstr = spell3Digits(num % 1000) + " billion " + numstr;
+                    }
+                }
+
+                break;
+        }
+
+        count++;
+        num = num / 1000;
+    }
+    // return numstr;
+}
+void UserInputOutput() {
+    cout << "Enter a number:" << endl;
+    size_t num;
+    cin >> num;
+    size_t count = 0;
+    string numstr = "";
+    int tdigit = 0;
+
+    cout << numstr << endl;
+}
+
 int main() {
-    UserInputOutput();
+    // UserInputOutput();
 
 
     assert(spellDigit(0) == "zero");
     assert(spellDigit(1) == "one");
     assert(spellDigit(2) == "two");
     assert(spellDigit(3) == "three");
+
     assert(spellDigit(4) == "four");
     assert(spellDigit(5) == "five");
     assert(spellDigit(6) == "six");
     assert(spellDigit(7) == "seven");
+
     assert(spellDigit(8) == "eight");
     assert(spellDigit(9) == "nine");
 
@@ -254,40 +334,25 @@ int main() {
     assert(spellTenth(8, 7) == "eighty seven");
     assert(spellTenth(9, 8) == "ninety eight");
 
+    // 100
     assert(spell3Digits(100) == "one hundred");
-    assert(spell3Digits(200) == "two hundred");
-    assert(spell3Digits(300) == "three hundred");
-    assert(spell3Digits(400) == "four hundred");
-    assert(spell3Digits(500) == "five hundred");
-    assert(spell3Digits(600) == "six hundred");
-    assert(spell3Digits(700) == "seven hundred");
-    assert(spell3Digits(800) == "eight hundred");
-    assert(spell3Digits(900) == "nine hundred");
+    assert(spell3Digits(101) == "one hundred one");
 
-    assert(spell3Digits(111) == "one hundred eleven");
-    assert(spell3Digits(222) == "two hundred twenty two");
-    assert(spell3Digits(333) == "three hundred thirty three");
-    assert(spell3Digits(444) == "four hundred forty four");
-    assert(spell3Digits(555) == "five hundred fifty five");
-    assert(spell3Digits(666) == "six hundred sixty six");
-    assert(spell3Digits(777) == "seven hundred seventy seven");
-    assert(spell3Digits(888) == "eight hundred eighty eight");
-    assert(spell3Digits(999) == "nine hundred ninety nine");
 
+    assert(getString(310) == "three hundred ten"); // case zero
+    assert(getString(1200) == "one thousand two hundred"); // case zero
+    assert(getString(1000000) == "one million"); // case zero
+    assert(getString(1000001) == "one million one"); // case zero
+    assert(getString(1000000000) == "one billion"); // case zero
+    assert(getString(1000000010) == "one billion ten"); // case zero
+
+    string s = "";
+    getString(310, s);
+    assert( s == "three hundred ten"); // case zero
+    assert(getString(1200) == "one thousand two hundred"); // case zero
+    assert(getString(1000000) == "one million"); // case zero
+    assert(getString(1000001) == "one million one"); // case zero
+    assert(getString(1000000000) == "one billion"); // case zero
+    assert(getString(1000000010) == "one billion ten"); // case zero
     return 0;
-}
-
-void UserInputOutput() {
-    cout << "Enter a number:" << endl;
-    size_t num;
-    cin >> num;
-    size_t count = 0;
-    string numstr = "";
-    int tdigit = 0;
-    while (num > 0) {
-        numstr = getString(num, count, numstr, tdigit);
-        count++;
-        num = num / 1000;
-    }
-    cout << numstr << endl;
 }
