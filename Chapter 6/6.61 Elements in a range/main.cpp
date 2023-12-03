@@ -21,7 +21,34 @@ using namespace std;
 int main() {
 
     //Declaring variables
+    int N, max, min;
+    vector<int> userInt;
 
+    //Getting user input
+    cin >> N;
+
+    //Sizing vector
+    userInt.resize(N);
+
+    //Reading numbers into vector
+    for (int i =  0; i < N; ++i) {
+        int tempInt;
+        cin >> tempInt;
+        userInt.at(i) = tempInt;
+    }
+    
+    //Getting min and max
+    cin >> min;
+    cin >> max;
+
+    //Outputting result
+    for (size_t i = 0; i < userInt.size(); ++i) {
+        if (userInt.at(i) >= min && userInt.at(i) <= max) {
+            cout << userInt.at(i) << ",";
+        }
+    }
+
+    cout << endl;
 
     return 0;
 }
