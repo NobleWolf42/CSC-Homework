@@ -11,7 +11,6 @@ the output is:
 
 To achieve the above, first read the integers into an array. Then output the array in reverse.
 */
-
 #include <iostream>
 #include <string>
 

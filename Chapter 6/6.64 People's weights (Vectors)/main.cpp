@@ -44,7 +44,6 @@ Ex:
     *Max weight: 236.00
 
 */
-
 #include <iostream>
 #include <iomanip>
 #include <vector>

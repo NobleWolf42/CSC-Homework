@@ -16,7 +16,6 @@ To achieve the above, first read the integers into a vector.
 
 Hint: Make sure to initialize the second smallest and smallest integers properly.
 */
-
 #include <iostream>
 #include <vector>
 using namespace std;
