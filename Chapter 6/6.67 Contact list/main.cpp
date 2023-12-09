@@ -21,12 +21,40 @@ using namespace std;
 string GetPhoneNumber(vector<string> nameVec, vector<string> phoneNumberVec, string contactName) {
     string output;
     for (size_t i = 0; i < nameVec.size(); ++i) {
-        
+        if (nameVec.at(i) == contactName) {
+            return phoneNumberVec.at(i);
+        }
     }
+    return "None";
 }
 
 int main() {
-    /* Type your code here */
+    
+    //Declaring variable
+    int N;
+    string search;
+    vector<string> names;
+    vector<string> numbers;
+
+    //Getting user input
+    cin >> N;
+    names.resize(N);
+    numbers.resize(N);
+
+    //Filling vectors
+    for (size_t i = 0; i < names.size(); ++i) {
+        string tempIn;
+        cin >> tempIn;
+        names.at(i) = tempIn.substr(0, tempIn.find(','));
+        numbers.at(i) = tempIn.substr(tempIn.find(',') + 1);
+    }
+
+    //Getting search term
+    cin >> search;
+
+    //Outputting results
+    cout << GetPhoneNumber(names, numbers, search) << endl;
+
 
     return 0;
 }
