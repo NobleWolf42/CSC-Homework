@@ -113,21 +113,21 @@ int main() {
     cout << endl;
 
     //Test Cases
-    vector<int> test1 = {10,20,30,40,50};
+    vector<int> test1 = {10,20,30,40,50,60,70,80};
     vector<int> test2 = {11,22,33,44,55};
     vector<int> test3 = {10,22,30,44,50};
     vector<int> test4 = {11,20,33,40,55};
-    vector<int> test5 = {-10,20,-33,40,50};
-    testVector(IsVectorMult10(test1), {10,20,30,40,50}, 5);
+    vector<int> test5 = {-10,20,-33,40,50,-40,-22,-1};
+    testVector(IsVectorMult10(test1), {10,20,30,40,50,60,70,80}, 8);
     testVector(IsVectorMult10(test2), {}, 0);
     testVector(IsVectorMult10(test3), {10,30,50}, 3);
     testVector(IsVectorMult10(test4), {20,40}, 2);
-    testVector(IsVectorMult10(test5), {-10,20,40,50}, 4);
+    testVector(IsVectorMult10(test5), {-10,20,40,50,-40}, 5);
     testVector(IsVectorNoMult10(test1), {}, 0);
     testVector(IsVectorNoMult10(test2), {11,22,33,44,55}, 5);
     testVector(IsVectorNoMult10(test3), {22,44}, 2);
     testVector(IsVectorNoMult10(test4), {11,33,55}, 3);
-    testVector(IsVectorNoMult10(test5), {-33}, 1);
+    testVector(IsVectorNoMult10(test5), {-33,-22,-1}, 3);
 
     return 0;
 }
