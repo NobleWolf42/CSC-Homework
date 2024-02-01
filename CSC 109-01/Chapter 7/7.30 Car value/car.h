@@ -21,6 +21,8 @@ class Car {
         int GetPurchasePrice() const;
    
         void CalcCurrentValue(int currentYear);
+
+        int GetCurrentValue() const;
    
         void PrintInfo();
    

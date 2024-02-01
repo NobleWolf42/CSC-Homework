@@ -9,10 +9,8 @@ Author: Ben Carpenter
 #include <cxxtest/TestSuite.h>
 //Include your classes header file(s) below and uncomment.
 #include "Triangle.h"
-#include <string>
-using std::string;
 
-class newCxxTest : public CxxTest::TestSuite {
+class TestCases : public CxxTest::TestSuite {
 public:
 
     //All tests should start with the word 'test' followed by

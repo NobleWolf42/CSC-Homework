@@ -7,7 +7,7 @@ Author: Ben Carpenter
 #include <cmath>
 #include "Car.h"
 
-void Car::SetModelYear(int userYear){
+void Car::SetModelYear(int userYear) {
     modelYear = userYear;
 }
 
@@ -29,6 +29,14 @@ void Car::CalcCurrentValue(int currentYear) {
       
     // Car depreciation formula
     currentValue = purchasePrice * pow((1 - depreciationRate), carAge);
+}
+
+int Car::GetCurrentValue() const {
+    int curVal;
+
+    curVal = (currentValue + .5) / 1;
+
+    return curVal;
 }
 
 void Car::PrintInfo() {

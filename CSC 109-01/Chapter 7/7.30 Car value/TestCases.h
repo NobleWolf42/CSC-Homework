@@ -3,16 +3,14 @@ Copyright 2024
 Author: Ben Carpenter
 */
 
-#ifndef NEWCXXTEST_H
-#define NEWCXXTEST_H
+#ifndef TESTCASES_H
+#define TESTCASES_H
 
 #include <cxxtest/TestSuite.h>
 //Include your classes header file(s) below and uncomment.
-#include "Restaurant.h"
-#include <string>
-using std::string;
+#include "Car.h"
 
-class newCxxTest : public CxxTest::TestSuite {
+class TestCases : public CxxTest::TestSuite {
 public:
 
     //All tests should start with the word 'test' followed by
@@ -22,28 +20,39 @@ public:
 
         Car test1;
         test1.SetModelYear(2000);
-        test1.SetPurchasePrice(50000);
+        test1.SetPurchasePrice(42000);
         TS_ASSERT_EQUALS(test1.GetModelYear(), 2000);
 
     }
 
-    void testPurchasePrice() { // test non default constructor
+    void testPurchasePrice() {
 
         Car test2;
-        test2.SetModelYear(2000);
-        test2.SetPurchasePrice(50000);
-        TS_ASSERT_EQUALS(test2.GetPurchasePrice(), 50000);
+        test2.SetModelYear(2015);
+        test2.SetPurchasePrice(23000);
+        TS_ASSERT_EQUALS(test2.GetPurchasePrice(), 23000);
 
     }
 
-    void testPrint() { // test default constructor
+    void testCurrentValue() {
 
-        Restaurant rest3;
-        rest3.SetName("Test5");
-        rest3.SetRating(5);
-        TS_ASSERT_THROWS_NOTHING(rest3.Print())
+        Car test3;
+        test3.SetModelYear(2010);
+        test3.SetPurchasePrice(50000);
+        test3.CalcCurrentValue(2020);
+        TS_ASSERT_EQUALS(test3.GetCurrentValue(), 9844);
+
+    }
+
+    void testPrint() {
+
+        Car test4;
+        test4.SetModelYear(2000);
+        test4.SetPurchasePrice(50000);
+        test4.CalcCurrentValue(2010);
+        TS_ASSERT_THROWS_NOTHING(test4.PrintInfo());
 
     }
 
 };
-#endif /* NEWCXXTEST_H */
+#endif /* TESTCASES_H */
