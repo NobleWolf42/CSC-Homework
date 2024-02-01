@@ -15,17 +15,17 @@ class Team {
         int losses;
 
     public:
-        void SetName(std::string teamName);
+        void SetTeamName(std::string teamName);
 
-        void SetWins(int teamWins);
+        void SetTeamWins(int teamWins);
 
-        void SetLosses(int teamLosses);
+        void SetTeamLosses(int teamLosses);
 
-        std::string GetName() const;
+        std::string GetTeamName() const;
 
-        int GetWins() const;
+        int GetTeamWins() const;
 
-        int GetLosses() const;
+        int GetTeamLosses() const;
 
         double GetWinPercentage() const;
 

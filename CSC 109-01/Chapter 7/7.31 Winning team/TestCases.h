@@ -19,39 +19,39 @@ public:
     void testName() {
 
         Team test1;
-        test1.SetName("Test1");
-        test1.SetWins(42000);
-        test1.SetLosses(42000);
-        TS_ASSERT_EQUALS(test1.GetName(), "Test1");
+        test1.SetTeamName("Test1");
+        test1.SetTeamWins(42000);
+        test1.SetTeamLosses(42000);
+        TS_ASSERT_EQUALS(test1.GetTeamName(), "Test1");
 
     }
 
     void testWins() {
 
         Team test2;
-        test2.SetName("Test2");
-        test2.SetWins(7);
-        test2.SetLosses(3);
-        TS_ASSERT_EQUALS(test2.GetWins(), 7);
+        test2.SetTeamName("Test2");
+        test2.SetTeamWins(7);
+        test2.SetTeamLosses(3);
+        TS_ASSERT_EQUALS(test2.GetTeamWins(), 7);
 
     }
 
     void testLosses() {
 
         Team test3;
-        test3.SetName("Test3");
-        test3.SetWins(1);
-        test3.SetLosses(2);
-        TS_ASSERT_EQUALS(test3.GetLosses(), 2);
+        test3.SetTeamName("Test3");
+        test3.SetTeamWins(1);
+        test3.SetTeamLosses(2);
+        TS_ASSERT_EQUALS(test3.GetTeamLosses(), 2);
 
     }
 
     void testWinPercentage() {
 
         Team test4;
-        test4.SetName("Test4");
-        test4.SetWins(10);
-        test4.SetLosses(10);
+        test4.SetTeamName("Test4");
+        test4.SetTeamWins(10);
+        test4.SetTeamLosses(10);
         TS_ASSERT_EQUALS(test4.GetWinPercentage(), 0.5);
 
     }
@@ -59,9 +59,9 @@ public:
     void testPrint1() {
 
         Team test5;
-        test5.SetName("Test5");
-        test5.SetWins(5);
-        test5.SetLosses(1);
+        test5.SetTeamName("Test5");
+        test5.SetTeamWins(5);
+        test5.SetTeamLosses(1);
         TS_ASSERT_THROWS_NOTHING(test5.PrintStanding());
 
     }
@@ -69,9 +69,9 @@ public:
     void testPrint2() {
 
         Team test6;
-        test6.SetName("Test6");
-        test6.SetWins(1);
-        test6.SetLosses(5);
+        test6.SetTeamName("Test6");
+        test6.SetTeamWins(1);
+        test6.SetTeamLosses(5);
         TS_ASSERT_THROWS_NOTHING(test6.PrintStanding());
 
     }

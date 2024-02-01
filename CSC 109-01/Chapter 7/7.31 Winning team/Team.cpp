@@ -7,27 +7,27 @@ Author: Ben Carpenter
 #include <iomanip> 
 #include "Team.h"
 
-void Team::SetName(std::string teamName) {
+void Team::SetTeamName(std::string teamName) {
     name = teamName;
 }
 
-void Team::SetWins(int teamWins) {
+void Team::SetTeamWins(int teamWins) {
     wins = teamWins;
 }
 
-void Team::SetLosses(int teamLosses) {
+void Team::SetTeamLosses(int teamLosses) {
     losses = teamLosses;
 }
 
-std::string Team::GetName() const {
+std::string Team::GetTeamName() const {
     return name;
 }
 
-int Team::GetWins() const {
+int Team::GetTeamWins() const {
     return wins;
 }
 
-int Team::GetLosses() const {
+int Team::GetTeamLosses() const {
     return losses;
 }
 
@@ -40,6 +40,7 @@ double Team::GetWinPercentage() const {
 }
 
 void Team::PrintStanding() {
+    std::cout << std::fixed << std::setprecision(2);
     std::cout << "Win percentage: " << GetWinPercentage() << std::endl;
 
     if (GetWinPercentage() >= 0.5) {
