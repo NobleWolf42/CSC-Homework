@@ -2,6 +2,7 @@
 Copyright 2024
 Author: Ben Carpenter
 */
+
 #ifndef TRIANGLEH
 #define TRIANGLEH
 

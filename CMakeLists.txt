@@ -23,9 +23,13 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(7-30test runner.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/car.cpp
+    #[[CXXTEST_ADD_TEST(7-30test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/TestCases.h
+            )]]
+    CXXTEST_ADD_TEST(7-31test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/TestCases.h
             )
 
 endif()
@@ -38,6 +42,10 @@ endif()
         CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/Triangle.cpp
         CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/Triangle.h CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/TestCases.h)]]
 
-add_executable(CH07-30 runner.cpp
-        CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/car.cpp
-        CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/car.h CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/TestCases.h)
+#[[add_executable(CH07-30 runner.cpp
+        CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.cpp
+        CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.h CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/TestCases.h)]]
+
+add_executable(CH07-31 runner.cpp
+        CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.cpp
+        CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.h CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/TestCases.h)

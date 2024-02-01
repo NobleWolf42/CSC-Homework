@@ -2,6 +2,7 @@
 Copyright 2024
 Author: Ben Carpenter
 */
+
 #include "Triangle.h"
 #include <iostream>
 #include <iomanip>
