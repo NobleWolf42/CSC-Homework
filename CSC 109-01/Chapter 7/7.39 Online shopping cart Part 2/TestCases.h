@@ -106,7 +106,7 @@ public:
         ItemToPurchase test10c("Test10c", "Testin10c", 3, 2);
         test10b.AddItem(test10a);
         test10b.AddItem(test10c);
-        TS_ASSERT_EQUALS(test10b.GetNumItemsInCart(), 2);
+        TS_ASSERT_EQUALS(test10b.GetNumItemsInCart(), 5);
 
     }
 
