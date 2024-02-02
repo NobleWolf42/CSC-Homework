@@ -9,9 +9,8 @@ Copyright: 2024
 
 Artwork::Artwork() {
     Artist newArtist;
-    title = "Unknown";
+    title = "unknown";
     yearCreated = -1;
-    artist = newArtist;
 }
 
 Artwork::Artwork(std::string title, int yearCreated, Artist artist) {

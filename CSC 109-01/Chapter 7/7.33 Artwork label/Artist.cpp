@@ -8,7 +8,7 @@ Copyright: 2024
 #include <string>
 
 Artist::Artist() {
-    artistName = "Unknown";
+    artistName = "unknown";
     birthYear = -1;
     deathYear = -1;
 }
