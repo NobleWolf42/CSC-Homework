@@ -208,9 +208,9 @@ void ExecuteMenu(char &uIn, ShoppingCart &userCart) {
         case 'a':
             cout << "ADD ITEM TO CART" << endl;
             cout << "Enter the item name:";
+            cin.ignore();
             getline(cin, name);
             cout << endl << "Enter the item description:";
-            cin.ignore();
             getline(cin, description);
             cout << endl << "Enter the item price:";
             cin >> price;
@@ -226,6 +226,7 @@ void ExecuteMenu(char &uIn, ShoppingCart &userCart) {
         case 'd':
             cout << "REMOVE ITEM FROM CART" << endl;
             cout << "Enter name of item to remove:";
+            cin.ignore();
             getline(cin, name);
             userCart.RemoveItem(name);
             break;
@@ -233,7 +234,8 @@ void ExecuteMenu(char &uIn, ShoppingCart &userCart) {
         case 'c':
             cout << "CHANGE ITEM QUANTITY" << endl;
             cout << "Enter the item name:";
-            cin >> name;
+            cin.ignore();
+            getline(cin, name);
             cout << endl << "Enter the new quantity:";
             cin >> quantity;
             item.SetName(name);
@@ -287,7 +289,7 @@ int main() {
 
     //Outputting user's name and date
     cout << endl << endl << "Customer name: " << userCart.GetCustomerName() << endl;
-    cout << "Today's date: " << userCart.GetDate() << endl;
+    cout << "Today's date: " << userCart.GetDate() << endl << endl;
 
     //Menu stuff
     while (running) {

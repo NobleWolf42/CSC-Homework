@@ -18,22 +18,29 @@ ShoppingCart::ShoppingCart(std::string name, std::string date) {
 
 void ShoppingCart::AddItem(ItemToPurchase item1) {
     cartItems.push_back(item1);
+    std::cout << std::endl << std::endl;
 }
 
 void ShoppingCart::RemoveItem(std::string name) {
-    for (int i = 0; i < GetNumItemsInCart(); ++i) {
+    for (size_t i = 0; i < cartItems.size(); ++i) {
         if (cartItems.at(i).GetName() == name) {
            cartItems.erase(cartItems.begin() + i);
-        };
+        } else if (cartItems.size() == i + 1) {
+            std::cout << std::endl << "Item not found in cart. Nothing removed.";
+        }
     }
+    std::cout << std::endl << std::endl;
 }
 
 void ShoppingCart::ModifyItem(ItemToPurchase item1) {
-    for (int i = 0; i < GetNumItemsInCart(); ++i) {
+    for (size_t i = 0; i < cartItems.size(); ++i) {
         if (cartItems.at(i).GetName() == item1.GetName()) {
             cartItems.at(i).SetQuantity(item1.GetQuantity());
+        } else if (cartItems.size() == i + 1) {
+            std::cout << std::endl << "Item not found in cart. Nothing modified.";
         }
     }
+    std::cout << std::endl << std::endl;
 }
 
 std::string ShoppingCart::GetCustomerName() const {
@@ -45,14 +52,19 @@ std::string ShoppingCart::GetDate() const {
 }
 
 int ShoppingCart::GetNumItemsInCart() {
-    int count = static_cast<int>(cartItems.size());
-    return count;
+    int total = 0;
+
+    for (size_t i = 0; i < cartItems.size(); ++i) {
+        total = total + cartItems.at(i).GetQuantity();
+    }
+    
+    return total;
 }
 
 int ShoppingCart::GetCostOfCart() {
     int total = 0;
 
-    for (int i = 0; i < GetNumItemsInCart(); ++i) {
+    for (size_t i = 0; i < cartItems.size(); ++i) {
         total = total + (cartItems.at(i).GetPrice() * cartItems.at(i).GetQuantity());
     }
 
@@ -66,19 +78,21 @@ void ShoppingCart::PrintTotal() {
     if (GetNumItemsInCart() < 1) {
         std::cout << "SHOPPING CART IS EMPTY" << std::endl;
     } else {
-        for (int i = 0; i < GetNumItemsInCart(); ++i) {
+        for (size_t i = 0; i < cartItems.size(); ++i) {
             cartItems.at(i).PrintItemCost();
         }
     }
 
-    std::cout << std::endl << "Total: $" << GetCostOfCart() << std::endl;
+    std::cout << std::endl << "Total: $" << GetCostOfCart() << std::endl << std::endl;
 }
 
 void ShoppingCart::PrintDescriptions() {
     std::cout << customerName << "'s Shopping Cart - " << currentDate << std::endl;
     std::cout << std::endl << "Item Descriptions" << std::endl;
 
-    for (int i = 0; i < GetNumItemsInCart(); ++i) {
+    for (size_t i = 0; i < cartItems.size(); ++i) {
         cartItems.at(i).PrintItemDescription();
     }
+
+    std::cout << std::endl;
 }
