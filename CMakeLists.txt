@@ -27,25 +27,68 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/TestCases.h
             )]]
-    CXXTEST_ADD_TEST(7-31test runner.cpp
+
+    #[[CXXTEST_ADD_TEST(7-31test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(7-32test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.32\ Nutritional\ information/FoodItem.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.32\ Nutritional\ information/TestCases.h
+            )]]
+    
+    #[[CXXTEST_ADD_TEST(7-33test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artwork.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artist.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(7-38test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/ItemToPurchase.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(7-39test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ShoppingCart.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/TestCases.h
             )
 
 endif()
 
 #[[add_executable(CH07EXAMPLE1 runner.cpp
         Templates/cxxtest/Restaurant.cpp
-        Templates/cxxtest/Restaurant.h Templates/cxxtest/newCxxTest.h)]]
+        Templates/cxxtest/Restaurant.h)]]
 
 #[[add_executable(CH07-29 runner.cpp
         CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/Triangle.cpp
-        CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/Triangle.h CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/TestCases.h)]]
+        CSC\ 109-01/Chapter\ 7/7.29\ Triangle\ area\ comparison/Triangle.h)]]
 
 #[[add_executable(CH07-30 runner.cpp
         CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.cpp
-        CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.h CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/TestCases.h)]]
+        CSC\ 109-01/Chapter\ 7/7.30\ Car\ value/Car.h)]]
 
-add_executable(CH07-31 runner.cpp
+#[[add_executable(CH07-31 runner.cpp
         CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.cpp
-        CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.h CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/TestCases.h)
+        CSC\ 109-01/Chapter\ 7/7.31\ Winning\ team/Team.h)]]
+
+#[[add_executable(CH07-32 runner.cpp
+        CSC\ 109-01/Chapter\ 7/7.32\ Nutritional\ information/FoodItem.cpp
+        CSC\ 109-01/Chapter\ 7/7.32\ Nutritional\ information/FoodItem.h)]]
+
+#[[add_executable(CH07-33 runner.cpp
+        CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artist.cpp
+        CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artist.h
+        CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artwork.cpp
+        CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artwork.h CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/TestCases.h)]]
+
+#[[add_executable(CH07-38 runner.cpp
+        CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/ItemToPurchase.cpp
+        CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/ItemToPurchase.h)]]
+
+add_executable(CH07-39 runner.cpp
+        CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ShoppingCart.cpp
+        CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ShoppingCart.h
+        CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.cpp
+        CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.h)
