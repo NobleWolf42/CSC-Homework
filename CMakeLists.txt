@@ -81,7 +81,7 @@ endif()
         CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artist.cpp
         CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artist.h
         CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artwork.cpp
-        CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artwork.h CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/TestCases.h)]]
+        CSC\ 109-01/Chapter\ 7/7.33\ Artwork\ label/Artwork.h)]]
 
 #[[add_executable(CH07-38 runner.cpp
         CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/ItemToPurchase.cpp
