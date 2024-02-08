@@ -49,10 +49,16 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(7-39test runner.cpp
+    #[[CXXTEST_ADD_TEST(7-39test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ShoppingCart.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(7-27test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/TestCases.h
             )
 
 endif()
@@ -87,8 +93,13 @@ endif()
         CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/ItemToPurchase.cpp
         CSC\ 109-01/Chapter\ 7/7.38\ Online\ shopping\ cart\ Part\ 1/ItemToPurchase.h)]]
 
-add_executable(CH07-39 runner.cpp
+#[[add_executable(CH07-39 runner.cpp
         CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ShoppingCart.cpp
         CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ShoppingCart.h
         CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.cpp
-        CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.h)
+        CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.h)]]
+
+add_executable(CH07-27 
+        CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/main.cpp
+        CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
+        CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.h)
