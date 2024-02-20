@@ -30,8 +30,8 @@ Utilizing functions helps to make main() very clean and intuitive.
 using namespace std;
 
 int* GetUserValues(const int numValues) {
-    int* nums = nullptr;
     int uIn;
+    int* nums = new int(uIn);
     for (int i = 0; i < numValues; ++i) {
         cin >> uIn;
         nums[i] = uIn;
@@ -46,6 +46,8 @@ void OutputIntsLessThanOrEqualToThreshold(int* userValues, int numValues, int up
             cout << userValues[i] << " ";
         }
     }
+    cout << endl;
+    return;
 }
 
 int main() {
