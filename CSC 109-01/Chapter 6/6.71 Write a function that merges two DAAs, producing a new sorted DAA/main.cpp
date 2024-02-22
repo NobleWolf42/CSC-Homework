@@ -32,6 +32,12 @@ using namespace std;
  * @param yp a pointer to the second value
  * No return value
  */
+
+void Swap (int* &a, int xp, int yp)  {
+    int tempVal = a[xp];
+    a[xp] = a[yp];
+    a[yp] = tempVal;
+}
  
  /**
  * Write BubbleSort function: sort the DAA in place
@@ -43,6 +49,17 @@ using namespace std;
  * 
  */
  
+void BubbleSort (int* &x, int n) {
+    int done = 1;
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < n - done; ++j) {
+            if (x[j] > x[j+1]) {
+                Swap(x, j, j + 1);
+            }
+        }
+        done++;
+    }
+}
 
 /**
  * Write a GetUserValues function to ask user to enter number of inputs and return a new DAA
@@ -50,6 +67,18 @@ using namespace std;
  * @return a dynamic allocated array
  * Note: the parameter is the number of inputs that the user will enter
  */
+
+int* GetUserValues (int numValues) {
+    int uIn;
+    int* arr = new int(uIn);
+
+    for (int i = 0; i < numValues; ++i) {
+        cin >> uIn;
+        arr[i] = uIn;
+    }
+
+    return arr;
+}
  
  /**
  * MergeSorted function: merge two sorted DAA and return a new sort DAA
@@ -59,7 +88,22 @@ using namespace std;
  * @param m second DAA size
  * @return a merged sorted DAA
  */
- 
+
+ int* MergeSorted (int* &a, int n, int* &b, int m) {
+    int* merged = new int(n+m);
+
+    for (int i = 0; i < n; ++i) {
+        merged[i] = a[i];
+    }
+
+    for (int i = 0; i < m; ++i) {
+        merged[i+n] = b[i];
+    }
+
+    BubbleSort(merged, n + m);
+
+    return merged;
+ }
  
 /**
  * PrintArray function: to print a DAA
@@ -68,31 +112,49 @@ using namespace std;
  * No return
  */
  
+ void PrintArray(int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+ }
+ 
 
 int main() { // Begin Main
 
     // Vectors and variable
-    int n, m;
+    int n, m, k;
+    int* a1 = new int(n);
+    int* a2 = new int(m);
+    int* c = new int(k);
     //
     cout << "Enter the first list of inputs begins with an integer indicating the number of integers that follow: " << endl;
     cin >> n;
     
     //TODO: Call GetUserValues to fill up the first DAA using n as the size for the array
-    
-    cout "Print array1: " << endl;
+    a1 = GetUserValues(n);
+
+    cout << "Print array1: " << endl;
     PrintArray(a1, n);
     
     cout << "Enter the second list of inputs begins with an integer indicating the number of integers that follow: " << endl;
     cin >> m;
-    cout "Print array2: " << endl;
+
+    k = n + m;
+
+    //TODO: Call GetUserValues to fill up the second DAA using m as the size for the array
+    a2 = GetUserValues(m);
+
+    cout << "Print array2: " << endl;
     PrintArray(a2, m);
     
-    //TODO: Call GetUserValues to fill up the second DAA using m as the size for the array
-    
     // TODO: call bubble sort function to sort the two DAA individually.
-    
+    BubbleSort(a1, n);
+    BubbleSort(a2, m);
+
     // TODO: merge two sorted array
     // Note: merge sort function returns a merge DAA array
+    c = MergeSorted(a1, n, a2, m);
     
     
     // Print results
