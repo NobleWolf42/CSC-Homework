@@ -33,7 +33,7 @@ using namespace std;
  * No return value
  */
 
-void Swap (int* &a, int xp, int yp)  {
+void Swap (int* a, int xp, int yp)  {
     int tempVal = a[xp];
     a[xp] = a[yp];
     a[yp] = tempVal;
@@ -49,7 +49,7 @@ void Swap (int* &a, int xp, int yp)  {
  * 
  */
  
-void BubbleSort (int* &x, int n) {
+void BubbleSort (int* x, int n) {
     int done = 1;
     for (int i = 0; i < n - 1; ++i) {
         for (int j = 0; j < n - done; ++j) {
@@ -89,7 +89,7 @@ int* GetUserValues (int numValues) {
  * @return a merged sorted DAA
  */
 
- int* MergeSorted (int* &a, int n, int* &b, int m) {
+ int* MergeSorted (int* a, int n, int* b, int m) {
     int* merged = new int(n+m);
 
     for (int i = 0; i < n; ++i) {
@@ -118,12 +118,12 @@ int* GetUserValues (int numValues) {
     }
     cout << endl;
  }
- 
+
 
 int main() { // Begin Main
 
     // Vectors and variable
-    int n, m, k;
+    int n, m, k = 0;
     int* a1 = new int(n);
     int* a2 = new int(m);
     int* c = new int(k);
