@@ -55,10 +55,14 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(7-27test runner.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
+    #[[CXXTEST_ADD_TEST(7-27test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(6-72test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TestCases.h
             )
 
 endif()
@@ -99,7 +103,12 @@ endif()
         CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.cpp
         CSC\ 109-01/Chapter\ 7/7.39\ Online\ shopping\ cart\ Part\ 2/ItemToPurchase.h)]]
 
-add_executable(CH07-27 
+#[[add_executable(CH07-27 
         CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/main.cpp
         CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
-        CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.h)
+        CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.h)]]
+
+add_executable(CH06-72 
+        CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/main.cpp
+        CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.cpp
+        CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.h)

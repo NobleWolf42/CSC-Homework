@@ -89,21 +89,30 @@ int* GetUserValues (int numValues) {
  * @return a merged sorted DAA
  */
 
- int* MergeSorted (int* a, int n, int* b, int m) {
+int* MergeSorted (int* a, int n, int* b, int m) {
     int* merged = new int(n+m);
+    int j = 0, k = 0;
 
-    for (int i = 0; i < n; ++i) {
-        merged[i] = a[i];
+    for (int i = 0; i < (n+m); ++i) {
+        if (j < n && k < m) {
+            if (a[j] > b[k]) {
+                merged[i] = b[k];
+                k++;
+            } else {
+                merged[i] = a[j];
+                j++;
+            }
+        } else if (j == n) {
+            merged[i] = b[k];
+            k++;
+        } else {
+            merged[i] = a[j];
+            j++;
+        }
     }
-
-    for (int i = 0; i < m; ++i) {
-        merged[i+n] = b[i];
-    }
-
-    BubbleSort(merged, n + m);
 
     return merged;
- }
+}
  
 /**
  * PrintArray function: to print a DAA
