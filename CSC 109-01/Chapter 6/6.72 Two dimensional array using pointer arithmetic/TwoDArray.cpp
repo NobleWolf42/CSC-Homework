@@ -11,7 +11,7 @@ Copyright: 2024
 void set_row(double* the_array, int row_num, int col_size, double* row_vals) {
     int rowNum = row_num * col_size;
 
-    for (int col=0; col < col_size; col++) {
+    for (int col = 0; col < col_size; col++) {
         *(the_array + rowNum + col) =  *(row_vals + col);
     }
 

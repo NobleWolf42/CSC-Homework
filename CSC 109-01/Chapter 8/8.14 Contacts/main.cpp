@@ -59,17 +59,87 @@ using namespace std;
 
 class ContactNode {
 public:
-   /* Declare member functions here */
+    /* Declare member functions here */
+    ContactNode(string name, string phone);
+    string GetName();
+    string GetPhoneNumber();
+    void InsertAfter(ContactNode* newNode);
+    ContactNode* GetNext();
+    void PrintContactNode();
    
 private:
-   /* Declare data members here */
+    /* Declare data members here */
+    string contactName;
+    string contactPhoneNumber;
+    ContactNode* nextNodePtr;
    
 };
 
 /* Define member functions here */
 
+ContactNode::ContactNode(string name, string phone) {
+    contactName = name;
+    contactPhoneNumber = phone;
+    nextNodePtr = nullptr;
+}
+
+string ContactNode::GetName() {
+    return this->contactName;
+}
+
+string ContactNode::GetPhoneNumber() {
+    return this->contactPhoneNumber;
+}
+
+void ContactNode::InsertAfter(ContactNode* newNode) {
+    ContactNode* tempNext = nullptr;
+
+    tempNext = this->nextNodePtr;
+    this->nextNodePtr = newNode;
+    newNode->nextNodePtr = tempNext;
+}
+
+ContactNode* ContactNode::GetNext() {
+    return this->nextNodePtr;
+}
+
+void ContactNode::PrintContactNode() {
+
+    cout << "Name: " << GetName() << endl << "Phone number: " << GetPhoneNumber() << endl << endl;
+
+}
+
 int main() {
-   /* Type your code here. */
-   
-   return 0;
+    /* Type your code here. */
+    ContactNode* contact1 = nullptr;
+    ContactNode* contact2 = nullptr;
+    ContactNode* contact3 = nullptr;
+    ContactNode* currObj = nullptr;
+    string name1, name2, name3, phone1, phone2, phone3;
+
+    getline(cin, name1);
+    getline(cin, phone1);
+    contact1 = new ContactNode(name1, phone1);
+    getline(cin, name2);
+    getline(cin, phone2);
+    contact2 = new ContactNode(name2, phone2);
+    contact1->InsertAfter(contact2);
+    getline(cin, name3);
+    getline(cin, phone3);
+    contact3 = new ContactNode(name3, phone3);
+    contact2->InsertAfter(contact3);
+
+    cout << "Person 1: " << contact1->GetName() << ", " << contact1->GetPhoneNumber() << endl;
+    cout << "Person 2: " << contact2->GetName() << ", " << contact2->GetPhoneNumber() << endl;
+    cout << "Person 3: " << contact3->GetName() << ", " << contact3->GetPhoneNumber() << endl << endl;
+
+    cout << "CONTACT LIST" << endl;
+    currObj = contact1;
+    for (int i = 0; i < 3; ++i) {
+        currObj->PrintContactNode();
+        currObj = currObj->GetNext();
+    }
+
+
+    return 0;
 }

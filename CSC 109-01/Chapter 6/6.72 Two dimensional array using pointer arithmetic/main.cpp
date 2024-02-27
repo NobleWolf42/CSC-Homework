@@ -52,9 +52,9 @@ For this homework assignment, don't use c++ class for this assignment.
 using namespace std;
 
 int main() {
-    double a;
-    double* the_array = new double(a);
-    double* row_vals = new double(a);
+    int r = 6, c = 7;
+    double* the_array = new double(r);
+    double* row_vals = new double(c);
    
     row_vals[0] = 11;
     row_vals[1] = 2;
@@ -110,20 +110,6 @@ int main() {
     row_vals[6] = 6;
     set_row(the_array, 5, 7, row_vals);
 
-    cout << fixed << setprecision(2);
-
-    //get_row(double* the_array, int row_num, int col_size);
-
-    //set_element( double* the_array, int row_num, int col_size, int col_num, double val);
-
-    //get_element(double* the_array, int row_num, int col_size, int col_num);
-
-    //sum(double* the_array, int row_size, int col_size);
-
-    cout << "Max: " << find_max(the_array, 6, 7) << endl;
-
-    cout << "Min: " << find_min(the_array, 6, 7) << endl;
-
-    cout << "Array: " << endl << to_string(the_array, 6, 7) << endl;
+    cout << to_string(the_array, 6, 7) << endl;
    
 }

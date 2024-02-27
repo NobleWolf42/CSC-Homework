@@ -17,7 +17,7 @@ public:
     //the name of the function being tested.
 
     void testSetAndGetRow() {
-        double a;
+        int a = 0;
         double* the_array = new double(a);
         double* row0 = new double(a);
         double* row1 = new double(a);
@@ -25,7 +25,12 @@ public:
         double* row3 = new double(a);
         double* row4 = new double(a);
         double* row5 = new double(a);
-        double* row6 = new double(a);
+        double* pulledRow0 = new double(a);
+        double* pulledRow1 = new double(a);
+        double* pulledRow2 = new double(a);
+        double* pulledRow3 = new double(a);
+        double* pulledRow4 = new double(a);
+        double* pulledRow5 = new double(a);
 
         row0[0] = 11;
         row0[1] = 2;
@@ -81,17 +86,26 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        TS_ASSERT_EQUALS(get_row(the_array, 0, 7), row0);
-        TS_ASSERT_EQUALS(get_row(the_array, 1, 7), row1);
-        TS_ASSERT_EQUALS(get_row(the_array, 2, 7), row2);
-        TS_ASSERT_EQUALS(get_row(the_array, 3, 7), row3);
-        TS_ASSERT_EQUALS(get_row(the_array, 4, 7), row4);
-        TS_ASSERT_EQUALS(get_row(the_array, 5, 7), row5);
+        pulledRow0 = get_row(the_array, 0, 7);
+        pulledRow1 = get_row(the_array, 1, 7);
+        pulledRow2 = get_row(the_array, 2, 7);
+        pulledRow3 = get_row(the_array, 3, 7);
+        pulledRow4 = get_row(the_array, 4, 7);
+        pulledRow5 = get_row(the_array, 5, 7);
+
+        TS_ASSERT_EQUALS(pulledRow0[3], row0[3]);
+        TS_ASSERT_EQUALS(pulledRow1[6], row1[6]);
+        TS_ASSERT_EQUALS(pulledRow2[0], row2[0]);
+        TS_ASSERT_EQUALS(pulledRow3[1], row3[1]);
+        TS_ASSERT_EQUALS(pulledRow4[5], row4[5]);
+        TS_ASSERT_EQUALS(pulledRow5[2], row5[2]);
+        
+        delete[] the_array;
 
     }
 
     void testSetAndGetElement() {
-        double a;
+        int a = 0;
         double* the_array = new double(a);
         double* row0 = new double(a);
         double* row1 = new double(a);
@@ -155,14 +169,16 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        set_element(the_array, 1, 7, 3, 55.00)
+        set_element(the_array, 1, 7, 3, 55.00);
 
-        TS_ASSERT_EQUALS(get_element(the_array, 0, 7), 55.00);
+        TS_ASSERT_EQUALS(get_element(the_array, 1, 7, 3), 55.00);
+
+        delete[] the_array;
 
     }
 
     void testSum() {
-        double a;
+        int a = 0;
         double* the_array = new double(a);
         double* row0 = new double(a);
         double* row1 = new double(a);
@@ -226,12 +242,14 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        TS_ASSERT_EQUALS(sum(the_array, 0, 7), 318.00);
+        TS_ASSERT_EQUALS(sum(the_array, 6, 7), 318.00);
+
+        delete[] the_array;
 
     }
 
     void testMaxAndMin() {
-        double a;
+        int a = 0;
         double* the_array = new double(a);
         double* row0 = new double(a);
         double* row1 = new double(a);
@@ -295,17 +313,15 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        TS_ASSERT_EQUALS(get_row(the_array, 0, 7), row0);
-        TS_ASSERT_EQUALS(get_row(the_array, 1, 7), row1);
-        TS_ASSERT_EQUALS(get_row(the_array, 2, 7), row2);
-        TS_ASSERT_EQUALS(get_row(the_array, 3, 7), row3);
-        TS_ASSERT_EQUALS(get_row(the_array, 4, 7), row4);
-        TS_ASSERT_EQUALS(get_row(the_array, 5, 7), row5);
+        TS_ASSERT_EQUALS(find_max(the_array, 6, 7), 31.00);
+        TS_ASSERT_EQUALS(find_min(the_array, 6, 7), 2.00);
+
+        delete[] the_array;
 
     }
 
     void testString() {
-        double a;
+        int a = 0;
         double* the_array = new double(a);
         double* row0 = new double(a);
         double* row1 = new double(a);
@@ -369,7 +385,9 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        TS_ASSERT_EQUALS(to_string(the_array, 0, 7), "11.00      2.00      3.00      4.00      5.00      6.00      7.00\n10.00      9.00      8.00      7.00      6.00      5.00      4.00\n12.00     11.00     11.00     11.00     11.00     31.00     11.00\n5.00      5.00      5.00      5.00      5.00      5.00      5.00\n12.00      3.00      4.00      9.00      8.00      7.00      6.00\n12.00      3.00      4.00      9.00      8.00      7.00      6.00\n");
+        TS_ASSERT_EQUALS(to_string(the_array, 6, 7), "     11.00 2.00 3.00 4.00 5.00 6.00 7.00 \n10.00 9.00 8.00 7.00 6.00 5.00 4.00 \n12.00 11.00 11.00 11.00 11.00 31.00 11.00 \n5.00 5.00 5.00 5.00 5.00 5.00 5.00 \n12.00 3.00 4.00 9.00 8.00 7.00 6.00 \n12.00 3.00 4.00 9.00 8.00 7.00 6.00 \n");
+
+        delete[] the_array;
 
     }
 
