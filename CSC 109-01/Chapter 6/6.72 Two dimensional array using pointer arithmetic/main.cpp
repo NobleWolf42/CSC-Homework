@@ -47,12 +47,83 @@ For this homework assignment, don't use c++ class for this assignment.
 #include <string>
 #include <sstream>  // don't remove this line; use for ostringstream
 #include <iomanip>      // use std::setw to set the width for each number
-#include "TwoDArray.h"
+#include "TwoDArray.cpp"
 
 using namespace std;
 
 int main() {
+    double a;
+    double* the_array = new double(a);
+    double* row_vals = new double(a);
    
-// TODO
+    row_vals[0] = 11;
+    row_vals[1] = 2;
+    row_vals[2] = 3;
+    row_vals[3] = 4;
+    row_vals[4] = 5;
+    row_vals[5] = 6;
+    row_vals[6] = 7;
+    set_row(the_array, 0, 6, row_vals);
+    
+    row_vals[0] = 10;
+    row_vals[1] = 9;
+    row_vals[2] = 8;
+    row_vals[3] = 7;
+    row_vals[4] = 6;
+    row_vals[5] = 5;
+    row_vals[6] = 4;
+    //set_row(the_array, 1, 6, row_vals);
+    
+    row_vals[0] = 12;
+    row_vals[1] = 11;
+    row_vals[2] = 11;
+    row_vals[3] = 11;
+    row_vals[4] = 11;
+    row_vals[5] = 31;
+    row_vals[6] = 11;
+    //set_row(the_array, 2, 6, row_vals);
+    
+    row_vals[0] = 5;
+    row_vals[1] = 5;
+    row_vals[2] = 5;
+    row_vals[3] = 5;
+    row_vals[4] = 5;
+    row_vals[5] = 5;
+    row_vals[6] = 5;
+    //set_row(the_array, 3, 6, row_vals);
+    
+    row_vals[0] = 12;
+    row_vals[1] = 3;
+    row_vals[2] = 4;
+    row_vals[3] = 9;
+    row_vals[4] = 8;
+    row_vals[5] = 7;
+    row_vals[6] = 6;
+    //set_row(the_array, 4, 6, row_vals);
+
+    row_vals[0] = 12;
+    row_vals[1] = 3;
+    row_vals[2] = 4;
+    row_vals[3] = 9;
+    row_vals[4] = 8;
+    row_vals[5] = 7;
+    row_vals[6] = 6;
+    //set_row(the_array, 5, 6, row_vals);
+
+    cout << fixed << setprecision(2);
+
+    //get_row(double* the_array, int row_num, int col_size);
+
+    //set_element( double* the_array, int row_num, int col_size, int col_num, double val);
+
+    //get_element(double* the_array, int row_num, int col_size, int col_num);
+
+    //sum(double* the_array, int row_size, int col_size);
+
+    cout << "Max: " << find_max(the_array, 6, 6) << endl;
+
+    cout << "Min: " << find_min(the_array, 6, 6) << endl;
+
+    cout << "Array: " << endl << to_string(the_array, 6, 6) << endl;
    
 }

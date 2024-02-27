@@ -90,7 +90,7 @@ int* GetUserValues (int numValues) {
  */
 
 int* MergeSorted (int* a, int n, int* b, int m) {
-    int* merged = new int(n+m);
+    int* merged = new int[n+m];
     int j = 0, k = 0;
 
     for (int i = 0; i < (n+m); ++i) {
