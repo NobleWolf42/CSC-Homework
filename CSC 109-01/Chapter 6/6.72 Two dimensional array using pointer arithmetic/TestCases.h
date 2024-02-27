@@ -16,9 +16,65 @@ public:
     //All tests should start with the word 'test' followed by
     //the name of the function being tested.
 
-    void testConstructor1() {
+    void testSetAndGet() {
+        double a;
+        double* the_array = new double(a);
+        double* row_vals = new double(a);
 
-        Address test1;
+        row_vals[0] = 11;
+        row_vals[1] = 2;
+        row_vals[2] = 3;
+        row_vals[3] = 4;
+        row_vals[4] = 5;
+        row_vals[5] = 6;
+        row_vals[6] = 7;
+        set_row(the_array, 0, 7, row_vals);
+    
+        row_vals[0] = 10;
+        row_vals[1] = 9;
+        row_vals[2] = 8;
+        row_vals[3] = 7;
+        row_vals[4] = 6;
+        row_vals[5] = 5;
+        row_vals[6] = 4;
+        set_row(the_array, 1, 7, row_vals);
+    
+        row_vals[0] = 12;
+        row_vals[1] = 11;
+        row_vals[2] = 11;
+        row_vals[3] = 11;
+        row_vals[4] = 11;
+        row_vals[5] = 31;
+        row_vals[6] = 11;
+        set_row(the_array, 2, 7, row_vals);
+    
+        row_vals[0] = 5;
+        row_vals[1] = 5;
+        row_vals[2] = 5;
+        row_vals[3] = 5;
+        row_vals[4] = 5;
+        row_vals[5] = 5;
+        row_vals[6] = 5;
+        set_row(the_array, 3, 7, row_vals);
+    
+        row_vals[0] = 12;
+        row_vals[1] = 3;
+        row_vals[2] = 4;
+        row_vals[3] = 9;
+        row_vals[4] = 8;
+        row_vals[5] = 7;
+        row_vals[6] = 6;
+        set_row(the_array, 4, 7, row_vals);
+
+        row_vals[0] = 12;
+        row_vals[1] = 3;
+        row_vals[2] = 4;
+        row_vals[3] = 9;
+        row_vals[4] = 8;
+        row_vals[5] = 7;
+        row_vals[6] = 6;
+        set_row(the_array, 5, 7, row_vals);
+
         TS_ASSERT_EQUALS(test1.getHouseNumber(), 0);
         TS_ASSERT_EQUALS(test1.getStreet(), "");
         TS_ASSERT_EQUALS(test1.getApartmentNumber(), 0);
