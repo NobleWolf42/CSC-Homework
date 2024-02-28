@@ -47,7 +47,7 @@ For this homework assignment, don't use c++ class for this assignment.
 #include <string>
 #include <sstream>  // don't remove this line; use for ostringstream
 #include <iomanip>      // use std::setw to set the width for each number
-#include "TwoDArray.h"
+#include "TwoDArray.cpp"
 
 using namespace std;
 

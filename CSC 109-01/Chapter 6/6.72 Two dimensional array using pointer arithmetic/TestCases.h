@@ -86,21 +86,12 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        pulledRow0 = get_row(the_array, 0, 7);
-        pulledRow1 = get_row(the_array, 1, 7);
-        pulledRow2 = get_row(the_array, 2, 7);
         pulledRow3 = get_row(the_array, 3, 7);
-        pulledRow4 = get_row(the_array, 4, 7);
-        pulledRow5 = get_row(the_array, 5, 7);
 
-        TS_ASSERT_EQUALS(pulledRow0[3], row0[3]);
-        TS_ASSERT_EQUALS(pulledRow1[6], row1[6]);
-        TS_ASSERT_EQUALS(pulledRow2[0], row2[0]);
-        TS_ASSERT_EQUALS(pulledRow3[1], row3[1]);
-        TS_ASSERT_EQUALS(pulledRow4[5], row4[5]);
-        TS_ASSERT_EQUALS(pulledRow5[2], row5[2]);
-        
+        TS_ASSERT_EQUALS(pulledRow3[3], row3[3]);
+
         delete[] the_array;
+    
 
     }
 

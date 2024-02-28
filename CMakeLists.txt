@@ -65,10 +65,25 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(8-15test runner.cpp
+    #[[CXXTEST_ADD_TEST(8-15test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.15\ Playlist/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(8-17test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/TestCases.h
             )
+
+    #[[CXXTEST_ADD_TEST(8-19test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/InventoryNode.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(8-22test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/TestCases.h
+            )]]
 
 endif()
 
@@ -118,7 +133,22 @@ endif()
         CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.cpp
         CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.h)]]
 
-add_executable(CH08-15 
+#[[add_executable(CH08-15 
         CSC\ 109-01/Chapter\ 8/8.15\ Playlist/main.cpp
         CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.cpp
-        CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.h)
+        CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.h)]]
+
+add_executable(CH08-17 
+        CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/main.cpp
+        CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.cpp
+        CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.h)
+
+#[[add_executable(CH08-19 
+        CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/main.cpp
+        CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/InventoryNode.cpp
+        CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/InventoryNode.h)]]
+
+#[[add_executable(CH08-22 
+        CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/main.cpp
+        CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.cpp
+        CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.h)]]
