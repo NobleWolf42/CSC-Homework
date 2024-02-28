@@ -60,9 +60,14 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(6-72test runner.cpp
+    #[[CXXTEST_ADD_TEST(6-72test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(8-15test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.h
             )
 
 endif()
@@ -108,7 +113,12 @@ endif()
         CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.cpp
         CSC\ 109-01/Chapter\ 7/7.27\ CH07\ EXAM1\ SP24/Address.h)]]
 
-add_executable(CH06-72 
+#[[add_executable(CH06-72 
         CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/main.cpp
         CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.cpp
-        CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.h)
+        CSC\ 109-01/Chapter\ 6/6.72\ Two\ dimensional\ array\ using\ pointer\ arithmetic/TwoDArray.h)]]
+
+add_executable(CH08-15 
+        CSC\ 109-01/Chapter\ 8/8.15\ Playlist/main.cpp
+        CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.cpp
+        CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.h)

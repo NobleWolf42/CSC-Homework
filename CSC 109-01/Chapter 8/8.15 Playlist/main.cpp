@@ -199,23 +199,294 @@ Ex:
 */
 
 #include <iostream>
+#include <string>
 #include "PlaylistNode.h"
 
 using namespace std;
 
 void PrintMenu(const string playlistTitle) {
-   /* Type your code here */
+    /* Type your code here */
+    cout << playlistTitle << " PLAYLIST MENU" << endl;
+    cout << "a - Add song" << endl;
+    cout << "d - Remove song" << endl;
+    cout << "c - Change position of song" << endl;
+    cout << "s - Output songs by specific artist" << endl;
+    cout << "t - Output total time of playlist (in seconds)" << endl;
+    cout << "o - Output full playlist" << endl;
+    cout << "q - Quit" << endl;
    
 }
 
 PlaylistNode* ExecuteMenu(char option, string playlistTitle, PlaylistNode* headNode) {
-   /* Type your code here */
-   
+    /* Type your code here */
+    char uIn;
+    string uId, sName, aName, rName;
+    int sLength, count, sNum, newSNum;
+    bool running;
+    PlaylistNode* currObj = headNode;
+    PlaylistNode* tempObj;
+    PlaylistNode* oldObj;
+
+    switch (option) {
+
+        case 'q':
+            headNode = new PlaylistNode("Kill", "Kill", "Kill", 0);
+            break;
+
+        case 'a': 
+            {
+                cout << "ADD SONG" << endl;
+                cout << "Enter song's unique ID:" << endl;
+                cin.ignore();
+                getline(cin, uId);
+                cout << "Enter song's name:" << endl;
+                getline(cin, sName);
+                cout << "Enter artist's name:" << endl;
+                getline(cin, aName);
+                cout << "Enter song's length (in seconds):" << endl;
+                cin >> sLength;
+
+                while (currObj->GetNext() != nullptr) {
+                    currObj = currObj->GetNext();
+                }
+
+                tempObj = new PlaylistNode(uId, sName, aName, sLength);
+                currObj->InsertAfter(tempObj);
+                cout << endl;
+            }
+            break;
+
+        case 'd':
+            {
+                cout << "REMOVE SONG" << endl;
+                cout << "Enter song's unique ID:" << endl;
+                cin.ignore();
+                getline(cin, uId);
+
+                running = true;
+                while (running) {
+                    if (currObj->GetID() == uId && headNode->GetID() == uId) {
+                        headNode = currObj->GetNext();
+                        rName = currObj->GetSongName();
+                        delete currObj;
+                        running = false;
+                    } else if (currObj->GetID() == uId) {
+                        tempObj->SetNext(currObj->GetNext());
+                        rName = currObj->GetSongName();
+                        delete currObj;
+                        running = false;
+                    } else {
+                        tempObj = currObj;
+                        currObj = currObj->GetNext();
+                    }
+                }
+
+                cout << "\"" << rName << "\" removed." << endl << endl;
+            }
+            break;
+
+        case 'c':
+            {
+                cout << "CHANGE POSITION OF SONG" << endl;
+                cout << "Enter song's current position:" << endl;
+                cin >> sNum;
+                cout << "Enter new position for song:" << endl;
+                cin >> newSNum;
+
+
+                running =  true;
+                count = -1;
+                while (running) {
+                    count++;
+
+                    if (currObj->GetNext() == nullptr) {
+                        running = false;
+                    }
+
+                    currObj = currObj->GetNext();
+                }
+
+                currObj = headNode;
+
+                for (int i = 0; i < sNum; ++i) {
+                    currObj = currObj->GetNext();
+                }
+
+                oldObj = currObj;
+                rName = currObj->GetSongName();
+
+                if (newSNum <= 1) {
+                    tempObj = headNode->GetNext();
+                    currObj = headNode->GetNext();
+                    cout << currObj->GetSongName() << endl;
+                    headNode->SetNext(oldObj);
+
+                    for (int i = 0; i < sNum - 2; ++i) {
+                        currObj = currObj->GetNext();
+                    }
+
+                    cout << currObj->GetSongName() << endl;
+                    cout << oldObj->GetSongName() << endl;
+
+                    currObj->SetNext(oldObj->GetNext());
+                    oldObj->SetNext(tempObj);
+
+                } else if (newSNum >= count) {
+                    currObj = headNode;
+
+                    for (int i = 0; i < sNum - 1; ++i) {
+                        currObj = currObj->GetNext();
+                    }
+
+                    tempObj = currObj;
+
+                    while (currObj->GetNext() != nullptr) {
+                        currObj = currObj->GetNext();
+                    }
+
+                    tempObj->SetNext(tempObj->GetNext()->GetNext());
+                    currObj->SetNext(oldObj);
+                    oldObj->SetNext(nullptr);
+
+                } else if (newSNum > sNum) {
+                    currObj = headNode;
+
+                    for (int i = 0; i < sNum - 1; ++i) {
+                        currObj = currObj->GetNext();
+                    }
+
+                    tempObj = currObj;
+
+                    for (int i = 0; i < newSNum - sNum + 1; ++i) {
+                        currObj = currObj->GetNext();
+                    }
+
+                    tempObj->SetNext(tempObj->GetNext()->GetNext());
+                    oldObj->SetNext(currObj->GetNext());
+                    currObj->SetNext(oldObj);
+
+                } else {
+                    currObj = headNode->GetNext();
+
+                    for (int i = 0; i < newSNum - 2; ++i) {
+                        currObj = currObj->GetNext();
+                    }
+
+                    tempObj = currObj;
+
+                    for (int i = 0; i < sNum - newSNum; ++i) {
+                        currObj = currObj->GetNext();
+                    }
+                    
+                    currObj->SetNext(oldObj->GetNext());
+                    oldObj->SetNext(tempObj->GetNext());
+                    tempObj->SetNext(oldObj);
+                    
+                }
+
+
+                cout << "\"" << rName << "\" moved to position " << newSNum << endl << endl;
+            }
+            break;
+
+        case 's':
+            {
+                cout << "OUTPUT SONGS BY SPECIFIC ARTIST" << endl;
+                cout << "Enter artist's name:" << endl;
+                cin.ignore();
+                getline(cin, aName);
+                cout << endl;
+                currObj = headNode->GetNext();
+                int i = 1;
+                running = true;
+                while (running) {
+                    if (currObj->GetArtistName() == aName) {
+                        cout << i << "." << endl;
+                        currObj->PrintPlaylistNode();
+                        cout << endl;
+                    }
+                    i++;
+
+                    if (currObj->GetNext() == nullptr) {
+                        running = false;
+                    }
+
+                    currObj = currObj->GetNext();
+                }
+            }
+            break;
+
+        case 't':
+            {
+                int sum = 0;
+
+                cout << "OUTPUT TOTAL TIME OF PLAYLIST (IN SECONDS)" << endl;
+
+                currObj = headNode;
+                while(currObj->GetNext() != nullptr) {
+                    currObj = currObj->GetNext();
+                    sum = sum + currObj->GetSongLength();
+                }
+
+                cout << "Total time: " << sum << " seconds" << endl << endl;
+
+            }
+            break;
+
+        case 'o':
+            {
+                running = true;
+                cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
+                if (headNode->GetNext() == nullptr) {
+                    cout << "Playlist is empty" << endl << endl;
+                } else {
+                    int i = 1;
+                    currObj = headNode->GetNext();
+                    while (running) {
+                        cout << i << "." << endl;
+                        currObj->PrintPlaylistNode();
+                        cout << endl;
+                        i++;
+
+                        if (currObj->GetNext() == nullptr) {
+                            running = false;
+                        }
+
+                        currObj = currObj->GetNext();
+                    }
+                }
+            }
+            break;
+
+        default:
+            {
+                PrintMenu(playlistTitle);
+                cout << endl <<  "Choose an option:" << endl;
+                cin >> uIn;
+                ExecuteMenu(uIn, playlistTitle, headNode);
+            }
+            break;
+    }
+
+    return headNode;
 }
 
 int main() {
-   /* Type your code here */
-   
-   return 0;
-}
+    /* Type your code here */
+    PlaylistNode* headNode = new PlaylistNode();
+    string playlistTitle;
+    char uIn;
 
+    cout << "Enter playlist's title:" << endl;
+    getline(cin, playlistTitle);
+    cout << endl;
+
+    while (headNode->GetID() == "none") {
+        PrintMenu(playlistTitle);
+        cout << endl <<  "Choose an option:" << endl;
+        cin >> uIn;
+        headNode = ExecuteMenu(uIn, playlistTitle, headNode);
+    }
+   
+    return 0;
+}
