@@ -21,6 +21,12 @@ InventoryNode::InventoryNode(string itemInit, int numberOfItemsInit) {
     nextNodeRef = nullptr;
 }
 
+InventoryNode::InventoryNode(string itemInit, int numberOfItemsInit, InventoryNode *nextLoc) {
+    this->item = itemInit;
+    this->numberOfItems = numberOfItemsInit;
+    this->nextNodeRef = nextLoc;
+}
+
 void InventoryNode::InsertAtFront(InventoryNode *a, InventoryNode *b) {
     InventoryNode* tempLoc = a->GetNext();
     a->nextNodeRef = b;

@@ -70,10 +70,10 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.15\ Playlist/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(8-17test runner.cpp
+    #[[CXXTEST_ADD_TEST(8-17test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/TestCases.h
-            )
+            )]]
 
     #[[CXXTEST_ADD_TEST(8-19test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/InventoryNode.cpp
@@ -84,6 +84,12 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/TestCases.h
             )]]
+
+    CXXTEST_ADD_TEST(8-29test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneNode.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/TestCases.h
+            )
 
 endif()
 
@@ -138,10 +144,10 @@ endif()
         CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.cpp
         CSC\ 109-01/Chapter\ 8/8.15\ Playlist/PlaylistNode.h)]]
 
-add_executable(CH08-17 
+#[[add_executable(CH08-17 
         CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/main.cpp
         CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.cpp
-        CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.h)
+        CSC\ 109-01/Chapter\ 8/8.17\ Mileage\ tracker\ for\ a\ runner/MileageTrackerNode.h)]]
 
 #[[add_executable(CH08-19 
         CSC\ 109-01/Chapter\ 8/8.19\ Inventory2\ \(linked\ lists\ -\ insert\ at\ the\ front\ of\ a\ list\)/main.cpp
@@ -152,3 +158,10 @@ add_executable(CH08-17
         CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/main.cpp
         CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.cpp
         CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.h)]]
+
+add_executable(CH08-29 
+        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/main.cpp
+        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneNode.cpp
+        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneNode.h
+        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.cpp
+        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.h)

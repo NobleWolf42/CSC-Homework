@@ -200,7 +200,7 @@ Ex:
 
 #include <iostream>
 #include <string>
-#include "PlaylistNode.h"
+#include "PlaylistNode.cpp"
 
 using namespace std;
 
@@ -219,7 +219,6 @@ void PrintMenu(const string playlistTitle) {
 
 PlaylistNode* ExecuteMenu(char option, string playlistTitle, PlaylistNode* headNode) {
     /* Type your code here */
-    char uIn;
     string uId, sName, aName, rName;
     int sLength, count, sNum, newSNum;
     bool running;
@@ -228,10 +227,6 @@ PlaylistNode* ExecuteMenu(char option, string playlistTitle, PlaylistNode* headN
     PlaylistNode* oldObj;
 
     switch (option) {
-
-        case 'q':
-            headNode = new PlaylistNode("Kill", "Kill", "Kill", 0);
-            break;
 
         case 'a': 
             {
@@ -459,12 +454,6 @@ PlaylistNode* ExecuteMenu(char option, string playlistTitle, PlaylistNode* headN
             break;
 
         default:
-            {
-                PrintMenu(playlistTitle);
-                cout << endl <<  "Choose an option:" << endl;
-                cin >> uIn;
-                ExecuteMenu(uIn, playlistTitle, headNode);
-            }
             break;
     }
 
@@ -476,17 +465,25 @@ int main() {
     PlaylistNode* headNode = new PlaylistNode();
     string playlistTitle;
     char uIn;
+    bool running = true;
 
-    cout << "Enter playlist's title:" << endl;
+
+    cout << ExecuteMenu('o', "JAMZ", headNode) << endl;
+
+    /*cout << "Enter playlist's title:" << endl;
     getline(cin, playlistTitle);
     cout << endl;
 
-    while (headNode->GetID() == "none") {
+    while (running) {
         PrintMenu(playlistTitle);
         cout << endl <<  "Choose an option:" << endl;
         cin >> uIn;
-        headNode = ExecuteMenu(uIn, playlistTitle, headNode);
-    }
+        if (uIn == 'q') {
+            running = false;
+        } else {
+            headNode = ExecuteMenu(uIn, playlistTitle, headNode);
+        }
+    }*/
    
     return 0;
 }

@@ -20,6 +20,7 @@ private:
 public:
     InventoryNode();
     InventoryNode(string itemInit, int numberOfItemsInit);
+    InventoryNode(string itemInit, int numberOfItemsInit, InventoryNode* nextLoc);
     void InsertAtFront(InventoryNode *a, InventoryNode *b);
     InventoryNode* GetNext();
     string GetItem();

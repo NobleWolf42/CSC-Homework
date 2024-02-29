@@ -22,13 +22,22 @@ the output is:
 
 */
 
-#include "InventoryNode.h"
+#include "InventoryNode.cpp"
 
 int main() {
     using namespace std;
 	int count;
 	int numItems;
 	string item;
+
+    InventoryNode* test1 = new InventoryNode("Item1", 1);
+    InventoryNode* test2 = new InventoryNode("Item2", 2, test1);
+    InventoryNode* test3 = new InventoryNode("Item3", 3, test2);
+
+    cout << "MEMORY NODES: " << endl;
+    cout << "Test 1: " << test1->GetNext() << endl;
+    cout << "Test 2: " << test2->GetNext() << endl;
+    cout << "Test 3: " << test3->GetNext() << endl << endl << endl;
 
 	InventoryNode *headNode = new InventoryNode();
 	InventoryNode *currNode;

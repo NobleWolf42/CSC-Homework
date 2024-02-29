@@ -14,7 +14,7 @@ PlaylistNode::PlaylistNode() {
     songName = "none";
     artistName = "none";
     songLength = 0;
-    nextNodePtr = nullptr;
+    nextNodePtr = 0;
 }
 
 PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, int songLength) {
@@ -22,7 +22,7 @@ PlaylistNode::PlaylistNode(string uniqueID, string songName, string artistName, 
     this->songName = songName;
     this->artistName = artistName;
     this->songLength = songLength;
-    this->nextNodePtr = nullptr;
+    this->nextNodePtr = 0;
 }
 
 string PlaylistNode::GetID() {
