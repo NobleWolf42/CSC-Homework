@@ -31,9 +31,9 @@ double get_element(double* the_array, int row_num, int col_size, int col_num) {
 
 double sum(double* the_array, int row_size, int col_size) {
     double returnVal = 0;
-    
+
     for (int i = 0; i < row_size * col_size; ++i) {
-        returnVal =  returnVal + the_array[i];
+        returnVal =  returnVal + *(the_array + i);
     }
 
     return returnVal;

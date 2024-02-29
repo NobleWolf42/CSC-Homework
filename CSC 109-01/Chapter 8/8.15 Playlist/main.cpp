@@ -432,7 +432,9 @@ PlaylistNode* ExecuteMenu(char option, string playlistTitle, PlaylistNode* headN
             {
                 running = true;
                 cout << playlistTitle << " - OUTPUT FULL PLAYLIST" << endl;
-                if (headNode->GetNext() == nullptr) {
+                if (headNode == nullptr) {
+                    cout << "Playlist is empty" << endl << endl;
+                } else if (headNode->GetNext() == nullptr) {
                     cout << "Playlist is empty" << endl << endl;
                 } else {
                     int i = 1;

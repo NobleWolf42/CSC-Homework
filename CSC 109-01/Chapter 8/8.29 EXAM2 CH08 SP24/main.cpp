@@ -62,7 +62,7 @@ using namespace std;
 
 int main() {
 
-   PhoneList list1;
+    PhoneList list1;
     string phoneno;
     string firstName;
     string lastName;

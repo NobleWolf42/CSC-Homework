@@ -53,64 +53,20 @@ using namespace std;
 
 int main() {
     int r = 6, c = 7;
-    double* the_array = new double[r*c]{
-        11,2,3,4,5,6,7,10,9,8,7,6,5,4,12,11,11,11,11,31,11,5,5,5,5,5,5,5,12,3,4,9,8,7,6,12,3,4,9,8,7,6
-
-    };
+    double* the_array = new double[r*c];
+    double* row0 = new double[c]{11,2,3,4,5,6,7};
+    double* row1 = new double[c]{10,9,8,7,6,5,4};
+    double* row2 = new double[c]{12,11,11,11,11,31,11};
+    double* row3 = new double[c]{5,5,5,5,5,5,5};
+    double* row4 = new double[c]{12,3,4,9,8,7,6};
+    double* row5 = new double[c]{12,3,4,9,8,7,6};
    
-    /*row_vals[0] = 11;
-    row_vals[1] = 2;
-    row_vals[2] = 3;
-    row_vals[3] = 4;
-    row_vals[4] = 5;
-    row_vals[5] = 6;
-    row_vals[6] = 7;
-    set_row(the_array, 0, 7, row_vals);
-    
-    row_vals[0] = 10;
-    row_vals[1] = 9;
-    row_vals[2] = 8;
-    row_vals[3] = 7;
-    row_vals[4] = 6;
-    row_vals[5] = 5;
-    row_vals[6] = 4;
-    set_row(the_array, 1, 7, row_vals);
-    
-    row_vals[0] = 12;
-    row_vals[1] = 11;
-    row_vals[2] = 11;
-    row_vals[3] = 11;
-    row_vals[4] = 11;
-    row_vals[5] = 31;
-    row_vals[6] = 11;
-    set_row(the_array, 2, 7, row_vals);
-    
-    row_vals[0] = 5;
-    row_vals[1] = 5;
-    row_vals[2] = 5;
-    row_vals[3] = 5;
-    row_vals[4] = 5;
-    row_vals[5] = 5;
-    row_vals[6] = 5;
-    set_row(the_array, 3, 7, row_vals);
-    
-    row_vals[0] = 12;
-    row_vals[1] = 3;
-    row_vals[2] = 4;
-    row_vals[3] = 9;
-    row_vals[4] = 8;
-    row_vals[5] = 7;
-    row_vals[6] = 6;
-    set_row(the_array, 4, 7, row_vals);
-
-    row_vals[0] = 12;
-    row_vals[1] = 3;
-    row_vals[2] = 4;
-    row_vals[3] = 9;
-    row_vals[4] = 8;
-    row_vals[5] = 7;
-    row_vals[6] = 6;
-    set_row(the_array, 5, 7, row_vals);*/
+    set_row(the_array, 0, 7, row0);
+    set_row(the_array, 1, 7, row1);
+    set_row(the_array, 2, 7, row2);
+    set_row(the_array, 3, 7, row3);
+    set_row(the_array, 4, 7, row4);
+    set_row(the_array, 5, 7, row5);
 
     cout << to_string(the_array, 6, 7) << endl;
    
