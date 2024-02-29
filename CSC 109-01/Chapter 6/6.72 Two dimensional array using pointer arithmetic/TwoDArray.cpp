@@ -72,14 +72,14 @@ double find_min(double* the_array, int row_size, int col_size) {
 std::string to_string(double* the_array, int row_size, int col_size) {
     std::ostringstream returnVal;
     std::string rowstr;
-    returnVal << std::setw(10) << std::fixed << std::setprecision(2);
+    returnVal << std::fixed << std::setprecision(2);
 
     for (int row = 0; row < row_size; ++row) {
         for (int col = 0; col < col_size; ++col) {
             int rowNum = row * col_size;
-            returnVal << *(the_array + rowNum + col) << " ";
+            returnVal << std::setw(10) << *(the_array + rowNum + col);
         }
-        returnVal << std::endl;
+        returnVal << "\n";
     }
 
     return returnVal.str();

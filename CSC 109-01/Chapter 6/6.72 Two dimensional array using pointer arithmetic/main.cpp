@@ -47,16 +47,18 @@ For this homework assignment, don't use c++ class for this assignment.
 #include <string>
 #include <sstream>  // don't remove this line; use for ostringstream
 #include <iomanip>      // use std::setw to set the width for each number
-#include "TwoDArray.cpp"
+#include "TwoDArray.h"
 
 using namespace std;
 
 int main() {
     int r = 6, c = 7;
-    double* the_array = new double(r);
-    double* row_vals = new double(c);
+    double* the_array = new double[r*c]{
+        11,2,3,4,5,6,7,10,9,8,7,6,5,4,12,11,11,11,11,31,11,5,5,5,5,5,5,5,12,3,4,9,8,7,6,12,3,4,9,8,7,6
+
+    };
    
-    row_vals[0] = 11;
+    /*row_vals[0] = 11;
     row_vals[1] = 2;
     row_vals[2] = 3;
     row_vals[3] = 4;
@@ -108,7 +110,7 @@ int main() {
     row_vals[4] = 8;
     row_vals[5] = 7;
     row_vals[6] = 6;
-    set_row(the_array, 5, 7, row_vals);
+    set_row(the_array, 5, 7, row_vals);*/
 
     cout << to_string(the_array, 6, 7) << endl;
    

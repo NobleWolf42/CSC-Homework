@@ -17,20 +17,20 @@ public:
     //the name of the function being tested.
 
     void testSetAndGetRow() {
-        int a = 0;
-        double* the_array = new double(a);
-        double* row0 = new double(a);
-        double* row1 = new double(a);
-        double* row2 = new double(a);
-        double* row3 = new double(a);
-        double* row4 = new double(a);
-        double* row5 = new double(a);
-        double* pulledRow0 = new double(a);
-        double* pulledRow1 = new double(a);
-        double* pulledRow2 = new double(a);
-        double* pulledRow3 = new double(a);
-        double* pulledRow4 = new double(a);
-        double* pulledRow5 = new double(a);
+        int r = 6, c = 7;
+        double* the_array = new double[r*c];
+        double* row0 = new double[c];
+        double* row1 = new double[c];
+        double* row2 = new double[c];
+        double* row3 = new double[c];
+        double* row4 = new double[c];
+        double* row5 = new double[c];
+        double* pulledRow0 = new double[c];
+        double* pulledRow1 = new double[c];
+        double* pulledRow2 = new double[c];
+        double* pulledRow3 = new double[c];
+        double* pulledRow4 = new double[c];
+        double* pulledRow5 = new double[c];
 
         row0[0] = 11;
         row0[1] = 2;
@@ -89,22 +89,20 @@ public:
         pulledRow3 = get_row(the_array, 3, 7);
 
         TS_ASSERT_EQUALS(pulledRow3[3], row3[3]);
-
-        delete[] the_array;
     
 
     }
 
     void testSetAndGetElement() {
-        int a = 0;
-        double* the_array = new double(a);
-        double* row0 = new double(a);
-        double* row1 = new double(a);
-        double* row2 = new double(a);
-        double* row3 = new double(a);
-        double* row4 = new double(a);
-        double* row5 = new double(a);
-        double* row6 = new double(a);
+        int r = 6, c = 7;
+        double* the_array = new double[r*c];
+        double* row0 = new double[c];
+        double* row1 = new double[c];
+        double* row2 = new double[c];
+        double* row3 = new double[c];
+        double* row4 = new double[c];
+        double* row5 = new double[c];
+        double* row6 = new double[c];
 
         row0[0] = 11;
         row0[1] = 2;
@@ -164,20 +162,19 @@ public:
 
         TS_ASSERT_EQUALS(get_element(the_array, 1, 7, 3), 55.00);
 
-        delete[] the_array;
 
     }
 
     void testSum() {
-        int a = 0;
-        double* the_array = new double(a);
-        double* row0 = new double(a);
-        double* row1 = new double(a);
-        double* row2 = new double(a);
-        double* row3 = new double(a);
-        double* row4 = new double(a);
-        double* row5 = new double(a);
-        double* row6 = new double(a);
+        int r = 6, c = 7;
+        double* the_array = new double[r*c];
+        double* row0 = new double[c];
+        double* row1 = new double[c];
+        double* row2 = new double[c];
+        double* row3 = new double[c];
+        double* row4 = new double[c];
+        double* row5 = new double[c];
+        double* row6 = new double[c];
 
         row0[0] = 11;
         row0[1] = 2;
@@ -235,20 +232,18 @@ public:
 
         TS_ASSERT_EQUALS(sum(the_array, 6, 7), 318.00);
 
-        delete[] the_array;
-
     }
 
     void testMaxAndMin() {
-        int a = 0;
-        double* the_array = new double(a);
-        double* row0 = new double(a);
-        double* row1 = new double(a);
-        double* row2 = new double(a);
-        double* row3 = new double(a);
-        double* row4 = new double(a);
-        double* row5 = new double(a);
-        double* row6 = new double(a);
+        int r = 6, c = 7;
+        double* the_array = new double[r*c];
+        double* row0 = new double[c];
+        double* row1 = new double[c];
+        double* row2 = new double[c];
+        double* row3 = new double[c];
+        double* row4 = new double[c];
+        double* row5 = new double[c];
+        double* row6 = new double[c];
 
         row0[0] = 11;
         row0[1] = 2;
@@ -307,20 +302,18 @@ public:
         TS_ASSERT_EQUALS(find_max(the_array, 6, 7), 31.00);
         TS_ASSERT_EQUALS(find_min(the_array, 6, 7), 2.00);
 
-        delete[] the_array;
-
     }
 
     void testString() {
-        int a = 0;
-        double* the_array = new double(a);
-        double* row0 = new double(a);
-        double* row1 = new double(a);
-        double* row2 = new double(a);
-        double* row3 = new double(a);
-        double* row4 = new double(a);
-        double* row5 = new double(a);
-        double* row6 = new double(a);
+        int r = 6, c = 7;
+        double* the_array = new double[r*c];
+        double* row0 = new double[c];
+        double* row1 = new double[c];
+        double* row2 = new double[c];
+        double* row3 = new double[c];
+        double* row4 = new double[c];
+        double* row5 = new double[c];
+        double* row6 = new double[c];
 
         row0[0] = 11;
         row0[1] = 2;
@@ -376,9 +369,8 @@ public:
         row5[6] = 6;
         set_row(the_array, 5, 7, row5);
 
-        TS_ASSERT_EQUALS(to_string(the_array, 6, 7), "     11.00 2.00 3.00 4.00 5.00 6.00 7.00 \n10.00 9.00 8.00 7.00 6.00 5.00 4.00 \n12.00 11.00 11.00 11.00 11.00 31.00 11.00 \n5.00 5.00 5.00 5.00 5.00 5.00 5.00 \n12.00 3.00 4.00 9.00 8.00 7.00 6.00 \n12.00 3.00 4.00 9.00 8.00 7.00 6.00 \n");
+        TS_ASSERT_EQUALS(to_string(the_array, 6, 7), "     11.00      2.00      3.00      4.00      5.00      6.00      7.00\n     10.00      9.00      8.00      7.00      6.00      5.00      4.00\n     12.00     11.00     11.00     11.00     11.00     31.00     11.00\n      5.00      5.00      5.00      5.00      5.00      5.00      5.00\n     12.00      3.00      4.00      9.00      8.00      7.00      6.00\n     12.00      3.00      4.00      9.00      8.00      7.00      6.00\n");
 
-        delete[] the_array;
 
     }
 

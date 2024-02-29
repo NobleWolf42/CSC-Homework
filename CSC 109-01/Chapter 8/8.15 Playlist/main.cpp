@@ -467,10 +467,7 @@ int main() {
     char uIn;
     bool running = true;
 
-
-    cout << ExecuteMenu('o', "JAMZ", headNode) << endl;
-
-    /*cout << "Enter playlist's title:" << endl;
+    cout << "Enter playlist's title:" << endl;
     getline(cin, playlistTitle);
     cout << endl;
 
@@ -483,7 +480,7 @@ int main() {
         } else {
             headNode = ExecuteMenu(uIn, playlistTitle, headNode);
         }
-    }*/
+    }
    
     return 0;
 }
