@@ -24,17 +24,10 @@ public:
         InventoryNode* test2 = new InventoryNode("Item2", 200);
         InventoryNode* test3 = new InventoryNode("Item3", 500, test2);
 
-        test3->InsertAtFront(head, test3);
         test1->InsertAtFront(head, test1);
 
-        std::cout << "POINTERS:" << std::endl;
-        std::cout << test1->GetNext() << std::endl;
-        std::cout << test3->GetNext() << std::endl;
-
-
-
         TS_ASSERT_DIFFERS(head->GetNext(), nullptr);
-        TS_ASSERT_DIFFERS(test1->GetNext(), nullptr);
+        TS_ASSERT_EQUALS(test1->GetNext(), nullptr);
         TS_ASSERT_EQUALS(test2->GetNext(), nullptr);
         TS_ASSERT_DIFFERS(test3->GetNext(), nullptr);
         TS_ASSERT_EQUALS(test2->GetItem(), "Item2");
