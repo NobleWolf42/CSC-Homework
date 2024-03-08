@@ -72,20 +72,25 @@ int main() {
             cout << "Enter input string:" << endl;
             getline(cin, allString);
 
-            if (allString.find(',') == string::npos) {
+            if (allString == "q") {
+                running = false;
+            } else if (allString.find(',') == string::npos) {
                 throw runtime_error("No comma in string.");
+            } else {
+                while (allString.find(' ') != string::npos) {
+                    allString.erase(allString.find(' '), 1);
+                }
+
+                firstString = allString.substr(0, allString.find(','));
+                lastString = allString.substr(allString.find(',') + 1, allString.length() - allString.find(','));
+
+                cout << "First word: " << firstString << endl;
+                cout << "Second word: " << lastString << endl << endl;
             }
-
-            allString.erase(remove(allString.begin(), allString.end(), ' '), allString.end());
-            firstString = allString.substr(0, allString.find(','));
-
-            cout << firstString;
-
-            running = false;
 
         }
         catch(runtime_error &error){
-            cout << "Error: " << error.what() << endl;
+            cout << "Error: " << error.what() << endl << endl;
         }
     }
     
