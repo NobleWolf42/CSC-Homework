@@ -102,13 +102,72 @@ Ex:
 #include <iostream>
 #include <string>
 #include <vector>
-//FIXME: stringstream library
-//FIXME: stream manipulation library
+#include <sstream>
+#include <iomanip>
 using namespace std;
 
 int main() {
-   
-   /* Type code here. */
-   
-   return 0;
+    ostringstream outputTable;
+    ostringstream outputHist;
+    string title, col1, col2, data;
+    
+    cout << "Enter a title for the data:" << endl;
+    getline(cin, title);
+    cout << "You entered: " << title << endl << endl;
+
+    cout << "Enter the column 1 header:" << endl;
+    getline(cin, col1);
+    cout << "You entered: " << col1 << endl << endl;
+
+    cout << "Enter the column 2 header:" << endl;
+    getline(cin, col2);
+    cout << "You entered: " << col2 << endl << endl;
+
+    //The title is right justified with a setw() value of 33. Column 1 has a setw() value of 20. Column 2 has a setw() value of 23. (3 pts)
+
+    outputTable << right << setw(33) << title << endl;
+    outputTable << left << setw(20) << col1 << "|" << right << setw(23) << col2 << endl;
+    outputTable << string(44, '-') << endl;
+    
+    while (data != "-1") {
+        string uStr;
+        int uInt;
+        cout << "Enter a data point (-1 to stop input):" << endl;
+        getline(cin, data);
+
+        if (data == "-1") {
+            cout << endl;
+            break;
+        }
+
+        try {
+
+            if (data.find(',') == string::npos) {
+                throw runtime_error("No comma in string.");
+            } else if (data.find(',', data.find(',') + 1) != string::npos) {
+                throw runtime_error("Too many commas in input.");
+            }
+
+            istringstream dataIn(data);
+            getline(dataIn, uStr, ',');
+
+            if (!(dataIn >> uInt)) {
+                throw runtime_error("Comma not followed by an integer.");
+            }
+
+            cout << "Data string: " << uStr << endl;
+            cout << "Data integer: " << uInt << endl << endl;
+
+           outputTable << left << setw(20) << uStr << "|" << right << setw(23) << uInt << endl;
+           outputHist << right << setw(20) << uStr << " " << left << string(uInt, '*') << endl;
+        }
+        catch(runtime_error &error){
+            cout << "Error: " << error.what() << endl << endl;
+        }
+    }
+
+    cout << outputTable.str() << endl;
+    cout << outputHist.str();
+    
+    return 0;
 }

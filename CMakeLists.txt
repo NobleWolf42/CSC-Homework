@@ -85,10 +85,15 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(8-29test runner.cpp
+    #[[CXXTEST_ADD_TEST(8-29test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneNode.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(8-29test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/TestCases.h
             )
 
 endif()
@@ -159,9 +164,14 @@ endif()
         CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.cpp
         CSC\ 109-01/Chapter\ 8/8.22\ Grocery\ shopping\ list2\ \(linked\ list\ -\ inserting\ at\ the\ end\ of\ a\ list\)/ItemNode.h)]]
 
-add_executable(CH08-29 
+#[[add_executable(CH08-29 
         CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/main.cpp
         CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneNode.cpp
         CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneNode.h
         CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.cpp
-        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.h)
+        CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.h)]]
+
+add_executable(CH09-22 
+        CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/main.cpp
+        CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.cpp
+        CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.h)
