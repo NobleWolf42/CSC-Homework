@@ -17,58 +17,27 @@ public:
     //All tests should start with the word 'test' followed by
     //the name of the function being tested.
 
-    void testDefaultConstructor() {
+    void testConstructor() {
 
-        PhoneList test1a;
-        PhoneNode test1b;
-
-        TS_ASSERT_EQUALS(test1a.getHead(), nullptr);
-        TS_ASSERT_EQUALS(test1a.getTail(), nullptr);
-        TS_ASSERT_EQUALS(test1b.getNextNodePtr(), nullptr);
+        Number test1 = Number(5);
+        TS_ASSERT_EQUALS(test1.GetNum(), 5);
         
     }
 
-    void testNonDefaultConstructor() {
+    void testSetNum() {
 
-        PhoneNode* test2a = new PhoneNode("Whee", "Hello", "HeHe");
-        PhoneNode test2b("Whee", "Hello", "HeHe", test2a);
-        TS_ASSERT_EQUALS(test2a->getNextNodePtr(), nullptr);
-        TS_ASSERT_DIFFERS(test2b.getNextNodePtr(), nullptr);
+        Number test2 = Number(5);
+
+        test2.SetNum(10);
+
+        TS_ASSERT_EQUALS(test2.GetNum(), 10);
         
     }
 
-    void testInsertSort() {
+    void testOverloaded() {
 
-        PhoneList* test3a = new PhoneList();
-        PhoneNode* test3b = new PhoneNode("555-555-5555", "Ben", "Carpenter");
-        PhoneNode* test3c = new PhoneNode("444-444-4444", "Ben", "Carpenter");
-        PhoneNode* test3d = new PhoneNode("666-666-6666", "Ben", "Carpenter");
-        PhoneNode* test3e = new PhoneNode("555-666-6666", "Ben", "Carpenter");
-        test3a->insertSort(test3b);
-        test3a->insertSort(test3c);
-        test3a->insertSort(test3d);
-        test3a->insertSort(test3e);
-        TS_ASSERT_THROWS_NOTHING(test3a->printList());
-        delete test3a;
-        
-    }
-
-    void testsetNextNodePtr() {
-
-        PhoneNode* test4a = new PhoneNode("555-555-5555", "Ben", "Carpenter");
-        PhoneNode* test4b = new PhoneNode("444-444-4444", "Ben", "Carpenter");
-        test4a->setNextNodePtr(test4b);
-        TS_ASSERT_EQUALS(test4b->getNextNodePtr(), nullptr);
-        TS_ASSERT_DIFFERS(test4a->getNextNodePtr(), nullptr);
-        
-    }
-
-    void testEqualsOperator() {
-
-        PhoneNode test4a("555-555-5555", "Ben", "Carpenter");
-        PhoneNode test4b("555-555-5555", "Ben", "Carpenter");
-        TS_ASSERT(test4a == test4b);
-        
+        Number test3 = Number(5);
+        std::cout << test3;
         
     }
 

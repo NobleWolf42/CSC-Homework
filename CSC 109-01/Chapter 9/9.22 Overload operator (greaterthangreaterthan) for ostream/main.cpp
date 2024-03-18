@@ -13,7 +13,7 @@ Ex: if the value of yourNum is 723, then the output is:
 
 */
 
-#include "Number.cpp"
+#include "Number.h"
 #include <iostream>
 using namespace std;
 

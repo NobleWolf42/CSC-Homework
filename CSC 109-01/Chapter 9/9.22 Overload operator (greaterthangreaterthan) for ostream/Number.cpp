@@ -7,6 +7,8 @@ Copyright: 2024
 #include <iostream>
 #include <sstream>
 
+using std::endl;
+
 Number::Number(int number) {
 	num = number;
 }
@@ -20,7 +22,6 @@ int Number::GetNum() {
 }
 
 ostream& operator<<(ostream &out, const  Number& n) {
-    std::ostringstream output;
-    output << "You number is " << n.num << std::endl;
-    return output;
+    out << "The value is " << n.num << endl;
+    return out;
 }

@@ -8,6 +8,8 @@ Copyright: 2024
 
 #include <iostream>
 
+using std::ostream;
+
 class Number {
 	public:
 		Number(int);
