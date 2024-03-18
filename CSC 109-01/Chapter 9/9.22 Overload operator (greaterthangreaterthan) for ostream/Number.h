@@ -12,7 +12,7 @@ using std::ostream;
 
 class Number {
 	public:
-		Number(int);
+		explicit Number(int);
 		void SetNum(int);
 		int GetNum();
 		//Declared as a friend function to give operator<< private member access

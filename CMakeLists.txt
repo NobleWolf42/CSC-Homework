@@ -91,9 +91,17 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(8-29test runner.cpp
+    #[[CXXTEST_ADD_TEST(9-22test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(9-24test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/Book.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/BookNode.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/VectorLibrary.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/TestCases.h
             )
 
 endif()
@@ -171,7 +179,18 @@ endif()
         CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.cpp
         CSC\ 109-01/Chapter\ 8/8.29\ Exam2\ CH08\ SP24/PhoneList.h)]]
 
-add_executable(CH09-22 
+#[[add_executable(CH09-22 
         CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/main.cpp
         CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.cpp
-        CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.h)
+        CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.h)]]
+
+add_executable(CH09-24 
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/main.cpp
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/Book.cpp
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/Book.h
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/BookNode.cpp
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/BookNode.h
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/VectorLibrary.cpp
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/VectorLibrary.h
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.cpp
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.h)
