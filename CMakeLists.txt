@@ -96,12 +96,18 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(9-24test runner.cpp
+    #[[CXXTEST_ADD_TEST(9-24test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/Book.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/BookNode.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/VectorLibrary.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(9-31test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Course.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/TestCases.h
             )
 
 endif()
@@ -184,7 +190,7 @@ endif()
         CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.cpp
         CSC\ 109-01/Chapter\ 9/9.22\ Overload\ operator\ \(greaterthangreaterthan\)\ for\ ostream/Number.h)]]
 
-add_executable(CH09-24 
+#[[add_executable(CH09-24 
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/main.cpp
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/Book.cpp
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/Book.h
@@ -193,4 +199,11 @@ add_executable(CH09-24
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/VectorLibrary.cpp
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/VectorLibrary.h
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.cpp
-        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.h)
+        CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.h)]]
+
+add_executable(CH09-31 
+        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/main.cpp
+        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Course.cpp
+        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Course.h
+        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.cpp
+        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.h)
