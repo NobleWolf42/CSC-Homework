@@ -104,10 +104,26 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(9-31test runner.cpp
+    #[[CXXTEST_ADD_TEST(9-31test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Course.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(10-11test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Date.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(9-31test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/TestCases.h
             )
 
 endif()
@@ -201,9 +217,31 @@ endif()
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.cpp
         CSC\ 109-01/Chapter\ 9/9.24\ Library\ book\ sorting\ \(Long\ Long\ ISBN\)/LinkedListLibrary.h)]]
 
-add_executable(CH09-31 
+#[[add_executable(CH09-31 
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/main.cpp
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Course.cpp
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Course.h
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.cpp
-        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.h)
+        CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.h)]]
+
+#[[add_executable(CH10-11 
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.h
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.h
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Date.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Date.h
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.h
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.h
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.h)]]
+
+add_executable(CH10.13 
+        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.cpp
+        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.h
+        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.cpp
+        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.h)
