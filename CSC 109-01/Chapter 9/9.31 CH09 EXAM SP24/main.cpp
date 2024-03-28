@@ -2,7 +2,7 @@
 Author: Ben Carpenter
 Copyright: 2024
 
-AssignmenT:
+Assignment:
 Complete the Course and Student class by implementing the member functions. Assume that no two students have the same highest GPA.
 
 Given classes:
