@@ -29,7 +29,7 @@ the output is:
 */
 
 #include <iostream>
-#include<string>
+#include <string>
 #include "Cat.h"
 
 using namespace std;

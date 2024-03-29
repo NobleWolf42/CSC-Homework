@@ -23,11 +23,11 @@ public:
         Pet testPet1;
         Cat testCat1;
 
-        testPet1;
+        testPet1.SetName("TestPet1");
+        testPet1.SetAge(8);
 
-        TS_ASSERT_EQUALS(test1.GetFirst(), "Test");
-        TS_ASSERT_EQUALS(test1.GetLast(), "1");
-        TS_ASSERT_EQUALS(test1.GetGPA(), 3.58);
+        TS_ASSERT_EQUALS(testPet1.GetName(), "TestPet1");
+        TS_ASSERT_EQUALS(testPet1.GetAge(), 8);
         
     }
 
