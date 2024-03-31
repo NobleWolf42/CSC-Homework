@@ -120,10 +120,22 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(9-31test runner.cpp
+    #[[CXXTEST_ADD_TEST(10-13test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(10-14test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/Instrument.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/StringInstrument.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(10-16test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/Course.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/TestCases.h
             )
 
 endif()
@@ -239,9 +251,23 @@ endif()
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.h)]]
 
-add_executable(CH10.13 
+#[[add_executable(CH10-13 
         CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/main.cpp
         CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.cpp
         CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.h
         CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.cpp
-        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.h)
+        CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Cat.h)]]
+
+#[[add_executable(CH10-14 
+        CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/Instrument.cpp
+        CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/Instrument.h
+        CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/StringInstrument.cpp
+        CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/StringInstrument.h)]]
+
+add_executable(CH10-16 
+        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/Course.cpp
+        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/Course.h
+        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.cpp
+        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.h)

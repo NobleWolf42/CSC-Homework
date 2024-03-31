@@ -26,8 +26,16 @@ public:
         testPet1.SetName("TestPet1");
         testPet1.SetAge(8);
 
+        testCat1.SetName("TestCat1");
+        testCat1.SetAge(5);
+        testCat1.SetBreed("KittyMeowMeow");
+
         TS_ASSERT_EQUALS(testPet1.GetName(), "TestPet1");
         TS_ASSERT_EQUALS(testPet1.GetAge(), 8);
+        TS_ASSERT_EQUALS(testCat1.GetName(), "TestCat1");
+        TS_ASSERT_EQUALS(testCat1.GetAge(), 5);
+        TS_ASSERT_EQUALS(testCat1.GetBreed(), "KittyMeowMeow");
+        testCat1.PrintInfo();
         
     }
 

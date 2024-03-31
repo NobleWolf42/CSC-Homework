@@ -1,15 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Monthly.h
- * Author: hloi
- *
- * Created on March 19, 2018, 10:52 PM
- */
+Author: Ben Carpenter
+Copyright: 2024
+*/
 
 #ifndef MONTHLY_H
 #define MONTHLY_H

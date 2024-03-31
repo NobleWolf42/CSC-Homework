@@ -6,7 +6,9 @@ Copyright: 2024
 #include "Pet.h"
 #include <iostream>
 #include <string>
-using namespace std;
+
+using std::cout;
+using std::endl;
 
 void Pet::SetName(string userName) {
     petName = userName;

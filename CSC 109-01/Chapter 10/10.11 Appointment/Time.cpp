@@ -3,68 +3,64 @@ Author: Ben Carpenter
 Copyright: 2024
 */
 
-#ifndef TIME_H
-#define TIME_H
+#include "Time.h"
 
-#include <iostream>
-#include <string>
-#include <ctime>
-#include <vector>
-#include <fstream>
+using std::time;
+using std::localtime;
 
-const int DAYS_PER_MONTH = 30;
-/**
-   A class that describes a time of day
-   (between 00:00:00 and 23:59:59)
-*/
-class Time
-{
-public:
-   /**
-      Constructs a time of day.
-      @param hour the hours
-      @param min the minutes
-      @param sec the seconds
-   */
-   Time(int hour, int min, int sec);
+Time::Time(int hour, int min, int sec) {
+    time_in_secs = hour*3600 + min*60 + sec;
+}
+
    /**
       Constructs a Time object that is set to 
       the time at which the constructor executes.
    */
-   Time();
+Time::Time() {
+    time_t now = time(0);
+    struct tm *local_time = localtime(&now);
+
+}
+
 
    /**
       Gets the hours of this time.
       @return the hours
    */
-   int get_hours() const;
+int Time::get_hours() const {
+    time_in_secs = time;
+}
+
    /**
       Gets the minutes of this time.
       @return the minutes
    */
-   int get_minutes() const;
+int Time::get_minutes() const {
+
+}
+
    /**
       Gets the seconds of this time.
       @return the seconds
    */
-   int get_seconds() const;
+int Time::get_seconds() const {
+
+}
+
 
    /**
       Computes the seconds between this time and another.
       @param t the other time
       @return the number of seconds between this time and t
    */
-   int seconds_from(Time t) const;
+int Time::seconds_from(Time t) const {
+
+}
+
    /**
       Adds a number of seconds to this time.
       @param s the number of seconds to add
    */
-   void add_seconds(int s);
+void Time::add_seconds(int s) {
 
-private:
-   int time_in_secs;
-};
-
-
-#endif /* TIME_H */
-
+}
