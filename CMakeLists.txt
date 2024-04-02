@@ -110,15 +110,15 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/TestCases.h
             )]]
 
-    #[[CXXTEST_ADD_TEST(10-11test runner.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp
+    CXXTEST_ADD_TEST(10-11test runner.cpp
+            #[[${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp]]
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Date.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
+            #[[${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp]]
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/TestCases.h
-            )]]
+            )
 
     #[[CXXTEST_ADD_TEST(10-13test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.cpp
@@ -132,11 +132,29 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(10-16test runner.cpp
+    #[[CXXTEST_ADD_TEST(10-16test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/Course.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/TestCases.h
-            )
+            )]]
+
+    #[[CXXTEST_ADD_TEST(10-17test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/Book.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/Encyclopedia.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(10-18test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Plant.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Flower.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/TestCases.h
+            )]]
+
+    #[[CXXTEST_ADD_TEST(10-12test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Plant.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Flower.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/TestCases.h
+            )]]
 
 endif()
 
@@ -265,9 +283,30 @@ endif()
         CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/StringInstrument.cpp
         CSC\ 109-01/Chapter\ 10/10.14\ Instrument\ information/StringInstrument.h)]]
 
-add_executable(CH10-16 
+#[[add_executable(CH10-16 
         CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/main.cpp
         CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/Course.cpp
         CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/Course.h
         CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.cpp
-        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.h)
+        CSC\ 109-01/Chapter\ 10/10.16\ Course\ information/OfferedCourse.h)]]
+
+#[[add_executable(CH10-17 
+        CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/Book.cpp
+        CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/Book.h
+        CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/Encyclopedia.cpp
+        CSC\ 109-01/Chapter\ 10/10.17\ Book\ information\ \(overriding\ member\ functions\)/Encyclopedia.h)]]
+
+#[[add_executable(CH10-18 
+        CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Plant.cpp
+        CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Plant.h
+        CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Flower.cpp
+        CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Flower.h)]]
+
+#[[add_executable(CH10-12 
+        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Plant.cpp
+        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Plant.h
+        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Flower.cpp
+        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Flower.h)]]

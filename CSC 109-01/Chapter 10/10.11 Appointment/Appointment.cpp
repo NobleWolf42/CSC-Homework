@@ -73,5 +73,3 @@ bool Appointment::occurs_on(int year, int month, int day) const = 0 {
 Appointment::~Appointment() {
 
 }
-
-

@@ -5,6 +5,8 @@ Copyright: 2024
 
 #ifndef DATE_H
 #define DATE_H
+
+#include <ctime>
 /**
    A class that describe a date 
 */
