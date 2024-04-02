@@ -36,6 +36,12 @@ class Appointment {
             @param e the end time of the appointment
         */
         Appointment(std::string desc, Time s, Time e);
+
+        Time getStart();
+
+        Time getEnd();
+
+        string getDescription();
    
         /*
             * print out the appointment in the following format

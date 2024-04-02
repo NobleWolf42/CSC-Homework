@@ -20,4 +20,4 @@ void Daily::save(ostream& out) const {
 
 bool Daily::occurs_on(int year, int month, int day) const {
     return true;
-}   
+}

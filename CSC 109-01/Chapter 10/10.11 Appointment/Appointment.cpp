@@ -22,6 +22,18 @@ Appointment::Appointment(std::string desc, Time s, Time e) {
     end = e;
 }
 
+Time Appointment::getStart() {
+    return start;
+}
+
+Time Appointment::getEnd() {
+    return end;
+}
+
+string Appointment::getDescription() {
+    return description;
+}
+
 void Appointment::print() const {
     cout << setfill('0') << start.get_hours() << ":" << setw(2) << start.get_minutes() << " - " << end.get_hours() << ":" << setw(2) << end.get_minutes() << " " << description << endl;
 }
