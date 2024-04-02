@@ -38,7 +38,7 @@ int Time::get_seconds() const {
 }
 
 int Time::seconds_from(Time t) const {
-    return time_in_secs - t.time_in_secs;
+    return abs(time_in_secs - t.time_in_secs);
 }
 
 void Time::add_seconds(int s) {
