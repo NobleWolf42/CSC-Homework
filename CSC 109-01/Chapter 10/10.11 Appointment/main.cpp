@@ -42,3 +42,143 @@ Running example:
 
 */
 
+#include "Daily.h"
+#include "Monthly.h"
+#include "Onetime.h"
+#include <iostream>
+
+using namespace std;
+
+void menu(char uIn, vector<Appointment*> &appts) {
+    int year, month, day;
+    string filename, type;
+    ifstream inputFS;
+    ofstream outputFS;
+    bool running = true;
+    
+    switch (uIn) {
+        case 'q': {
+            cout << uIn;
+            break;
+        }
+
+        case 'd': {
+            cout << uIn << " ";
+            Daily* itemp = new Daily();
+            Appointment* temp = itemp;
+            
+            itemp->read();
+            appts.push_back(temp);
+            
+            break;
+        }
+
+        case 'm': {
+            cout << uIn << endl;
+            Monthly* itemp = new Monthly();
+            Appointment* temp = itemp;
+
+            itemp->read();
+            appts.push_back(temp);
+
+            break;
+        }
+
+        case 'o': {
+            cout << uIn << endl;
+            Onetime* itemp = new Onetime();
+            Appointment* temp = itemp;
+            
+            itemp->read();
+            appts.push_back(temp);
+
+            break;
+        }
+
+        case 'c': {
+            cout << uIn << endl;
+            cout << "Enter year month day: " << endl;
+            cin >> year >> month >> day;
+            cout << "You have these appointments: " << endl;
+            
+            for (size_t i = 0; i < appts.size(); i++) {
+                if (appts.at(i)->occurs_on(year, month, day)) {
+                    appts.at(i)->print();
+                }
+            }
+
+            break;
+        }
+
+        case 's': {
+            cout << uIn << endl;
+            cin.ignore();
+            cout << "File name: " << endl;
+            getline(cin, filename);
+
+            outputFS.open(filename);
+
+            for (size_t i = 0; i < appts.size(); i++) {
+                appts.at(i)->save(outputFS);
+            }
+
+            outputFS.close();
+
+            break;
+        }
+
+        case 'l': {
+            cout << uIn << endl;
+            cin.ignore();
+            cout << "File name: " << endl;
+            getline(cin, filename);
+
+            inputFS.open(filename);
+
+            while(running) {
+                type = "";
+                inputFS >> type;
+                if (type != "") {
+                    if (type == "Daily") {
+                        Daily* itemp = new Daily();
+                        Appointment* temp = itemp;
+                        itemp->load(inputFS);
+                        appts.push_back(temp);
+                    } else if (type == "Monthly") {
+                        Monthly* itemp = new Monthly();
+                        Appointment* temp = itemp;
+                        itemp->load(inputFS);
+                        appts.push_back(temp);
+                    } else if (type == "Onetime") {
+                        Onetime* itemp = new Onetime();
+                        Appointment* temp = itemp;
+                        itemp->load(inputFS);
+                        appts.push_back(temp);
+                    }
+                } else {
+                    running = false;
+                }
+            }
+
+            inputFS.close();
+            
+            break;
+        }
+
+        default:
+            break;
+    }
+}
+
+int main() {
+    char input;
+    vector<Appointment*> userAppt;
+
+    while (input != 'q') {
+        cout << "Daily Monthly Onetime Check Save Load Quit (d/m/o/c/s/l/q): ";
+        cin >> input;
+        menu(input, userAppt);
+    }
+
+    return 0;
+}

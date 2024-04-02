@@ -111,11 +111,11 @@ if(CXXTEST_FOUND)
             )]]
 
     CXXTEST_ADD_TEST(10-11test runner.cpp
-            #[[${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp]]
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Date.cpp
-            #[[${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp]]
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Monthly.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/TestCases.h
             )
@@ -254,7 +254,7 @@ endif()
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.cpp
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.h)]]
 
-#[[add_executable(CH10-11 
+add_executable(CH10-11 
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/main.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.h
@@ -267,7 +267,7 @@ endif()
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.h
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
-        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.h)]]
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.h)
 
 #[[add_executable(CH10-13 
         CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/main.cpp

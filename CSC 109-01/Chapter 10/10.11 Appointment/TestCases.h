@@ -12,6 +12,9 @@ Copyright: 2024
 //Include your classes header file(s) below and uncomment.
 #include "Time.h"
 #include "Date.h"
+#include "Daily.h"
+//#include "Monthly.h"
+//#include "Onetime.h"
 
 class TestCases : public CxxTest::TestSuite {
 public:
@@ -30,10 +33,13 @@ public:
         TS_ASSERT_EQUALS(test1a.get_seconds(), 17);
         TS_ASSERT_EQUALS(test1a.seconds_from(test1c), 500);
 
+        test1c.add_seconds(500);
+
+        TS_ASSERT_EQUALS(test1a.seconds_from(test1c), 0);
+
     }
 
     void testDate() {
-        bool passed = false;
 
         Date test2a(2015, 11, 20);
         Date test2b;
@@ -43,6 +49,16 @@ public:
         TS_ASSERT_EQUALS(test2a.get_month(), 11);
         TS_ASSERT_EQUALS(test2a.get_day(), 20);
         TS_ASSERT(test2a == test2c);
+
+    }
+
+    void testDaily() {
+
+        Time s(12, 46, 0);
+        Time e(14, 46, 0);
+        Daily test3("Test3", s, e);
+
+        test3.print();
 
     }
 
