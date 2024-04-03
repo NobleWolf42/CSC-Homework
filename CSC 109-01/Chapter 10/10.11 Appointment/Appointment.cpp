@@ -45,6 +45,7 @@ void Appointment::read() {
     cout << "Enter start_hours start_mins end_hours end_mins descript: " << endl;
     
     cin >> sh >> sm >> eh >> em;
+    cin.ignore();
     getline(cin, desc);
 
     Time s(sh, sm, 0);

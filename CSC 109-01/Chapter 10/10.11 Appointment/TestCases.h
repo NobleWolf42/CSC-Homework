@@ -65,6 +65,7 @@ public:
         Daily test3a("Test3a", s, e);
         Daily test3b;
         Daily test3c;
+        Daily test3d;
 
         test3a.print();
 
@@ -88,6 +89,12 @@ public:
         TS_ASSERT_EQUALS(test3c.getDescription(), "Test3a");
         TS_ASSERT_EQUALS(type, "Daily");
 
+        std::istringstream stream("5 6 8 6 TestInfo");
+        cin.rdbuf(stream.rdbuf());
+        test3d.read();
+
+        TS_ASSERT_EQUALS(test3d.getDescription(), "TestInfo");
+
     }
 
     void testMonthly() {
@@ -100,6 +107,7 @@ public:
         Monthly test4a("Test4a", 5, s, e);
         Monthly test4b;
         Monthly test4c;
+        Monthly test4d;
 
         test4a.print();
 
@@ -124,6 +132,12 @@ public:
         TS_ASSERT_EQUALS(test4c.getDescription(), "Test4a");
         TS_ASSERT_EQUALS(type, "Monthly");
 
+        std::istringstream stream("5 6 8 6 TestInfo\n 5");
+        cin.rdbuf(stream.rdbuf());
+        test4d.read();
+
+        TS_ASSERT_EQUALS(test4d.getDescription(), "TestInfo");
+
     }
 
     void testOnetime() {
@@ -137,6 +151,7 @@ public:
         Onetime test5a("Test5a", d, s, e);
         Onetime test5b;
         Onetime test5c;
+        Onetime test5d;
 
         test5a.print();
 
@@ -160,6 +175,12 @@ public:
         TS_ASSERT_EQUALS(test5c.getEnd().get_hours(), e.get_hours());
         TS_ASSERT_EQUALS(test5c.getDescription(), "Test5a");
         TS_ASSERT_EQUALS(type, "Onetime");
+
+        std::istringstream stream("5 6 8 6 TestInfo\n 2015 6 12");
+        cin.rdbuf(stream.rdbuf());
+        test5d.read();
+
+        TS_ASSERT_EQUALS(test5d.getDescription(), "TestInfo");
 
     }
 
