@@ -110,7 +110,7 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(10-11test runner.cpp
+    #[[CXXTEST_ADD_TEST(10-11test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Daily.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Date.cpp
@@ -118,7 +118,7 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.11\ Appointment/TestCases.h
-            )
+            )]]
 
     #[[CXXTEST_ADD_TEST(10-13test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/Pet.cpp
@@ -150,11 +150,14 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/TestCases.h
             )]]
 
-    #[[CXXTEST_ADD_TEST(10-12test runner.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Plant.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Flower.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/TestCases.h
-            )]]
+    CXXTEST_ADD_TEST(10-19test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/Tree.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/PineTree.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/OakTree.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/WhitePineTree.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/RedOakTree.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/TestCases.h
+            )
 
 endif()
 
@@ -254,7 +257,7 @@ endif()
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.cpp
         CSC\ 109-01/Chapter\ 9/9.31\ CH09\ EXAM\ SP24/Student.h)]]
 
-add_executable(CH10-11 
+#[[add_executable(CH10-11 
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/main.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Appointment.h
@@ -267,7 +270,7 @@ add_executable(CH10-11
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.cpp
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Onetime.h
         CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.cpp
-        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.h)
+        CSC\ 109-01/Chapter\ 10/10.11\ Appointment/Time.h)]]
 
 #[[add_executable(CH10-13 
         CSC\ 109-01/Chapter\ 10/10.13\ Pet\ information\ \(derived\ classes\)/main.cpp
@@ -304,9 +307,15 @@ add_executable(CH10-11
         CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Flower.cpp
         CSC\ 109-01/Chapter\ 10/10.18\ Plant\ information\ \(vector\)/Flower.h)]]
 
-#[[add_executable(CH10-12 
-        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/main.cpp
-        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Plant.cpp
-        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Plant.h
-        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Flower.cpp
-        CSC\ 109-01/Chapter\ 10/10.12\ CH10\ Exam/Flower.h)]]
+add_executable(CH10-19 
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/main.cpp
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/Tree.cpp
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/Tree.h
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/PineTree.cpp
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/PineTree.h
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/OakTree.cpp
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/OakTree.h
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/WhitePineTree.cpp
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/WhitePineTree.h
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/RedOakTree.cpp
+        CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/RedOakTree.h)
