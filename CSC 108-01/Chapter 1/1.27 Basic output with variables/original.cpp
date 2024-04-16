@@ -26,28 +26,12 @@ Note: This zyLab outputs a newline after each user-input prompt. For convenience
 using namespace std;
 
 int main() {
+   int userNum;
 
-    //Declaring variables
-    int userNum0;
-    int userNum1;
+   cout << "Enter integer:" << endl;
+   cin  >> userNum;
+   
+   /* Type your code here */
 
-    //Getting user's first number
-    cout << "Enter integer:" << endl;
-    cin  >> userNum0;
-
-    //Printing user's first number
-    cout << "You entered: " << userNum0 << endl;
-
-    //Printing user's first number squared and cubed
-    cout << userNum0 << " squared is " << userNum0 * userNum0 << endl;
-    cout << "And " << userNum0 << " cubed is " << userNum0 * userNum0 * userNum0 << "!!" << endl;
-
-    //Getting user's second number
-    cout << "Enter another integer:" << endl;
-    cin  >> userNum1;
-
-    //Printing user's first and second number added and multiplied together
-    cout << userNum0 << " + " << userNum1 << " is " << userNum0 + userNum1 <<  endl;
-    cout << userNum0 << " * " << userNum1 << " is " << userNum0 * userNum1 << endl;
-    return 0;
+   return 0;
 }
