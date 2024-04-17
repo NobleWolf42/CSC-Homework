@@ -22,10 +22,19 @@ using namespace std;
    @param n the number of characters previously matched
    @return offset index of first match; otherwise, -1 if not found
 */
-int index_of_helper(string s, string t, int n) {  
-   // TODO
+
+int index_of_helper(string s, string t, int n) {
+
+    cout << s.substr(n, t.length()) << endl;
    
-   // Hint: Use substring, length and recursion
+    if (s.substr(n, t.length()) == t) {
+        return n;
+    } else if ((s.length() - n) < t.length()) {
+        return -1;
+    } else {
+        return index_of_helper(s, t, (n + 1));
+    }
+
 }
 
 /**
@@ -34,30 +43,27 @@ int index_of_helper(string s, string t, int n) {
    @param t a string
    @return index of first match; otherwise, -1 if not found
 */
+
 int index_of(string s, string t) {  
-   // Call the helper function here
+    return index_of_helper(s, t, 0);
 }
 
-int main() {  
-   
-   // Create string variable(s)
-   
-   // Print Expected, "Enter the first string: "
-   // Print Expected, "Enter the second string: "
-   
-   // Remember to allow users to input
+int main() {
 
-   // Create another varible and set it equal to a function
+    string str1, str2;
+    
+    cout << "Enter the first string: " << endl;
+    getline(cin, str1);
+    cout << "Enter the second string: " << endl;
+    getline(cin, str2);
 
-   /* 
-   IF the string is what? then Print Expected, 
-   "The substring " (print second string here) " was found at position " (print position here) ".\n" 
-   */
-   
-   /* 
-   If the string is NOT then Print Expected, 
-   "The substring " (print second string here) " was not found in " (print first string here) ".\n" 
-   */
+    int ss = index_of(str1, str2);
 
-   return 0;
+    if (ss >= 0) {
+        cout << "The substring " << str2 << " was found at position " << ss << ".\n"; 
+    } else {
+        cout << "The substring " << str2 << " was not found in " << str1 << ".\n";
+    }
+
+    return 0;
 }
