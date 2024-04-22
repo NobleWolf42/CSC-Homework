@@ -26,22 +26,31 @@ using namespace std;
    @return the sum
 */
 int sum(int a[],int n) {
-   // TODO
-   
-   // Remember to use recursion
+    if (n != 1) {
+        return a[n-1] + sum(a, (n-1));
+    } else {
+        return a[0];
+    }
 }
 
 int main() {
    
-   /* 
-   Create a variable. Remember to allow users to input
-   
-   Print Expected, "Enter a number for how many elements you want in the array: "
-   
-   Create an array. Allow users to input each element in the array
-   
-   Print Expected, "The element is: " (print each element here). Remember to endl
-   
-   Finally, Print Expected, "The sum is: " (print the sum here) "\n"
-   */
+    int arraySize;
+    int uIn;
+    
+    cout << "Enter a number for how many elements you want in the array: " << endl;
+    
+    cin >> arraySize;
+
+    int numbers[arraySize];
+
+    for (int i = 0; i < arraySize; i++) {
+        cin >> uIn;
+        numbers[i] = uIn;
+        cout << "The element is: " << uIn << endl;
+    }
+    
+    cout << "The sum is: " << sum(numbers, arraySize) << endl;
+    
+    return 0;
 }
