@@ -33,11 +33,13 @@ void PrintAllPermutations(vector<string> &permList, const vector<string> &nameLi
     if (nameList.size() == 0) {
         
         for (size_t i = 0; i < permList.size(); i++) {
+            
             if (i == permList.size() - 1) {
                 cout << permList.at(i) << endl;
             } else {
                 cout << permList.at(i) << ", ";
             }
+            
         }
         
     } else {
@@ -54,7 +56,7 @@ void PrintAllPermutations(vector<string> &permList, const vector<string> &nameLi
 
             permList.pop_back();
         }
-        
+
     }
 }
 
