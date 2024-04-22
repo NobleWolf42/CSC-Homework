@@ -41,6 +41,7 @@ void PrintAllPermutations(vector<string> &permList, const vector<string> &nameLi
         }
         
     } else {
+
         for (size_t i = 0; i < nameList.size(); i++) {
             
             temp = nameList;
@@ -53,6 +54,7 @@ void PrintAllPermutations(vector<string> &permList, const vector<string> &nameLi
 
             permList.pop_back();
         }
+        
     }
 }
 
