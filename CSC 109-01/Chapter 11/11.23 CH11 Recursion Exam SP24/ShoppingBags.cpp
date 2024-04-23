@@ -40,7 +40,7 @@ string ShoppingBags::to_string(const vector<vector<Item>>& bags, size_t index) c
     std::ostringstream out;
     int totalPrice = 0;
     int numItems = bagString(out, bags[index], 0, totalPrice);
-    out << " = Total Price: $" << totalPrice << ")\n";
+    out << " = Total Price: $" << totalPrice << std::endl;
 
     return out.str() + to_string(bags, index + 1);
 }
@@ -58,8 +58,10 @@ string ShoppingBags::to_string(const vector<vector<Item>>& bags, size_t index) c
 void ShoppingBags::BagsLoop(const vector<Item> &currBag, const vector<Item> &remainingItems, vector<vector<Item>> &bags, vector<vector<Item>> &tempBags, size_t index) {
 
     vector<Item> temp;
+    vector<Item> temp2;
 
     temp = currBag;
+    temp2 = remainingItems;
 
     if (currBag.size() == max_items_in_bag) {
         bags.push_back(currBag);
@@ -68,14 +70,16 @@ void ShoppingBags::BagsLoop(const vector<Item> &currBag, const vector<Item> &rem
         return;
     }
 
+    // Include the current item
+    temp2.erase(temp2.begin()+index);
+    temp.push_back(remainingItems[index]);
+    //BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
+    BagsLoop(temp, temp2, bags, tempBags, index);
+    temp.pop_back();
 
     // Exclude the current item
-    BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
-
-    // Include the current item
-    temp.push_back(remainingItems[index]);
-    BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
-    temp.pop_back();
+    //BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
+    BagsLoop(temp, temp2, bags, tempBags, index);
 }
 
     /**
