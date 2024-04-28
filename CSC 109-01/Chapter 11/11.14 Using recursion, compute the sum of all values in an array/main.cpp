@@ -33,10 +33,22 @@ int sum(int a[],int n) {
     }
 }
 
+void readIn(int numbers[], int i, int arraySize) {
+    
+    if (i >= arraySize) {
+        return;
+    }
+
+    int uIn;
+    cin >> uIn;
+    numbers[i] = uIn;
+    cout << "The element is: " << uIn << endl;
+    readIn(numbers, i + 1, arraySize);
+}
+
 int main() {
    
     int arraySize;
-    int uIn;
     
     cout << "Enter a number for how many elements you want in the array: " << endl;
     
@@ -44,11 +56,7 @@ int main() {
 
     int numbers[arraySize];
 
-    for (int i = 0; i < arraySize; i++) {
-        cin >> uIn;
-        numbers[i] = uIn;
-        cout << "The element is: " << uIn << endl;
-    }
+    readIn(numbers, 0, arraySize);
     
     cout << "The sum is: " << sum(numbers, arraySize) << endl;
     

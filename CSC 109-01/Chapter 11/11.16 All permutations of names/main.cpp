@@ -71,21 +71,22 @@ void PrintAllPermutations(vector<string> &permList, const vector<string> &nameLi
     }
 }
 
+void readIn(vector<string> &nameList) {
+    string name;
+    cin >> name;
+    if (name == "-1") {
+        return;
+    } else {
+        nameList.push_back(name);
+        readIn(nameList);
+    }
+}
+
 int main() {
     vector<string> nameList;
     vector<string> permList;
-    string name;
-    bool running = true;
 
-    while (running) {
-        cin >> name;
-        if (name == "-1") {
-            running = false;
-            break;
-        } else {
-            nameList.push_back(name);
-        }
-    }
+    readIn(nameList);
 
     PrintAllPermutations(permList, nameList);
     
