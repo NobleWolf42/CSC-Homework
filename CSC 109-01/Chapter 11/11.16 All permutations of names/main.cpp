@@ -25,38 +25,49 @@ then the output is (must match the below ordering):
 
 using namespace std;
 
+void PrintAllPermutations(vector<string> &permList, const vector<string> &nameList);
+void recursion(vector<string> &permList, const vector<string> &nameList, size_t i);
+
+void print(vector<string> &permList, size_t i) {
+    if (i == permList.size() - 1) {
+        cout << permList.at(i) << endl;
+    } else {
+        cout << permList.at(i) << ", ";
+        print(permList, i + 1);
+    }
+}
+
+void recursion(vector<string> &permList, const vector<string> &nameList, size_t i) {
+    
+    if (i >= nameList.size()) {
+        return;
+    }
+    
+    vector<string> temp;
+
+    temp = nameList;
+
+    permList.push_back(temp[i]);
+            
+    temp.erase(temp.begin() + i);
+
+    PrintAllPermutations(permList, temp);
+
+    permList.pop_back();
+    
+    recursion(permList, nameList, i + 1);
+
+}
+
 // TODO: Write function to create and output all permutations of the list of names.
 void PrintAllPermutations(vector<string> &permList, const vector<string> &nameList) {
     
-    vector<string> temp; 
+    vector<string> temp;
 
     if (nameList.size() == 0) {
-        
-        for (size_t i = 0; i < permList.size(); i++) {
-            
-            if (i == permList.size() - 1) {
-                cout << permList.at(i) << endl;
-            } else {
-                cout << permList.at(i) << ", ";
-            }
-            
-        }
-        
+        print(permList, 0);        
     } else {
-
-        for (size_t i = 0; i < nameList.size(); i++) {
-            
-            temp = nameList;
-
-            permList.push_back(temp[i]);
-            
-            temp.erase(temp.begin() + i);
-
-            PrintAllPermutations(permList, temp);
-
-            permList.pop_back();
-        }
-
+        recursion(permList, nameList, 0);
     }
 }
 

@@ -58,10 +58,8 @@ string ShoppingBags::to_string(const vector<vector<Item>>& bags, size_t index) c
 void ShoppingBags::BagsLoop(const vector<Item> &currBag, const vector<Item> &remainingItems, vector<vector<Item>> &bags, vector<vector<Item>> &tempBags, size_t index) {
 
     vector<Item> temp;
-    vector<Item> temp2;
 
     temp = currBag;
-    temp2 = remainingItems;
 
     if (currBag.size() == max_items_in_bag) {
         bags.push_back(currBag);
@@ -71,15 +69,12 @@ void ShoppingBags::BagsLoop(const vector<Item> &currBag, const vector<Item> &rem
     }
 
     // Include the current item
-    temp2.erase(temp2.begin()+index);
     temp.push_back(remainingItems[index]);
-    //BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
-    BagsLoop(temp, temp2, bags, tempBags, index);
+    BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
     temp.pop_back();
 
     // Exclude the current item
-    //BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
-    BagsLoop(temp, temp2, bags, tempBags, index);
+    BagsLoop(temp, remainingItems, bags, tempBags, index + 1);
 }
 
     /**
