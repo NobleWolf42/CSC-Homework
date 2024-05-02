@@ -67,17 +67,22 @@ template<typename TheType> class OrderedList {
 
 template<typename TheType>
 int OrderedList<TheType>::Size() {
-    /* Type your code here. */
+    return list.size();
 }
 
 template<typename TheType>
 TheType OrderedList<TheType>::At(int index) {
-    /* Type your code here. */
+    return list.at(index);
 }
 
 template<typename TheType>
 int OrderedList<TheType>::Find(TheType value) {
-    /* Type your code here. */
+    for (size_t i = 0; i < list.size(); i++) {
+        if (list.at(i) == value) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 template<typename TheType>
@@ -116,8 +121,13 @@ template<typename TheType>
 bool OrderedList<TheType>::Remove(TheType oldItem) {
     unsigned int j;
     int indx = Find(oldItem);
-
-    /* Type your code here. */
+    
+    if (indx >= 0) {
+        list.erase(list.begin() + indx);
+        return true;
+    } else {
+        return false;
+    }
     
 }
 

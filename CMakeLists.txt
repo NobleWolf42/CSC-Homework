@@ -159,10 +159,15 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(11-23test runner.cpp
+    #[[CXXTEST_ADD_TEST(11-23test runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/Item.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/ShoppingBags.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(12-Btest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/LinkedList\ \(Part\ B\)\ HW/Course.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/LinkedList\ \(Part\ B\)\ HW/TestCases.h
             )
 
 endif()
@@ -326,9 +331,9 @@ endif()
         CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/RedOakTree.cpp
         CSC\ 109-01/Chapter\ 10/10.19\ CH10\ EXAM\ SP24/RedOakTree.h)]]
 
-add_executable(CH11-23 
+#[[add_executable(CH11-23 
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/main.cpp
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/Item.cpp
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/Item.h
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/ShoppingBags.cpp
-        CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/ShoppingBags.h)
+        CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/ShoppingBags.h)]]
