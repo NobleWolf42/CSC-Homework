@@ -10,8 +10,6 @@ Copyright: 2024
 
 /*<programming_project chapter="4" number="1">*/
 
-#include <stdexcept>
-
 /** Class to implement a single linked list */
 template <typename Item_Type>
 class Single_Linked_List {
@@ -32,6 +30,7 @@ public:
         @param item The item to be inserted
      */
     void push_front(const Item_Type& item) {
+        std::cout << "push_front" << std::endl;
         Node<Item_Type>* temp = new Node<Item_Type>(item, head);
         if (head == nullptr) {
             tail = temp;
@@ -44,6 +43,7 @@ public:
         @param item The item to be inserted
      */
     void push_back(const Item_Type& item) {
+        std::cout << "push_back" << std::endl;
         Node<Item_Type>* temp = new Node<Item_Type>(item, nullptr);
         if (head == nullptr) {
             head = temp;
@@ -59,6 +59,7 @@ public:
      * "pop_front on empty list"
      */
     void pop_front() {
+        std::cout << "pop_front" << std::endl;
         if (num_items == 0) {
             throw(std::out_of_range("pop_front on empty list"));
         }
@@ -80,6 +81,7 @@ public:
      * "pop_back on empty list"
      */
     void pop_back() {
+        std::cout << "pop_back" << std::endl;
         if (num_items == 0) {
             throw(std::out_of_range("pop_back on empty list"));
         }
@@ -106,6 +108,7 @@ public:
         @return A reference to the front item of the list
      */
     Item_Type& front() {
+        std::cout << "front" << std::endl;
         if (num_items == 0) {
             throw(std::out_of_range("Attempt to take front of empty list"));
         }
@@ -119,6 +122,7 @@ public:
         @return A const reference to the front item of the list
      */
     const Item_Type& front() const {
+        std::cout << "front const" << std::endl;
         if (num_items == 0) {
             throw(std::out_of_range("Attempt to take front of empty list"));
         }
@@ -131,6 +135,7 @@ public:
         @return A reference to the back item of the list
      */
     Item_Type& back() {
+        std::cout << "back" << std::endl;
         if (num_items == 0) {
             throw(std::out_of_range("Attempt to take back of empty list"));
         }
@@ -141,6 +146,7 @@ public:
         @return A const reference to the back item of the list
      */
     const Item_Type& back() const {
+        std::cout << "back const" << std::endl;
         if (num_items == 0) {
             throw(std::out_of_range("Attempt to take back of empty list"));
         }
@@ -153,6 +159,7 @@ public:
         @return true if the list is empty
      */
     bool empty() const {
+        std::cout << "empty" << std::endl;
         return num_items == 0;
     }
 
@@ -160,6 +167,7 @@ public:
         @return The number of items in the list
      */
     size_t size() const {
+        std::cout << "size" << std::endl;
         return num_items;
     }
 
@@ -169,6 +177,7 @@ public:
         @param item The item to be inserted
      */
     void insert(size_t index, const Item_Type& item) {
+        std::cout << "insert" << std::endl;
         Node<Item_Type>* temp = head;
         Node<Item_Type>* temp2 = nullptr;
         if (index != 0) {
@@ -178,7 +187,7 @@ public:
             temp2 = temp->GetNext();
         }
         if (index == 0) {
-            head = new Node<Item_Type>(item, temp2);
+            head = new Node<Item_Type>(item, temp);
         } else if (temp2 == nullptr) {
             temp->SetNext(new Node<Item_Type>(item, temp2));
             tail = temp->GetNext();
@@ -195,6 +204,7 @@ public:
      */
     
     void sortedInsert(Item_Type& item) {
+        std::cout << "sortedInsert" << std::endl;
         Node<Item_Type>* temp = head;
         Node<Item_Type>* temp2 = nullptr;
         bool done = false;
@@ -241,6 +251,7 @@ public:
         @return A reference to the item at index
      */
     Item_Type& get(size_t index) {
+        std::cout << "get" << std::endl;
         if (index >= num_items) {
             throw(std::out_of_range("Attempt to get past size in Single_Linked_List"));
         }
@@ -257,6 +268,7 @@ public:
         @return A const reference to the item at index
      */
     const Item_Type& get(size_t index) const {
+        std::cout << "get const" << std::endl;
         if (index > num_items) {
             throw(std::out_of_range("Attempt to get past size in Single_Linked_List"));
         }
@@ -276,6 +288,7 @@ public:
         beyond the end of the list
      */
     bool remove(size_t index) {
+        std::cout << "remove" << std::endl;
         if (index > num_items) {
             throw(std::out_of_range("Attempt to get past size in Single_Linked_List"));
             return false;
@@ -301,14 +314,15 @@ public:
         the size of the list if it is not found
      */
     size_t find(const Item_Type& item) {
-        Node<Item_Type>* temp = head->GetNext();
-        for (size_t i = 0; i < num_items - 1; i++) {
+        std::cout << "find" << std::endl;
+        Node<Item_Type>* temp = head;
+        for (size_t i = 0; i < num_items; i++) {
             if (temp->GetData() == item) {
                 return i;
             }
             temp = temp->GetNext();
         }
-        throw(std::runtime_error("item not found"));
+        throw(std::out_of_range("item not found"));
         return num_items;
     }
 

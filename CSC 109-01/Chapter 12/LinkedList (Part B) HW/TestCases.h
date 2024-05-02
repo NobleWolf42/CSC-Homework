@@ -206,6 +206,7 @@ public:
 
         TS_ASSERT_EQUALS(test10a.get(0), 1);
         TS_ASSERT_EQUALS(test10a.get(1), 2);
+        TS_ASSERT_EQUALS(test10a.find(1), 0);
     }
 
 };
