@@ -12,13 +12,14 @@ Copyright: 2024
 
 using namespace std;
 
+template <typename T1, typename T2, typename T3>
 class Instrument {
 protected:
 	string instrumentName;
 	string instrumentManufacturer;
-	int yearBuilt;  //int string
-	int cost;  // int, double
-	int id; // int, double, string
+	T1 yearBuilt;  //int string
+	T2 cost;  // int, double
+	T3 id; // int, double, string
 
 public:
 	void SetName(string userName);
@@ -29,13 +30,13 @@ public:
 
 	string GetManufacturer();
 
-	void SetYearBuilt(int userYearBuilt);
+	void SetYearBuilt(T1 userYearBuilt);
 
-	int GetYearBuilt();
+	T1 GetYearBuilt();
 
-	void SetCost(int userCost);
+	void SetCost(T2 userCost);
 
-	int GetCost();
+	T2 GetCost();
 
 	void PrintInfo();  // override stream operator<<
 };
