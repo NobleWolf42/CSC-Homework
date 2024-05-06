@@ -22,6 +22,7 @@ protected:
 	T3 id; // int, double, string
 
 public:
+
 	void SetName(string userName);
 
 	string GetName();

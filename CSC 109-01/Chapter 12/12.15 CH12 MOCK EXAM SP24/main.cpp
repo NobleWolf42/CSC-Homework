@@ -43,15 +43,19 @@ the output is:
 */
 
 #include "Instrument.h"
+#include "Instrument.cpp"
 #include "StringInstrument.h"
+#include "StringInstrument.cpp"
 #include "ElectricStrInstrument.h"
+#include "ElectricStrInstrument.cpp"
 
 int main() {
 	Instrument<int, int, int> myInstrument;
 	StringInstrument<int, int, int, bool> myStringInstrument;
+    ElectricStrInstrument<int, int, int, bool, int> myElectricStrInstrument;
 
 	string instrumentName, manufacturerName, stringInstrumentName, stringManufacturer;
-	int yearBuilt, cost, stringYearBuilt, stringCost, numStrings, numFrets;
+	int yearBuilt, stringYearBuilt, stringCost, numStrings, numFrets, cost;
 	bool bowed;
 
 	cin >> instrumentName;

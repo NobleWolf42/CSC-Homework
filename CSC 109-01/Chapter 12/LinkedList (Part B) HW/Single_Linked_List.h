@@ -289,22 +289,30 @@ public:
      */
     bool remove(size_t index) {
         std::cout << "remove" << std::endl;
-        if (index > num_items) {
+        if (index >= num_items) {
             throw(std::out_of_range("Attempt to get past size in Single_Linked_List"));
             return false;
         }
 
-        Node<Item_Type>* temp = head->GetNext();
-        Node<Item_Type>* temp2 = temp->GetNext();
-        for (size_t i = 0; i < index - 2; i++) {
-            temp = temp->GetNext();
-            temp2 = temp2->GetNext();
+        if (index == 0) {
+            this->pop_front();
+        } else if (index == num_items - 1) {
+            this->pop_back();
+        } else {
+            Node<Item_Type>* temp = head;
+            Node<Item_Type>* temp2 = temp->GetNext();
+            for (size_t i = 0; i < index - 1; i++) {
+                temp = temp->GetNext();
+                temp2 = temp2->GetNext();
+            }
+            Node<Item_Type>* temp3 = temp2->GetNext();
+            temp->SetNext(temp3);
+            temp2->SetNext(nullptr);
+            delete temp2;
         }
-        Node<Item_Type>* temp3 = temp2->GetNext();
-        temp->SetNext(temp3);
-        temp2->SetNext(nullptr);
-        delete temp2;
+
         return true;
+        
     }
 
     /** Return the position of the first occurence of item.
