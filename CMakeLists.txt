@@ -165,9 +165,16 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(12-Btest runner.cpp
+    #[[CXXTEST_ADD_TEST(12-Btest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/LinkedList\ \(Part\ B\)\ HW/Course.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/LinkedList\ \(Part\ B\)\ HW/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(12-14test runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/MileageTracker.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/Uber.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/UberEats.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/TestCases.h
             )
 
 endif()
@@ -337,3 +344,9 @@ endif()
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/Item.h
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/ShoppingBags.cpp
         CSC\ 109-01/Chapter\ 11/11.23\ CH11\ Recursion\ Exam\ SP24/ShoppingBags.h)]]
+
+add_executable(CH12-14 
+        CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/main.cpp
+        CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/MileageTracker.h
+        CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/Uber.h
+        CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/UberEats.h)
