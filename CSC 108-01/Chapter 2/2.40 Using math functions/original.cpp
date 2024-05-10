@@ -16,16 +16,11 @@ the output is:
 using namespace std;
 
 int main() {
-
-    //Declaring variables
     double x;
     double y;
     double z;
 
-    //Getting user inputs
-    cin >> x >> y >> z;
+    /* Type your code here. Note: Include the math library above first. */
 
-    //Finding and printing powers, absolute vales, and square roots
-    cout << pow(x, z) << " " << pow(x, pow(y, z)) << " " << abs(y) << " " << sqrt(pow(x * y, z)) << endl;
     return 0;
 }
