@@ -36,8 +36,6 @@ namespace KW {
         DNode* head;
         /** A reference to the tail of the list */
         DNode* tail;
-        /** A reference to the meting of head/tail of the list */
-        DNode* startFlag;
         /** The size of the list */
         int num_items;
         // Functions
@@ -45,7 +43,6 @@ namespace KW {
 
         /** Construct an empty list. */
         list() {
-            startFlag = new DNode(Item_Type());
             head = nullptr;
             tail = nullptr;
             num_items = 0;
@@ -53,19 +50,20 @@ namespace KW {
 
         /** Construct a copy of a list. */
         list(const list<Item_Type>& other) {
-            startFlag = new DNode(Item_Type());
+            list<Item_Type>::const_iterator iter = other.begin();
+            list<Item_Type>::const_iterator endIter = other.end();
             head = nullptr;
             tail = nullptr;
             num_items = 0;
-            for (const Item_Type& item : other) {
-                push_back(item);
+            while (iter != endIter) {
+                push_back(*iter);
+                ++iter;
             }
         }
 
         /** Construct a list from a sequence */
         template <typename iterator>
         list(iterator begin, iterator end) {
-            startFlag = new DNode(Item_Type());
             head = nullptr;
             tail = nullptr;
             num_items = 0;
@@ -83,7 +81,6 @@ namespace KW {
 
         /** Swap this list contents with another one */
         void swap(list<Item_Type>& other) {
-            std::swap(startFlag, other.startFlag);
             std::swap(head, other.head);
             std::swap(tail, other.tail);
             std::swap(num_items, other.num_items);
@@ -107,10 +104,8 @@ namespace KW {
                 tail = temp;
             }
             head = temp;
-            head->prev = startFlag;
-            tail->next = startFlag;
-            startFlag->next = head;
-            startFlag->prev = tail;
+            head->prev = tail;
+            tail->next = head;
             ++num_items;
         }
 
@@ -125,10 +120,8 @@ namespace KW {
                 head = temp;
             }
             tail = temp;
-            head->prev = startFlag;
-            tail->next = startFlag;
-            startFlag->next = head;
-            startFlag->prev = tail;
+            head->prev = tail;
+            tail->next = head;
             ++num_items;
         }
 
@@ -156,7 +149,7 @@ namespace KW {
                 posNode->prev->next = temp;
                 posNode->prev = temp;
                 ++num_items;
-                return iterator(this, temp);
+                return iterator(this, temp, pos.index);
             }
         }
 		
@@ -235,17 +228,16 @@ namespace KW {
                 throw std::invalid_argument("List is empty.");
             }
             DNode* temp = head;
-            if (head != startFlag) {
+            --num_items;
+            if (num_items != 0) {
                 head = head->next;
-                head->prev = startFlag;
+                head->prev = tail;
+                tail->next = head;
             } else {
                 head = nullptr;
                 tail = nullptr;
             }
-            startFlag->next = head;
-            startFlag->prev = tail;
             delete temp;
-            --num_items;
         }
 
         /** Remove the last item from the list
@@ -256,17 +248,16 @@ namespace KW {
                 throw std::invalid_argument("List is empty.");
             }
             DNode* temp = tail;
-            if (tail != startFlag) {
+            --num_items;
+            if (num_items != 0) {
                 tail = tail->prev;
-                tail->next = startFlag;
+                tail->next = head;
+                head->prev = tail;
             } else {
                 head = nullptr;
                 tail = nullptr;
             }
-            startFlag->next = head;
-            startFlag->prev = tail;
             delete temp;
-            --num_items;
         }
 
         /** Remove an item referenced by an iterator
@@ -278,10 +269,13 @@ namespace KW {
                     or if pos references end()
          */
         iterator remove(iterator pos) {
-            if (num_items == 0 || pos == end()) {
+            if (num_items == 0) {
                 throw std::invalid_argument("Invalid position.");
             }
             DNode* posNode = pos.current;
+            iterator temp = pos;
+            temp++;
+            iterator out(this, temp.current, temp.index - 1);
             if (posNode == head) {
                 pop_front();
                 return begin();
@@ -291,7 +285,6 @@ namespace KW {
             } else {
                 posNode->prev->next = posNode->next;
                 posNode->next->prev = posNode->prev;
-                iterator out(this, posNode->next);
                 delete posNode;
                 --num_items;
                 return out;
@@ -320,7 +313,7 @@ namespace KW {
             @return an itertor to the beginning of the list
          */
         iterator begin() {
-            return iterator(this, head);
+            return iterator(this, head, 0);
         }
 
         /** Return a const_iterator to the beginning of
@@ -329,7 +322,7 @@ namespace KW {
             the list
          */
         const_iterator begin() const {
-             return const_iterator(this, head);
+             return const_iterator(this, head, 0);
         }
         /*</exercise>*/
 
@@ -337,14 +330,14 @@ namespace KW {
             @return an iterator to the end of the list
          */
         iterator end() {
-             return iterator(this, startFlag);
+             return iterator(this, head, num_items);
         }
 
         /** Return a const_iterator to the end of the list
             @return a const_iterator to the end of the list
          */
         const_iterator end() const {
-             return const_iterator(this, startFlag);
+             return const_iterator(this, head, num_items);
         }
         /**
          * if found the target, return the iterator to the current position.
@@ -353,13 +346,13 @@ namespace KW {
          * @return iterator points to the found target; NULL otherwise.
          */
         
-        iterator find(const Item_Type& target) { //rewrite me
+        iterator find(const Item_Type& target) {
             for (iterator iter = begin(); iter != end(); ++iter) {
                 if (*iter == target) {
                     return iter;
                 }
             }
-            return iterator(this, nullptr);
+            return iterator(this, nullptr, 0);
         }
     }; // End list
 
