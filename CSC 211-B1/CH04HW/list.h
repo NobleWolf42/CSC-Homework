@@ -53,7 +53,7 @@ namespace KW {
             head = nullptr;
             tail = nullptr;
             num_items = 0;
-            for (const auto& item : other) {
+            for (const Item_Type& item : other) {
                 push_back(item);
             }
         }
@@ -64,7 +64,7 @@ namespace KW {
             head = nullptr;
             tail = nullptr;
             num_items = 0;
-            for (auto iter = begin; iter != end; ++iter) {
+            for (iterator iter = begin; iter != end; ++iter) {
                 push_back(*iter);
             }
         }
