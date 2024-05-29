@@ -3,8 +3,8 @@ Author: Ben Carpenter
 Copyright: 2024
 */
 
-#ifndef LIST_H_
-#define LIST_H_
+#ifndef CIRCULAR_LIST_H_
+#define CIRCULAR_LIST_H_
 
 #include <stdexcept>
 #include <cstddef>
@@ -17,17 +17,17 @@ Copyright: 2024
 namespace KW {
 
     template<typename Item_Type>
-    class list {
+    class circular_list {
     private:
         // Insert definition of nested class DNode here.
 #include "DNode.h"
     public:
         // Insert definition of nested class iterator here.
-#include "list_iterator.h"
+#include "circular_list_iterator.h"
         // Give list access to internal values in iterator.
         friend class iterator;
         // Insert definition of nested class const_iterator here.
-#include "list_const_iterator.h"
+#include "circular_list_const_iterator.h"
         // Give list access to internal values in const_iterator.
         friend class const_iterator;
 
@@ -42,16 +42,16 @@ namespace KW {
     public:
 
         /** Construct an empty list. */
-        list() {
+        circular_list() {
             head = nullptr;
             tail = nullptr;
             num_items = 0;
         }
 
         /** Construct a copy of a list. */
-        list(const list<Item_Type>& other) {
-            list<Item_Type>::const_iterator iter = other.begin();
-            list<Item_Type>::const_iterator endIter = other.end();
+        circular_list(const circular_list<Item_Type>& other) {
+            circular_list<Item_Type>::const_iterator iter = other.begin();
+            circular_list<Item_Type>::const_iterator endIter = other.end();
             head = nullptr;
             tail = nullptr;
             num_items = 0;
@@ -63,7 +63,7 @@ namespace KW {
 
         /** Construct a list from a sequence */
         template <typename iterator>
-        list(iterator begin, iterator end) {
+        circular_list(iterator begin, iterator end) {
             head = nullptr;
             tail = nullptr;
             num_items = 0;
@@ -73,22 +73,22 @@ namespace KW {
         }
 
         /** list destructor. */
-        ~list() {
+        ~circular_list() {
             while (!empty()) {
                 pop_front();
             }
         }
 
         /** Swap this list contents with another one */
-        void swap(list<Item_Type>& other) {
+        void swap(circular_list<Item_Type>& other) {
             std::swap(head, other.head);
             std::swap(tail, other.tail);
             std::swap(num_items, other.num_items);
         }
 
         /** Assign the contents of one list to another. */
-        list<Item_Type>& operator=(const list<Item_Type>& other) {
-            list<Item_Type> temp(other);
+        circular_list<Item_Type>& operator=(const circular_list<Item_Type>& other) {
+            circular_list<Item_Type> temp(other);
             swap(temp);
             return *this;
         }
@@ -145,7 +145,7 @@ namespace KW {
                 return --end();
             } else {
                 DNode* posNode = pos.current;
-                DNode* temp = new DNode(item, posNode, posNode->prev);
+                DNode* temp = new DNode(item, posNode->prev, posNode);
                 posNode->prev->next = temp;
                 posNode->prev = temp;
                 ++num_items;
@@ -237,7 +237,7 @@ namespace KW {
                 head = nullptr;
                 tail = nullptr;
             }
-            delete temp;
+            //delete temp;
         }
 
         /** Remove the last item from the list
@@ -257,7 +257,7 @@ namespace KW {
                 head = nullptr;
                 tail = nullptr;
             }
-            delete temp;
+            //delete temp;
         }
 
         /** Remove an item referenced by an iterator
@@ -268,7 +268,7 @@ namespace KW {
             @throws std::invalid_argument if the list is empty
                     or if pos references end()
          */
-        iterator remove(iterator pos) {
+        iterator erase(iterator pos) {
             if (num_items == 0) {
                 throw std::invalid_argument("Invalid position.");
             }
@@ -285,16 +285,18 @@ namespace KW {
             } else {
                 posNode->prev->next = posNode->next;
                 posNode->next->prev = posNode->prev;
-                delete posNode;
+                posNode->next = nullptr;
+                posNode->prev = nullptr;
+                //delete posNode;
                 --num_items;
                 return out;
             }
         }
-        /*<exercise chapter="4" section="7" type="programming" number="4>*/
+        
 
         /** Remove all occurences of a value from the list
             @param item The value to be removed
-         */
+         *//*
         void remove(const Item_Type& item) {
             iterator iter = begin();
             while (iter != end()) {
@@ -304,8 +306,7 @@ namespace KW {
                     ++iter;
                 }
             }
-        }
-        /*</exercise>*/
+        }*/
 
         /*<exercise chapter="4" section="3" type="programming" number="3">*/
 
@@ -353,10 +354,14 @@ namespace KW {
                 }
             }
             return iterator(this, nullptr, 0);
-        }
+        }        
     }; // End list
 
-    
+    template <typename Item_Type>
+    void swap(circular_list<Item_Type>& x, circular_list<Item_Type>& y) {
+        x.swap(y);
+    }
+        
 } // End namespace KW
 
 #endif

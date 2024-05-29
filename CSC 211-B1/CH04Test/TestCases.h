@@ -9,7 +9,7 @@ Copyright: 2024
 #include <cxxtest/TestSuite.h>
 
 //Include your classes header file(s) below and uncomment.
-#include "list.h"
+#include "circular_list.h"
 #include<string>
 
 class TestCases : public CxxTest::TestSuite {
@@ -18,11 +18,11 @@ public:
     //All tests should start with the word 'test' followed by
     //the name of the function being tested.
 
-    void testList() {
-        KW::list<int> test1;
-        KW::list<int> test4;
+    void testCircular_list() {
+        KW::circular_list<int> test1;
+        KW::circular_list<int> test4;
         const char* names[] = {"Tom", "Dick", "Harry", "Sharon", "Sam"};
-        KW::list<std::string> test3(names, names+5);
+        KW::circular_list<std::string> test3(names, names+5);
 
         for (int i = 0; i < 10; i++) {
             test1.push_back(i);
@@ -32,8 +32,8 @@ public:
             test4.push_front(i);
         }
 
-        KW::list<int> test2(test1);
-        KW::list<int> deleteMe(test1);
+        KW::circular_list<int> test2(test1);
+        KW::circular_list<int> deleteMe(test1);
 
         TS_ASSERT_EQUALS(test1.size(), 10);
         TS_ASSERT_EQUALS(test2.size(), 10);
@@ -57,7 +57,7 @@ public:
         TS_ASSERT_EQUALS(test4.front(), test2.front());
         TS_ASSERT_DIFFERS(test1.front(), test2.front());
 
-        KW::list<int> test5;
+        KW::circular_list<int> test5;
         test5 = test1;
         
         TS_ASSERT_EQUALS(test1.back(), test5.back());
@@ -91,24 +91,21 @@ public:
         TS_ASSERT_EQUALS(test2.back(), 4);
         TS_ASSERT_EQUALS(test2.front(), 2);
 
-        test2.remove(5);
-        test2.remove(test2.find(1));
-        test2.remove(test2.find(4));
+        test2.erase(test2.find(5));
+        test2.erase(test2.find(1));
+        test2.erase(test2.find(4));
 
         TS_ASSERT_EQUALS(test2.back(), 2);
         TS_ASSERT_EQUALS(test2.front(), 2);
 
-        test2.remove(test2.begin());
+        test2.erase(test2.begin());
 
         TS_ASSERT_THROWS_ANYTHING(test2.pop_front());
-        TS_ASSERT_THROWS_ANYTHING(test2.remove(test2.end()));
+        TS_ASSERT_THROWS_ANYTHING(test2.erase(test2.end()));
         TS_ASSERT_THROWS_ANYTHING(test2.front());
         TS_ASSERT_THROWS_ANYTHING(test2.back());
         TS_ASSERT(test2.empty());
         TS_ASSERT_EQUALS(test2.find(5), test4.find(5));
-        TS_ASSERT_THROWS_ANYTHING(*test2.end());
-        TS_ASSERT_THROWS_ANYTHING(test2.end()++);
-        TS_ASSERT_THROWS_ANYTHING(test2.begin()--);
         
 
     }

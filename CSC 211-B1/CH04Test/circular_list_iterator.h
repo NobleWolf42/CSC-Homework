@@ -9,13 +9,13 @@ Copyright: 2024
 // Nested class iterator.
 class iterator {
   // Give the parent class access to this class.
-  friend class list<Item_Type>;
+  friend class circular_list<Item_Type>;
  private:
   // Data fields
   /** A reference to the parent list */
-  list<Item_Type>* parent;
+  circular_list<Item_Type>* parent;
   /** A pointer to the current DNode */
-  typename list<Item_Type>::DNode* current;
+  typename circular_list<Item_Type>::DNode* current;
   //index of current index
   size_t index;
   // Member functions
@@ -25,7 +25,7 @@ class iterator {
       @param my_parent A reference to the list
       @param position A pointer to the current DNode
   */
-  iterator(list<Item_Type>* my_parent, DNode* position, size_t indx) :
+  iterator(circular_list<Item_Type>* my_parent, DNode* position, size_t indx) :
     parent(my_parent), current(position), index(indx) {}
   
  public:
@@ -53,6 +53,9 @@ class iterator {
       @throws std::invalid_argument If this iterator is at end
   */
   iterator& operator++() {
+    if (current == nullptr) {
+      throw std::invalid_argument("Iterator is null");
+    }
     current = current->next;
     ++index;
     return *this;

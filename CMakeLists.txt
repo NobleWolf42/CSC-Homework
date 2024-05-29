@@ -177,11 +177,18 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/TestCases.h
             )]]
     
-    CXXTEST_ADD_TEST(04HWtest runner.cpp
+    #[[CXXTEST_ADD_TEST(04HWtest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04HW/list.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04HW/list_iterator.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04HW/list_const_iterator.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04HW/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(04Examtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04Test/circular_list.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04Test/circular_list_iterator.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04Test/circular_list_const_iterator.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04Test/TestCases.h
             )
 
 endif()
@@ -358,8 +365,13 @@ endif()
         CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/Uber.h
         CSC\ 109-01/Chapter\ 12/12.14\ CH12\ FINAL\ EXAM\ TEMPLATE/UberEats.h)]]
 
-add_executable(04HW 
+#[[add_executable(04HW 
         CSC\ 211-B1/CH04HW/list_demo.cpp
         CSC\ 211-B1/CH04HW/list.h
         CSC\ 211-B1/CH04HW/list_iterator.h
-        CSC\ 211-B1/CH04HW/list_const_iterator.h)
+        CSC\ 211-B1/CH04HW/list_const_iterator.h)]]
+
+#[[add_executable(04Test 
+        CSC\ 211-B1/CH04Test/circular_list.h
+        CSC\ 211-B1/CH04Test/circular_list_iterator.h
+        CSC\ 211-B1/CH04Test/circular_list_const_iterator.h)]]

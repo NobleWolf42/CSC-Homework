@@ -9,13 +9,13 @@ Copyright: 2024
 // Nested class const_iterator
 class const_iterator {
   // Give the parent class access to this class
-  friend class list<Item_Type>;
+  friend class circular_list<Item_Type>;
   // Data fields
  private:
   /** A pointer to the parent list */
-  const list<Item_Type>* parent;
+  const circular_list<Item_Type>* parent;
   /** A pointer to the current node */
-  typename list<Item_Type>::DNode* current;
+  typename circular_list<Item_Type>::DNode* current;
   //index of the current position
   size_t index;
   
@@ -26,7 +26,7 @@ class const_iterator {
       @param my_parent A reference to the list
       @param position A pointer to the current DNode
   */
-  const_iterator(const list<Item_Type>* my_parent, DNode* position, size_t indx) :
+  const_iterator(const circular_list<Item_Type>* my_parent, DNode* position, size_t indx) :
     parent(my_parent), current(position), index(indx) {}
  public:
   /** Make a copy of an iterator. Note this is public, others
