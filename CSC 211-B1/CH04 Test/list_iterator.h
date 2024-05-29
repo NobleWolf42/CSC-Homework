@@ -16,6 +16,8 @@ class iterator {
   list<Item_Type>* parent;
   /** A pointer to the current DNode */
   typename list<Item_Type>::DNode* current;
+  //index of current index
+  size_t index;
   // Member functions
   /** Constructs an iterator that references a specific DNode.
       Note: this constructor is private. Only the list class
@@ -23,8 +25,8 @@ class iterator {
       @param my_parent A reference to the list
       @param position A pointer to the current DNode
   */
-  iterator(list<Item_Type>* my_parent, DNode* position) :
-    parent(my_parent), current(position) {}
+  iterator(list<Item_Type>* my_parent, DNode* position, size_t indx) :
+    parent(my_parent), current(position), index(indx) {}
   
  public:
   /** Returns a reference to the currently referenced item.
@@ -32,9 +34,6 @@ class iterator {
       @throws std::invalid_argument if this iterator is at end
   */ 
   Item_Type& operator*() const {
-    if (current == nullptr) {
-      throw std::invalid_argument("Iterator is at end");
-    }
     return current->data;
   }
   
@@ -45,9 +44,6 @@ class iterator {
       @throws std::invalid_argument If this iterator is at end
   */
   Item_Type* operator->() const {
-    if (current == nullptr) {
-      throw std::invalid_argument("Iterator is at end");
-    }
     return &(current->data);
   }
   
@@ -57,10 +53,8 @@ class iterator {
       @throws std::invalid_argument If this iterator is at end
   */
   iterator& operator++() {
-    if (current == nullptr) {
-      throw std::invalid_argument("Iterator is at end");
-    }
     current = current->next;
+    ++index;
     return *this;
   }
   
@@ -70,13 +64,12 @@ class iterator {
       @throws std::invalid_argument If this iterator is at begin
   */
   iterator& operator--() {
-    if (current == nullptr) {
+    if (current == parent->head && index == parent->num_items) {
       current = parent->tail;
+      index = parent->num_items - 1;
     } else {
       current = current->prev;
-    }
-    if (current == nullptr) {
-      throw std::invalid_argument("Iterator is at begin");
+      --index;
     }
     return *this;
   }
@@ -101,12 +94,12 @@ class iterator {
   
   // Compare for equality.
   bool operator==(const iterator& other) {
-    return current == other.current;
+    return (current == other.current && index == other.index);
   }
   
   // Not equal
   bool operator!=(const iterator& other) {
-    return current != other.current;
+    return (current != other.current || index != other.index);
   }
   
 }; // End iterator

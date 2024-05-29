@@ -16,6 +16,8 @@ class const_iterator {
   const list<Item_Type>* parent;
   /** A pointer to the current node */
   typename list<Item_Type>::DNode* current;
+  //index of the current position
+  size_t index;
   
   // Methods
   /** Construct a const_iterator that references a specific node
@@ -24,15 +26,15 @@ class const_iterator {
       @param my_parent A reference to the list
       @param position A pointer to the current DNode
   */
-  const_iterator(const list<Item_Type>* my_parent, DNode* position) :
-    parent(my_parent), current(position) {}
+  const_iterator(const list<Item_Type>* my_parent, DNode* position, size_t indx) :
+    parent(my_parent), current(position), index(indx) {}
  public:
   /** Make a copy of an iterator. Note this is public, others
       may make a copy.
       @param other The iterator that is being copied
   */
   const_iterator(const const_iterator& other) :
-    parent(other.parent), current(other.current) {}
+    parent(other.parent), current(other.current), index(other.index) {}
   
 /** Return a reference to the currently referenced item.
     @return A reference to the currently referenced item
@@ -40,9 +42,6 @@ class const_iterator {
                                   is at end
 */
 const Item_Type& operator*() const {
-    if (current == nullptr) {
-      throw std::invalid_argument("Const_iterator is at end");
-    }
     return current->data;
 }
 
@@ -54,9 +53,6 @@ const Item_Type& operator*() const {
                                   is at end
 */
 const Item_Type* operator->() const {
-    if (current == nullptr) {
-      throw std::invalid_argument("Const_iterator is at end");
-    }
     return &(current->data);
 }
   
@@ -66,10 +62,8 @@ const Item_Type* operator->() const {
       @throws std::invalid_argument If this const_iterator is at end
   */
   const_iterator& operator++() {
-    if (current == nullptr) {
-      throw std::invalid_argument("Const_iterator is at end");
-    }
     current = current->next;
+    ++index;
     return *this;
   }
   
@@ -79,13 +73,12 @@ const Item_Type* operator->() const {
       @throws std::invalid_argument If this const_iterator is at begin
   */
   const_iterator& operator--() {
-    if (current == nullptr) {
+    if (current == parent->head) {
       current = parent->tail;
+      index = parent->num_items - 1;
     } else {
       current = current->prev;
-    }
-    if (current == nullptr) {
-      throw std::invalid_argument("Const_iterator is at begin");
+      --index;
     }
     return *this;
   }
@@ -109,12 +102,12 @@ const Item_Type* operator->() const {
 
   // Compare for equality
   bool operator==(const const_iterator& other) {
-    return current == other.current;
+    return (current == other.current && index == other.index);
   }
 
   // Not equal
   bool operator!=(const const_iterator& other) {
-    return current != other.current;
+    return (current != other.current || index != other.index);
   }
 
 }; // End const_iterator
