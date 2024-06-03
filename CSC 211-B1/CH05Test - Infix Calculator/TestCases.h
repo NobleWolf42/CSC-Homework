@@ -22,6 +22,12 @@ public:
         Infix_Evaluator infix;
 
         TS_ASSERT_THROWS_ANYTHING(infix.eval("5*10+8+3/0*5-2*4-12"));
+        TS_ASSERT_THROWS_ANYTHING(infix.eval(" "));
+        TS_ASSERT_THROWS_ANYTHING(infix.eval("(5+6"));
+        TS_ASSERT_THROWS_ANYTHING(infix.eval("5+"));
+        TS_ASSERT_THROWS_ANYTHING(infix.eval("+"));
+        TS_ASSERT_THROWS_ANYTHING(infix.eval("5++7"));
+        TS_ASSERT_THROWS_ANYTHING(infix.eval("G"));
         TS_ASSERT_EQUALS(infix.eval("5*10+8+   3*5- 2*4-12  "), (5*10+8+3*5-2*4-12));
         TS_ASSERT_EQUALS(infix.eval("5*10+(8+   3*5)-( 2*4-12 )"), (5*10+(8+3*5)-(2*4-12)));
         TS_ASSERT_EQUALS(infix.eval("5*10+(8+   3*5)*( 2*4-12 )"), (5*10+(8+3*5)*(2*4-12)));
