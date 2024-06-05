@@ -191,11 +191,16 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH04Test\ -\ Circular\ Double\ Linked\ List/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(05HWtest runner.cpp
+    #[[CXXTEST_ADD_TEST(05HWtest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/Inventory.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/Order.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/ProcessOrders.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(05Examtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/Infix_Evaluator.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/TestCases.h
             )
 
 endif()
@@ -378,7 +383,7 @@ endif()
         CSC\ 211-B1/CH04HW\ -\ Double\ Linked\ List/list_iterator.h
         CSC\ 211-B1/CH04HW\ -\ Double\ Linked\ List/list_const_iterator.h)]]
 
-#[[add_executable(04Test 
+#[[add_executable(04Exam 
         CSC\ 211-B1/CH04Test\ -\ Circular\ Double\ Linked\ List/list_demo.cpp
         CSC\ 211-B1/CH04Test\ -\ Circular\ Double\ Linked\ List/circular_list.h
         CSC\ 211-B1/CH04Test\ -\ Circular\ Double\ Linked\ List/circular_list_iterator.h
@@ -389,3 +394,7 @@ endif()
         CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/Inventory.h
         CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/Order.h
         CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/ProcessOrders.h)]]
+
+#[[add_executable(05Exam 
+        CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/main.cpp
+        CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/Infix_Evaluator.h)]]
