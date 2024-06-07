@@ -32,6 +32,9 @@ public:
         TS_ASSERT_EQUALS(infix.eval("5*10+(8+   3*5)-( 2*4-12 )"), (5*10+(8+3*5)-(2*4-12)));
         TS_ASSERT_EQUALS(infix.eval("5*10+(8+   3*5)*( 2*4-12 )"), (5*10+(8+3*5)*(2*4-12)));
         TS_ASSERT_EQUALS(infix.eval("5*10+(8+3*5)*(2*4-12/6)"), (5*10+(8+3*5)*(2*4-12/6)));
+        TS_ASSERT_EQUALS(infix.eval("5*10+8+3*2*4-12/6"), (5*10+8+3*2*4-12/6));
+        TS_ASSERT_EQUALS(infix.eval("5*10+8*2*4-12/6"), (5*10+8*2*4-12/6));
+        TS_ASSERT_EQUALS(infix.eval("5*2*4-12/6"), (5*2*4-12/6));
 
     }
 

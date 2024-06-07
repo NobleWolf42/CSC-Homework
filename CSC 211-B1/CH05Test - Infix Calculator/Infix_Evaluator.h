@@ -134,7 +134,7 @@ private:
             operand_stack.pop();
         }**/
         
-        switch(op) {
+        switch (op) {
             case '+' :
                 result = lhs + rhs;
                 break;
