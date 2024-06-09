@@ -1,15 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   Contact.h
- * Author: hloi
- *
- * Created on November 24, 2018, 12:09 AM
- */
+Author: Ben Carpenter
+Copyright: 2024
+*/
 
 #ifndef CONTACT_H
 #define CONTACT_H
@@ -27,20 +19,59 @@ using std::string;
 class Contact {
 public:
     // default constructor
-    Contact();
+    Contact() {
+        name = "";
+        address = "";
+        email = "";
+    }
+
     // non default constructor
-    Contact(string name, string address, string email);
+    Contact(string name, string address, string email) {
+        this->name = name;
+        this->address = address;
+        this->email = email;
+    }
+
     // copy constructor
-    Contact(const Contact& orig);
-    virtual ~Contact();        
-    void setEmail(string email);
-    string getEmail() const;
-    void setAddress(string address);
-    string getAddress() const;
-    void setName(string name);
-    string getName() const;
-    friend std::ostream& operator<<(std::ostream& out, 
-                           const Contact& contact);
+    Contact(const Contact& orig) {
+        this->name = orig.getName();
+        this->address = orig.getAddress();
+        this->email = orig.getEmail();
+    }
+
+    virtual ~Contact() {
+
+    }
+
+    void setEmail(string email) {
+        this->email = email;
+    }
+
+    string getEmail() const {
+        return email;
+    }
+    
+    void setAddress(string address) {
+        this->address = address;
+    }
+    
+    string getAddress() const {
+        return address;
+    }
+    
+    void setName(string name) {
+        this->name = name;
+    }
+    
+    string getName() const {
+        return name;
+    }
+    
+    friend std::ostream& operator<<(std::ostream& out, const Contact& contact) {
+        out << "Name: " << contact.getName() << " Address: " << contact.getAddress() << " Email: " << contact.getEmail() << "\n";
+        return out;
+    }
+
 private:    
     string name;
     string address;
@@ -50,4 +81,3 @@ private:
 
 
 #endif /* CONTACT_H */
-

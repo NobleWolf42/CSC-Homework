@@ -1,8 +1,3 @@
-/*
-Author: Ben Carpenter
-Copyright: 2024
-*/
-
 #ifndef BTNODE_H_
 #define BTNODE_H_
 #include <sstream>

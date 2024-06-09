@@ -198,9 +198,20 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05HW\ -\ Stacks\ and\ Queues/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(05Examtest runner.cpp
+    #[[CXXTEST_ADD_TEST(05Examtest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/Infix_Evaluator.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/TestCases.h
+            )]]
+    
+    CXXTEST_ADD_TEST(07HWtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Binary_Search_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Binary_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/BTNode.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Charge.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Contact.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Customer.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Customers.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/TestCases.h
             )
 
 endif()
