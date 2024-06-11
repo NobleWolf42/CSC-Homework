@@ -203,7 +203,7 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/TestCases.h
             )]]
     
-    CXXTEST_ADD_TEST(07HWtest runner.cpp
+    #[[CXXTEST_ADD_TEST(07HWtest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Binary_Search_Tree.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Binary_Tree.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/BTNode.h
@@ -212,6 +212,11 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Customer.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/Customers.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07HW\ -\ Binary\ Tree/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(07Examtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07Test\ -\ River\ System\ Recursion/Rivers.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH07Test\ -\ River\ System\ Recursion/TestCases.h
             )
 
 endif()
@@ -409,3 +414,7 @@ endif()
 #[[add_executable(05Exam 
         CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/main.cpp
         CSC\ 211-B1/CH05Test\ -\ Infix\ Calculator/Infix_Evaluator.h)]]
+
+#[[add_executable(07Exam 
+        CSC\ 211-B1/CH07Test\ -\ River\ System\ Recursion/main.cpp
+        CSC\ 211-B1/CH07Test\ -\ River\ System\ Recursion/Rivers.h)]]

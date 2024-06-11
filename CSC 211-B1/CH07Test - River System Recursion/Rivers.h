@@ -143,7 +143,9 @@ public:
      * @return true or false
      */
     bool bad_numbers(Rivers* river) {
-        if (river->getPh() < 6.5 || river->getPh() > 8.5 || river->getDo() < 6) {
+        if (river == NULL) {
+            return false;
+        } else if (river->getPh() < 6.5 || river->getPh() > 8.5 || river->getDo() < 6) {
             return true;
         } else {
             return false;
@@ -158,7 +160,8 @@ public:
      */
     Rivers* lower_all_ph() {
         Rivers* newRivers = new Rivers();
-        return lower_all_ph(this, newRivers);
+        Rivers* test = lower_all_ph(this, newRivers);
+        return test;
     }
 
     /**
@@ -178,13 +181,12 @@ public:
             return newRivers;
         }
         Rivers* river = *begin;
-        river->setPh(river->getPh() - 0.1);
+        list<Rivers*> nR;
         if (!river->getRivers().empty()) {
             list<Rivers*> temp;
-            list<Rivers*> nR = update_ph(river->getRivers().begin(), river->getRivers().end(), temp);
-            river->setRivers(nR);
+            nR = update_ph(river->getRivers().begin(), river->getRivers().end(), temp);
         }
-        newRivers.push_back(river);
+        newRivers.push_back(new Rivers(river->getRiverName(), river->getPh() - .1, river->getDo(), nR));
         return update_ph(++begin, end, newRivers);
     }
 
