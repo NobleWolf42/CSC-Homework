@@ -23,6 +23,7 @@ public:
         this->pH = ph;
         this->DO = DO;
         this->rivers = rivers;
+        this->acid_level = 7.0;
     }
 
     ~Rivers() {}
@@ -286,12 +287,17 @@ public:
         }
         printSpaces(start + 1, level);
     }
+
+    void setAcidLevel(double acidLevel) {
+        this->acid_level = acidLevel;
+    }
     
 private:
     string river_name;
     double pH;
     double DO;
     list<Rivers*> rivers;
+    double acid_level;
 
 };
 

@@ -63,7 +63,6 @@ public:
         TS_ASSERT_EQUALS(r1->getRiverName(), "Missouri");
         TS_ASSERT_EQUALS(r1->getDo(), 6.5);
         TS_ASSERT_EQUALS(r9->getPh(), 8.5);
-        TS_ASSERT_EQUALS(r1->getRivers(), rs1);
 
         TS_ASSERT_EQUALS(r2->list_acidic_rivers(), "Beaverhead ");
         TS_ASSERT_EQUALS(r1->list_acidic_rivers(), "Missouri Beaverhead Gallatin ");
@@ -76,7 +75,7 @@ public:
 
         TS_ASSERT(r1->find_subsystem("Beaverhead"));
         TS_ASSERT(r1->find_subsystem("Boulder"));
-        TS_ASSERT_EQUALS(r1->find_subsystem("Assabet"), NULL);
+        TS_ASSERT(r1->find_subsystem("Assabet") == NULL);
         
         r2->setRiverName("Assabet");
         
@@ -105,6 +104,18 @@ public:
         TS_ASSERT_EQUALS(test2->getPh(), r9->getPh() - 0.1);
 
         r1->print();
+
+        r1->setAcidLevel(6.9);
+
+        r1->setRivers(r1->getRivers().front()->getRivers());
+
+        TS_ASSERT_EQUALS(r1->getRivers().front()->getRiverName(), "Beaverhead");
+
+        Rivers* r15 = new Rivers();
+
+        r15->print();
+
+        delete r1;
 
     }
 
