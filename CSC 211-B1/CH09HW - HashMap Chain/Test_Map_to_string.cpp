@@ -1,3 +1,8 @@
+/*
+Author: Ben Carpenter
+Copyright: 2024
+*/
+
 /** Simple program to test map */
 
 #include <iostream>

@@ -1,8 +1,13 @@
+/*
+Author: Ben Carpenter
+Copyright: 2024
+*/
+
 /** Test_Person is an application that tests class Person. */
 #include <iostream>
 #include <fstream>
 #include "Hash_Table_Chain.h"
-#include "Person.h"
+#include "Person.cpp"
 
 
 using namespace std;

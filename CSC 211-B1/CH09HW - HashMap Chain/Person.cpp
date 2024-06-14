@@ -1,3 +1,8 @@
+/*
+Author: Ben Carpenter
+Copyright: 2024
+*/
+
 
 /** Implementation file for the class Person. */
 #include "Person.h"

@@ -1,8 +1,12 @@
+/*
+Author: Ben Carpenter
+Copyright: 2024
+*/
+
 #ifndef PERSON_H_
 #define PERSON_H_
 #include <string>
 #include <iostream>
-#include "hash.h"
 
 /** Person is a class that represents a human being. */
 class Person {
@@ -136,7 +140,5 @@ class Person {
 };
 
 /*</exercise>*/
-// specialize the hash template for a person class
-// hash key = family_name + 31 * given_name
 
 #endif
