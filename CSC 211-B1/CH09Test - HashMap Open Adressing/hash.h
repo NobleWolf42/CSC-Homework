@@ -33,13 +33,4 @@ struct hash<int> {
     }
 };
 
-// Write a specialization for person
-#include "Person.h"
-template<>
-struct hash<Person> {
-    size_t operator() (const Person& p) {
-        return hash<std::string>()(p.get_family_name());
-    }
-};
-
 #endif

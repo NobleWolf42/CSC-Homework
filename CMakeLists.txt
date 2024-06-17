@@ -231,11 +231,9 @@ if(CXXTEST_FOUND)
 
     CXXTEST_ADD_TEST(09Examtest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/const_iterator.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/Hash_Table_Chain.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/Hash_Table_Open.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/hash.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/iterator.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/Person.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/Person.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/TestCases.h
             )
             
