@@ -42,44 +42,6 @@ namespace KW {
             std::cout << "HASH_TABLE_OPEN.h - default constructor" << std::endl;
         }
 
-        /** Copy Constructor
-            @param other The other map to be copied
-        */
-        hash_map(const hash_map<Key_Type, Value_Type> &other) : hash_fcn(hash<Key_Type>()), num_keys(0), the_table(other.the_table.size(), NULL), LOAD_THRESHOLD(0.75), num_deletes(0), num_locates(0), num_probes(0) {
-            std::cout << "HASH_TABLE_OPEN.h - copy constructor" << std::endl;
-            for (size_t i = 0; i < other.the_table.size(); i++) {
-                if (other.the_table[i] != NULL && other.the_table[i] != DELETED)
-                    insert(Entry_Type(other.the_table[i]->first, other.the_table[i]->second));
-            }
-        }
-
-        hash_map(int capacity) : hash_fcn(hash<Key_Type>()), num_keys(0), the_table(capacity, NULL), LOAD_THRESHOLD(0.75), num_deletes(0), num_locates(0), num_probes(0) {
-            std::cout << "HASH_TABLE_OPEN.h - capacity constructor" << std::endl;
-        }
-
-        ~hash_map() {
-            std::cout << "HASH_TABLE_OPEN.h - default destructor" << std::endl;
-            //clear(); // Call the clear() function to release memory
-        }
-
-        void clear() {
-            std::cout << "HASH_TABLE_OPEN.h - clear" << std::endl;
-            /*for (size_t i = 0; i < the_table.size(); ++i) {
-                if (the_table[i] != NULL && the_table[i] != DELETED) {
-                    delete the_table[i]; // Release memory for key-value pair
-                    the_table[i] = NULL;
-                }
-            }
-            num_keys = 0;
-            num_deletes = 0;*/
-        }
-
-        int returnNumDeletes() {
-            std::cout << "HASH_TABLE_OPEN.h - returnNumDeletes" << std::endl;
-            return num_deletes;
-        }
-
-
         /** TODO: Inserts an item into the map.
         post: The key is associated with the value in the map.
         @param entry The key, value pair to be inserted
@@ -89,8 +51,8 @@ namespace KW {
         */
         std::pair<iterator, bool> insert(const Entry_Type &entry) {
             std::cout << "HASH_TABLE_OPEN.h - insert" << std::endl;
-            double load_factor = double(num_keys + num_deletes) / the_table.size();
-            if (load_factor > LOAD_THRESHOLD) {
+            double load = double(num_keys + num_deletes) / the_table.size();
+            if (load > LOAD_THRESHOLD) {
                 rehash(); // Double the size of the table.
             }
             // Find the position in the table.
@@ -116,22 +78,24 @@ namespace KW {
         */
         iterator find(const Key_Type &key) {
             std::cout << "HASH_TABLE_OPEN.h - find" << std::endl;
-            /*size_t index = locate(key);
+            size_t index = locate(key);
             if (the_table[index] != NULL) {
                 iterator it(this, index);
-                return it; // needs to be an iterator
+                return it;
+            } else {
+                return this->end();
             }
-            return this->end();*/
         }
 
         const_iterator find(const Key_Type &key) const {
             std::cout << "HASH_TABLE_OPEN.h - const find" << std::endl;
-            /*size_t index = locate(key);
+            size_t index = locate(key);
             if (the_table[index] != NULL) {
                 const_iterator it(this, index);
-                return it; // needs to be an iterator
+                return it;
+            } else {
+                return this->end();
             }
-            return this->end();*/
         }
 
         /** Accesses a value in the map, using the key as an index.
@@ -143,9 +107,9 @@ namespace KW {
         Value_Type &operator[](const Key_Type &key) {
             std::cout << "HASH_TABLE_OPEN.h - operator[]" << std::endl;
             // Try to insert a dummy item.
-            std::pair<iterator, bool> ret = insert(Entry_Type(key, Value_Type()));
+            std::pair<iterator, bool> out = insert(Entry_Type(key, Value_Type()));
             // Return a reference to the value found or inserted.
-            return ret.first->second;
+            return out.first->second;
         }
 
         /** TODO: Remove an item from the map based on a key
@@ -223,28 +187,24 @@ namespace KW {
             std::cout << "HASH_TABLE_OPEN.h - to_string" << std::endl;
             
             std::stringstream out;
-            bool temp = false;
 
             out << "{";
             for (int i = 0; i < the_table.size(); i++) {
-                if (temp) {
-                    out << ",";
-                }
                 if (the_table[i] != NULL && the_table[i] != hash_map<Key_Type, Value_Type>::DELETED) {
-                    out << " [" << the_table[i]->first << ", " << the_table[i]->second << "]";
-                    temp = true;
+                    out << "[" << the_table[i]->first << ", " << the_table[i]->second << "]";
                 }
             }
-            out << " }";
+            out << "}";
 
             return out.str();
         }
 
+        //Think I got the math right but not sure if I am using the right formula also should be using num_probes most likely but unsure exactly what this function does.
         double average_probes() const {
             std::cout << "HASH_TABLE_OPEN.h - average_probes" << std::endl;
-            /*double num = 0;
-            num = (1 / 2) * (1 + (1 / (1 - LOAD_THRESHOLD)));
-            return num;*/
+            double temp = 0;
+            temp = (1 / 2) * (1 + (1 / (1 - LOAD_THRESHOLD)));
+            return temp;
         }
 
 
@@ -286,7 +246,7 @@ namespace KW {
         */
         size_t locate(const Key_Type &key) {
             std::cout << "HASH_TABLE_OPEN.h - locate" << std::endl;
-            //num_locates++;
+            num_locates++;
             size_t index = hash_fcn(key) % the_table.size();
             while (the_table[index] != NULL && (the_table[index] == DELETED || the_table[index]->first != key)) {
                 index = (index + 1) % the_table.size();

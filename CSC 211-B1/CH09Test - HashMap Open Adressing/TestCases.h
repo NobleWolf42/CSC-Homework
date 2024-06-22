@@ -20,6 +20,7 @@ public:
 
     void testHashTable() {
         KW::hash_map<std::string, std::string> test1a;
+        size_t testSize = 3;
 
         test1a["hello"] = "world";
         test1a["lorium"] = "impsum";
@@ -32,12 +33,45 @@ public:
         TS_ASSERT_EQUALS(test1a["lorium"], "impsum");
         TS_ASSERT_EQUALS(test1a["hal"], "9000");
         TS_ASSERT_EQUALS(test1a["glad"], "OS");
+
+        test1a.erase("glad");
+
+        TS_ASSERT_EQUALS(test1a.find("glad"), test1a.end());
+        TS_ASSERT_EQUALS(test1a.find("hello"), test1a.begin());
+        TS_ASSERT_EQUALS(test1a.size(), testSize);
+        TS_ASSERT_EQUALS(test1a.empty(), false);
+
+        KW::hash_map<std::string, std::string>::iterator temp1 = test1a.begin();
+        temp1++;
+
+        KW::hash_map<std::string, std::string>::const_iterator temp2 = test1a.begin();
+
+        KW::hash_map<std::string, std::string>::const_iterator temp3 = test1a.begin();
+
+        TS_ASSERT_EQUALS(test1a.find("lorium"), temp1);
+
+        TS_ASSERT_EQUALS(temp3, temp2);
+
+        temp2++;
+        temp3++;
+        
+        TS_ASSERT_EQUALS(temp3, temp2);
+
+        temp2++;
+        temp3++;
+        
+        TS_ASSERT_EQUALS(temp3, temp2);
+
+        temp2++;
+        temp3++;
+        
+        TS_ASSERT_EQUALS(temp3, temp2);
     }
 
     void testRehash() {
         KW::hash_map<int, int> test2a;
 
-        for (int i = 0; i < 61; i++) {
+        for (int i = 0; i < 105; i++) {
             test2a[i] = i;
         }
 
@@ -51,6 +85,39 @@ public:
         TS_ASSERT_EQUALS(test2a[5000], 5000);
 
         std::cout << test2a.to_string() << std::endl;
+    }
+
+    void testConstit() {
+        KW::hash_map<std::string, std::string> test3a;
+        size_t testSize = 3;
+
+        test3a["hello"] = "world";
+        test3a["lorium"] = "impsum";
+        test3a["hal"] = "9000";
+
+        KW::hash_map<std::string, std::string>::iterator temp1 = test3a.begin();
+        KW::hash_map<std::string, std::string>::const_iterator temp2 = test3a.begin();
+        KW::hash_map<std::string, std::string>::const_iterator temp3 = test3a.begin();
+
+        temp1++;
+
+        TS_ASSERT_EQUALS(test3a.find("lorium"), temp1);
+        TS_ASSERT_EQUALS(temp3, temp2);
+
+        temp2++;
+        temp3++;
+        
+        TS_ASSERT_EQUALS(temp3, temp2);
+
+        temp2++;
+        temp3++;
+        
+        TS_ASSERT_EQUALS(temp3, temp2);
+
+        temp2++;
+        temp3++;
+        
+        TS_ASSERT_EQUALS(temp3, temp2);
     }
 
 };

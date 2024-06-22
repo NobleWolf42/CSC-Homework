@@ -12,48 +12,36 @@ class iterator {
     public:
 
         /** De-reference an iterator */
-        Entry_Type& operator*() const {
-            std::cout << "iterator.h - operator*" << std::endl;
-            return *the_parent->the_table[the_index];
-	        /*</exercise>*/
-        }
+      Entry_Type& operator*() const {
+          return *the_parent->the_table[the_index];
+      }
+      
+      /** De-reference an iterator */
+      Entry_Type* operator->() const {
+          return the_parent->the_table[the_index];
+      }
+      
+      /** Prefix increment operator */
+      iterator& operator++() {
+          advance();
+          return *this;
+      }
+      
+      /** Postfix increment operator */
+      iterator operator++(int) {
+          iterator temp = *this;
+          advance();
+          return temp;
+      }
+      
+      /** Equality operator */
+      bool operator==(const iterator& other) const {
+          return the_parent == other.the_parent && the_index == other.the_index;
+      }
 
-        /** De-reference an iterator */
-        Entry_Type * operator->()const {
-            std::cout << "iterator.h - operator->" << std::endl;
-            return the_parent->the_table[the_index];
-	        /*</exercise>*/
-        }
-
-        /** Prefix increment operator */
-        iterator & operator++() {
-            std::cout << "iterator.h - &operator++" << std::endl;
-            advance();
-            return *this;
-	        /*</exercise>*/
-        }
-
-        /** Postfix increment operator */
-        iterator operator++(int) {
-            std::cout << "iterator.h - operator++" << std::endl;
-            iterator temp(*this);
-            advance();
-            return *this;
-	        /*</exercise>*/
-        }
-
-        /** Equality operator */
-        bool operator==(const iterator & other)const {
-            std::cout << "iterator.h - operator==" << std::endl;
-            return ((the_index == other.the_index) && (the_parent == other.the_parent));
-        }
-
-        /** Inequality operator */
-        bool operator != (const iterator & other)const {
-            std::cout << "iterator.h - operator!=" << std::endl;
-            return ((the_index != other.the_index) || (the_parent != other.the_parent));
-            /*</exercise>*/
-        }
+      bool operator!=(const iterator& other) const {
+          return !operator==(other);
+      }
 
     private:
 
@@ -65,26 +53,19 @@ class iterator {
 
         /** Advance the iterator to the next position */
         void advance() {
-            std::cout << "iterator.h - advance" << std::endl;
-            while (the_index < the_parent->the_table.size() && (the_parent->the_table[the_index] == NULL || the_parent->the_table[the_index] == hash_map<Key_Type, Value_Type>::DELETED)) {
-                the_index++;
-            }
-	    	/*</exercise>*/
-        }
-
-        // Insert constructor and data fields here
+          do {
+             the_index++;
+          } while (the_index < the_parent->the_table.size() && (the_parent->the_table[the_index] == NULL || the_parent->the_table[the_index] == hash_map<Key_Type, Value_Type>::DELETED));
+      }
 
         /** Construct an iterator starting at a given position
-        in a give bucket */
-        iterator(hash_map<Key_Type, Value_Type>* parent, size_t index) : the_parent(parent), the_index(index) {
-            std::cout << "iterator.h - constructor" << std::endl;
-        }
-
-        /** The map containing this iterator */
-        hash_map<Key_Type, Value_Type>  * the_parent;
-
-        /** The index of the bucket */
-        size_t the_index;
+	  in the hash table */
+      iterator(hash_map<Key_Type, Value_Type>* parent, size_t index) : the_parent(parent), the_index(index) {}
+      /** Pointer the the map containing this iterator */
+      hash_map<Key_Type, Value_Type>* the_parent;
+      
+      /** The index of the current position */
+      size_t the_index;
     
 }; // End iterator
 

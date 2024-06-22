@@ -229,12 +229,22 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(09Examtest runner.cpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/const_iterator.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/Hash_Table_Open.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/hash.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/iterator.h
-            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09HW\ -\ HashMap\ Chain/TestCases.h
+    #[[CXXTEST_ADD_TEST(09Examtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09Test\ -\ HashMap\ Open\ Adressing/const_iterator.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09Test\ -\ HashMap\ Open\ Adressing/Hash_Table_Open.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09Test\ -\ HashMap\ Open\ Adressing/hash.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09Test\ -\ HashMap\ Open\ Adressing/iterator.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09Test\ -\ HashMap\ Open\ Adressing/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(11HWtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/AVL_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/AVLNode.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/Binary_Search_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/Binary_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/BST_With_Rotate.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/BTNode.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/TestCases.h
             )
             
 
