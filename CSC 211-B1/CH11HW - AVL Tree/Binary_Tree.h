@@ -157,7 +157,7 @@ template<typename Item_Type>
     read_binary_tree(std::istream& in) {
   std::string next_line;
   getline(in, next_line);
-  if (next_line == "NULL") {
+  if (next_line == "" || next_line == "NULL") {
     return Binary_Tree<Item_Type>();
   } else {
     Item_Type the_data;

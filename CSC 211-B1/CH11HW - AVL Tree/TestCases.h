@@ -25,11 +25,18 @@ public:
         AVL_Tree<int> test2;
         AVL_Tree<int> test3;
         AVL_Tree<std::string> test4;
+        AVL_Tree<int> test5;
 
         std::ifstream testFile1 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
         std::ifstream testFile2 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest2.txt");
         std::ifstream testFile3 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest3.txt");
         std::ifstream testFile4 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest4.txt");
+        std::ifstream testFile5 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
+
+        TS_ASSERT(test1.is_null());
+        TS_ASSERT_THROWS_ANYTHING(test1.get_data());
+        TS_ASSERT_THROWS_ANYTHING(test1.get_left_subtree());
+        TS_ASSERT_THROWS_ANYTHING(test1.get_right_subtree());
 
         if (testFile1.is_open()) {
             int testInt1 = 0; 
@@ -79,12 +86,24 @@ public:
             std::cout << "File 4 not read." << std::endl;
         }
 
+        testFile5 >> test5;
+
+        TS_ASSERT_DIFFERS(test5.get_data(), test1.get_data());
+
         std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
         
         TS_ASSERT(test1.find(31));
         TS_ASSERT(test2.find(41));
         TS_ASSERT(test3.find(51));
         TS_ASSERT(test4.find("lazy"));
+
+        TS_ASSERT(test1.find(31));
+        TS_ASSERT(test2.find(41));
+        TS_ASSERT(test3.find(51));
+        TS_ASSERT(!test4.is_leaf());
+        TS_ASSERT(test4.get_left_subtree().get_left_subtree().is_leaf());
+        TS_ASSERT_EQUALS(test4.get_right_subtree().get_right_subtree().get_data(), "the");
+        TS_ASSERT_EQUALS(test4.get_data(), "jumps");
 
         TS_ASSERT(test1.erase(31));
         TS_ASSERT(test2.erase(41));
