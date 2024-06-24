@@ -27,13 +27,14 @@ public:
         AVL_Tree<std::string> test4;
         AVL_Tree<int> test5;
 
-        std::ifstream testFile1 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
-        std::ifstream testFile2 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest2.txt");
-        std::ifstream testFile3 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest3.txt");
-        std::ifstream testFile4 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest4.txt");
-        std::ifstream testFile5 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
+        std::ifstream testFile1 ("BSTtest1.txt");
+        std::ifstream testFile2 ("BSTtest2.txt");
+        std::ifstream testFile3 ("BSTtest3.txt");
+        std::ifstream testFile4 ("BSTtest4.txt");
+        std::ifstream testFile5 ("BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
+        TS_ASSERT(test1.is_leaf());
         TS_ASSERT_THROWS_ANYTHING(test1.get_data());
         TS_ASSERT_THROWS_ANYTHING(test1.get_left_subtree());
         TS_ASSERT_THROWS_ANYTHING(test1.get_right_subtree());
@@ -46,8 +47,6 @@ public:
                 test1.insert(testInt1);
                 std::cout << testInt1 << std::endl;
             }
-        } else {
-            std::cout << "File 1 not read." << std::endl;
         }
 
         if (testFile2.is_open()) {
@@ -58,8 +57,6 @@ public:
                 test2.insert(testInt2);
                 std::cout << testInt2 << std::endl;
             }
-        } else {
-            std::cout << "File 2 not read." << std::endl;
         }
 
         if (testFile3.is_open()) {
@@ -70,8 +67,6 @@ public:
                 test3.insert(testInt3);
                 std::cout << testInt3 << std::endl;
             }
-        } else {
-            std::cout << "File 3 not read." << std::endl;
         }
 
         if (testFile4.is_open()) {
@@ -82,8 +77,6 @@ public:
                 test4.insert(testStr4);
                 std::cout << testStr4 << std::endl;
             }
-        } else {
-            std::cout << "File 4 not read." << std::endl;
         }
 
         testFile5 >> test5;
