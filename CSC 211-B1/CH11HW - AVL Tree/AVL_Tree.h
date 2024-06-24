@@ -33,6 +33,69 @@ class AVL_Tree : public BST_With_Rotate<Item_Type> {
   
   
  private:
+
+int AVL_Tree<Item_Type>::verify_structure(BTNode<Item_Type> *local_root,
+                                          BTNode<Item_Type> *parent) {
+    if (local_root == 0) return 0;
+    AVLNode<Item_Type> *avl_root =
+            dynamic_cast<AVLNode<Item_Type> * >(local_root);
+    if (avl_root == 0) {
+        throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                       "Node not AVLNode");
+    }
+    if (avl_root->left == 0 && avl_root->right == 0) {
+        if (avl_root->balance != AVLNode<Item_Type>::BALANCED) {
+            throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                           "Leaf node not balanced");
+        }
+        return 1;
+    } else {
+        int left_height = verify_structure(avl_root->left, local_root);
+        int right_height = verify_structure(avl_root->right, local_root);
+        int delta = right_height - left_height;
+        if (delta < -1) {
+            throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                           "Balance < -1");
+        }
+        if (delta > 1) {
+            throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                           "Balance > +1");
+        }
+        switch (delta) {
+            case -1:
+                if (avl_root->balance != AVLNode<Item_Type>::LEFT_HEAVY) {
+                    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                                   "Balance value not correct, should be -1");
+                }
+                break;
+            case 0:
+                if (avl_root->balance != AVLNode<Item_Type>::BALANCED) {
+                    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                                   "Balance value not correct, should be 0");
+                }
+                break;
+            case +1:
+                if (avl_root->balance != AVLNode<Item_Type>::RIGHT_HEAVY) {
+                    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                                   "Balance value not correct, should be +1");
+                }
+                break;
+        }
+        if (avl_root->left != 0) {
+            if (avl_root->left->data >= avl_root->data) {
+                throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                               "Left child >= parent");
+            }
+        }
+        if (avl_root->right != 0) {
+            if (avl_root->right->data <= avl_root->data) {
+                throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+                                               "Right child <= parent");
+            }
+        }
+        return (left_height > right_height ? left_height : right_height) + 1;
+    }
+}
   
   // Private member functions declarations
   /** Insert an item into the tree. Called by starter function (see

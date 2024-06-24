@@ -17,7 +17,8 @@ void pre_order_traversal(const Binary_Tree<Item_Type>& the_tree,
     for (int i = 0; i < level; i++)
       out << "  ";
     out << "null\n";
-  } else {
+  }
+  else {
     for (int i = 0; i < level; i++)
       out << "  ";
     out << the_tree.get_data() << std::endl;

@@ -1,8 +1,3 @@
-/*
-Author: Ben Carpenter
-Copyright: 2024
-*/
-
 #ifndef BST_WITH_ROTATE_H_
 #define BST_WITH_ROTATE_H_
 #include "Binary_Search_Tree.h"
