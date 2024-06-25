@@ -27,13 +27,14 @@ public:
         AVL_Tree<std::string> test4;
         AVL_Tree<int> test5;
 
-        std::ifstream testFile1 ("BSTtest1.txt");
-        std::ifstream testFile2 ("BSTtest2.txt");
-        std::ifstream testFile3 ("BSTtest3.txt");
-        std::ifstream testFile4 ("BSTtest4.txt");
-        std::ifstream testFile5 ("BSTtest1.txt");
+        std::ifstream testFile2 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest2.txt");
+        std::ifstream testFile1 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
+        std::ifstream testFile3 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest3.txt");
+        std::ifstream testFile4 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest4.txt");
+        std::ifstream testFile5 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
+        TS_ASSERT(!test1.erase(31));
         TS_ASSERT(test1.is_leaf());
         TS_ASSERT_THROWS_ANYTHING(test1.get_data());
         TS_ASSERT_THROWS_ANYTHING(test1.get_left_subtree());
@@ -98,15 +99,33 @@ public:
         TS_ASSERT_EQUALS(test4.get_right_subtree().get_right_subtree().get_data(), "the");
         TS_ASSERT_EQUALS(test4.get_data(), "jumps");
 
+        TS_ASSERT(test1.verify_structure());
+        TS_ASSERT(test2.verify_structure());
+        TS_ASSERT(test3.verify_structure());
+        TS_ASSERT(test4.verify_structure());
+
         TS_ASSERT(test1.erase(31));
         TS_ASSERT(test2.erase(41));
         TS_ASSERT(test3.erase(51));
-        TS_ASSERT(test4.erase("lazy"));
+        TS_ASSERT(test4.erase("brown"));
+        TS_ASSERT(test4.verify_structure());
+        TS_ASSERT(test4.erase("quick"));
+        TS_ASSERT(test4.verify_structure());
+        TS_ASSERT(test4.erase("jumps"));
 
         TS_ASSERT(!test1.find(31));
         TS_ASSERT(!test2.find(41));
         TS_ASSERT(!test3.find(51));
-        TS_ASSERT(!test4.find("lazy"));
+        TS_ASSERT(!test4.find("brown"));
+        TS_ASSERT(!test4.find("quick"));
+        TS_ASSERT(!test4.find("jumps"));
+        TS_ASSERT(test1.verify_structure());
+        TS_ASSERT(test2.verify_structure());
+        TS_ASSERT(test3.verify_structure());
+        TS_ASSERT(test4.verify_structure());
+        TS_ASSERT_THROWS_ANYTHING(test5.verify_structure());
+
+
 
         std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
 

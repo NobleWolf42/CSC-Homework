@@ -153,13 +153,13 @@ public:
                     AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
                 }
 
-                BST_With_Rotate<Item_Type>::rotate_left(local_root->left);
+                this->rotate_left(local_root->left);
             } else {
                 left_child->balance = AVLNode<Item_Type>::BALANCED;
                 AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
             }
 
-        BST_With_Rotate<Item_Type>::rotate_right(local_root);
+        this->rotate_right(local_root);
     }
     
     /** Correct a critical right balance condition
@@ -176,27 +176,27 @@ public:
         if (right_child->balance == AVLNode<Item_Type>::LEFT_HEAVY) {
             AVLNode<Item_Type>* right_left_child = dynamic_cast<AVLNode<Item_Type>*>(right_child->left);
 
-            if (right_left_child->balance == AVLNode<Item_Type>::LEFT_HEAVY) {
+            if (right_left_child->balance == AVLNode<Item_Type>::RIGHT_HEAVY) {
                 right_child->balance = AVLNode<Item_Type>::BALANCED;
                 right_left_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
+                AVL_local_root->balance = AVLNode<Item_Type>::LEFT_HEAVY;
             } else if (right_left_child->balance == AVLNode<Item_Type>::BALANCED) {
                 right_child->balance = AVLNode<Item_Type>::BALANCED;
                 right_left_child->balance = AVLNode<Item_Type>::BALANCED;
                 AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
             } else {
-                right_child->balance = AVLNode<Item_Type>::LEFT_HEAVY;
+                right_child->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
                 right_left_child->balance = AVLNode<Item_Type>::BALANCED;
                 AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
             }
 
-            BST_With_Rotate<Item_Type>::rotate_right(local_root->right);
+            this->rotate_right(local_root->right);
         } else {
             right_child->balance = AVLNode<Item_Type>::BALANCED;
             AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
         }
 
-        BST_With_Rotate<Item_Type>::rotate_left(local_root);
+        this->rotate_left(local_root);
     }
 
     /*<exercise chapter="11" type="programming-project" number="5">*/
@@ -211,23 +211,22 @@ public:
             decrease = false;
             return false;
         } else if (item < local_root->data) {
-            bool return_value = insert(local_root->left, item);
-            if (increase) {
+            bool return_value = erase(local_root->left, item);
+            if (decrease) {
                 AVLNode<Item_Type>* AVL_local_root = dynamic_cast<AVLNode<Item_Type>*>(local_root);
 
                 switch (AVL_local_root->balance) {
                     case AVLNode<Item_Type>::BALANCED:
-                        AVL_local_root->balance = AVLNode<Item_Type>::LEFT_HEAVY;
-                        break;
-
-                    case AVLNode<Item_Type>::RIGHT_HEAVY:
-                        AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
-                        increase = false;
+                        AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
+                        decrease = false;
                         break;
 
                     case AVLNode<Item_Type>::LEFT_HEAVY:
-                        rebalance_left(local_root);
-                        increase = false;
+                        AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
+                        break;
+
+                    case AVLNode<Item_Type>::RIGHT_HEAVY:
+                        erase_rebalance_right(local_root);
                         break;
 
                     default:
@@ -236,24 +235,23 @@ public:
             }
             return return_value;
         } else if (local_root->data < item) {
-            bool return_value = insert(local_root->right, item);
-            if (increase) {
+            bool return_value = erase(local_root->right, item);
+            if (decrease) {
                 AVLNode<Item_Type>* AVL_local_root = dynamic_cast<AVLNode<Item_Type>*>(local_root);
 
                 switch (AVL_local_root->balance) {
                     case AVLNode<Item_Type>::BALANCED:
-                        AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
-                        break;
-
-                    case AVLNode<Item_Type>::LEFT_HEAVY:
-                        AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
-                        increase = false;
+                        AVL_local_root->balance = AVLNode<Item_Type>::LEFT_HEAVY;
+                        decrease = false;
                         break;
 
                     case AVLNode<Item_Type>::RIGHT_HEAVY:
-                        rebalance_right(local_root);
-                        increase = false;
+                        AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
                         break;
+                        
+                    case AVLNode<Item_Type>::LEFT_HEAVY:
+                        erase_rebalance_left(local_root);
+                        break;                   
 
                     default:
                         break;
@@ -261,10 +259,42 @@ public:
             }
             return return_value;
         } else {
-            decrease = false;
-            return false;
+            BTNode<Item_Type>* temp = local_root;
+
+            if (local_root->left == NULL) {
+                local_root = local_root->right;
+                decrease = true;
+            } else if (local_root->right == NULL) {
+                local_root = local_root->left;
+                decrease = true;
+            } else {
+                replace_parent(temp, local_root->left);
+                if (decrease) {
+                    AVLNode<Item_Type>* AVL_local_root = dynamic_cast<AVLNode<Item_Type>*>(local_root);
+
+                    switch (AVL_local_root->balance) {
+                        case AVLNode<Item_Type>::BALANCED:
+                            AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
+                            decrease = false;
+                            break;
+                        
+                        case AVLNode<Item_Type>::LEFT_HEAVY:
+                            AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
+                            break;
+                        
+                        case AVLNode<Item_Type>::RIGHT_HEAVY:
+                            erase_rebalance_right(local_root);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+            delete temp;
+            return true;
         }
-    }/ ++
+    }
 
     /** Find a replacement for a node that is being deleted
         This function finds the right-most local root that
@@ -275,7 +305,40 @@ public:
         @param old_root Reference to the pointer to old parent
         @param local_root Reference to the pointer to local root
     */
-    virtual void replace_parent(BTNode<Item_Type>*& old_root, BTNode<Item_Type>*& local_root);
+    virtual void replace_parent(BTNode<Item_Type>*& old_root, BTNode<Item_Type>*& local_root) {
+        if (local_root->right != NULL) {
+            replace_parent(old_root, local_root->right);
+
+            if (decrease) {
+                AVLNode<Item_Type>* AVL_local_root =
+                        dynamic_cast<AVLNode<Item_Type>*>(local_root);
+
+                switch (AVL_local_root->balance) {
+                    
+                    case AVLNode<Item_Type>::BALANCED:
+                        AVL_local_root->balance = AVLNode<Item_Type>::LEFT_HEAVY;
+                        decrease = false;
+                        break;
+
+                    case AVLNode<Item_Type>::LEFT_HEAVY:
+                        erase_rebalance_left(local_root);
+                        break;
+
+                    case AVLNode<Item_Type>::RIGHT_HEAVY:
+                        AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        } else {
+            old_root->data = local_root->data;
+            old_root = local_root;
+            local_root = local_root->left;
+            decrease = true;
+        }
+    }
 
 
     /** Correct a critical left balance condition due to erase
@@ -289,30 +352,15 @@ public:
         AVLNode<Item_Type>* AVL_local_root = dynamic_cast<AVLNode<Item_Type>*>(local_root);
         AVLNode<Item_Type>* left_child = dynamic_cast<AVLNode<Item_Type>*>(local_root->left);
 
-        if (left_child->balance == AVLNode<Item_Type>::RIGHT_HEAVY) {
-            AVLNode<Item_Type>* left_right_child = dynamic_cast<AVLNode<Item_Type>*>(left_child->right);
+        if (left_child->balance == AVLNode<Item_Type>::BALANCED) {
+            left_child->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
+            AVL_local_root->balance = AVLNode<Item_Type>::LEFT_HEAVY;
 
-            if (left_right_child->balance == AVLNode<Item_Type>::LEFT_HEAVY) {
-                left_child->balance = AVLNode<Item_Type>::BALANCED;
-                left_right_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
-            } else if (left_right_child->balance == AVLNode<Item_Type>::BALANCED) {
-                left_child->balance = AVLNode<Item_Type>::BALANCED;
-                left_right_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
-            } else {
-                left_child->balance = AVLNode<Item_Type>::LEFT_HEAVY;
-                left_right_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
-            }
-
-            BST_With_Rotate<Item_Type>::rotate_left(local_root->left);
+            this->rotate_right(local_root);
+            decrease = false;
         } else {
-            left_child->balance = AVLNode<Item_Type>::BALANCED;
-            AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
+            rebalance_left(local_root);
         }
-
-        BST_With_Rotate<Item_Type>::rotate_right(local_root);
     }
 
     /** Correct a critical right balance condition due to erase
@@ -326,30 +374,17 @@ public:
         AVLNode<Item_Type>* AVL_local_root = dynamic_cast<AVLNode<Item_Type>*>(local_root);
         AVLNode<Item_Type>* right_child = dynamic_cast<AVLNode<Item_Type>*>(local_root->right);
 
-        if (right_child->balance == AVLNode<Item_Type>::LEFT_HEAVY) {
-            AVLNode<Item_Type>* right_left_child = dynamic_cast<AVLNode<Item_Type>*>(right_child->left);
+        if (right_child->balance == AVLNode<Item_Type>::BALANCED) {
+            right_child->balance = AVLNode<Item_Type>::LEFT_HEAVY;
+            AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
 
-            if (right_left_child->balance == AVLNode<Item_Type>::LEFT_HEAVY) {
-                right_child->balance = AVLNode<Item_Type>::BALANCED;
-                right_left_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::RIGHT_HEAVY;
-            } else if (right_left_child->balance == AVLNode<Item_Type>::BALANCED) {
-                right_child->balance = AVLNode<Item_Type>::BALANCED;
-                right_left_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
-            } else {
-                right_child->balance = AVLNode<Item_Type>::LEFT_HEAVY;
-                right_left_child->balance = AVLNode<Item_Type>::BALANCED;
-                AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
-            }
-
-            BST_With_Rotate<Item_Type>::rotate_right(local_root->right);
+            this->rotate_left(local_root);
+            decrease = false; 
         } else {
-            right_child->balance = AVLNode<Item_Type>::BALANCED;
-            AVL_local_root->balance = AVLNode<Item_Type>::BALANCED;
+            this->rebalance_right(local_root);
         }
 
-        BST_With_Rotate<Item_Type>::rotate_left(local_root);
+        
     }
     /*</exercise>*/
 
