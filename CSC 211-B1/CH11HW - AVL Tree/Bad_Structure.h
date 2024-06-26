@@ -1,3 +1,8 @@
+/*
+Author: Ben Carpenter
+Copyright: 2024
+*/
+
 #ifndef BAD_STRUCTURE_H
 #define BAD_STRUCTURE_H
 #include <stdexcept>
