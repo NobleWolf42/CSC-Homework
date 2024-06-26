@@ -26,19 +26,25 @@ public:
         AVL_Tree<int> test3;
         AVL_Tree<std::string> test4;
         AVL_Tree<int> test5;
+        Binary_Search_Tree<int> test6;
+        BTNode<int> testNode(55);
 
         std::ifstream testFile1 ("BSTtest1.txt");
         std::ifstream testFile2 ("BSTtest2.txt");
         std::ifstream testFile3 ("BSTtest3.txt");
         std::ifstream testFile4 ("BSTtest4.txt");
         std::ifstream testFile5 ("BSTtest1.txt");
+        std::ifstream testFile6 ("BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
         TS_ASSERT(!test1.erase(31));
+        TS_ASSERT(!test6.erase(31));
         TS_ASSERT(test1.is_leaf());
         TS_ASSERT_THROWS_ANYTHING(test1.get_data());
         TS_ASSERT_THROWS_ANYTHING(test1.get_left_subtree());
         TS_ASSERT_THROWS_ANYTHING(test1.get_right_subtree());
+
+        std::cout << "Test BTNode to_string (should be 55): " << testNode.to_string() << std::endl;
 
         if (testFile1.is_open()) {
             int testInt1 = 0; 
@@ -82,6 +88,16 @@ public:
 
         testFile5 >> test5;
 
+        if (testFile6.is_open()) {
+            int testInt6 = 0;
+            std::cout << "File 6" << std::endl;
+            while (testFile6) {
+                testFile6 >> testInt6;
+                test6.insert(testInt6);
+                std::cout << testInt6 << std::endl;
+            }
+        }
+
         TS_ASSERT_DIFFERS(test5.get_data(), test1.get_data());
 
         std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
@@ -90,6 +106,16 @@ public:
         TS_ASSERT(test2.find(41));
         TS_ASSERT(test3.find(51));
         TS_ASSERT(test4.find("lazy"));
+
+        TS_ASSERT(test6.find(31));
+        TS_ASSERT(test6.find(50));
+        TS_ASSERT(test6.find(30));
+        TS_ASSERT(test6.erase(31));
+        TS_ASSERT(test6.erase(50));
+        TS_ASSERT(test6.erase(30));
+        TS_ASSERT(!test6.find(31));
+        TS_ASSERT(!test6.find(50));
+        TS_ASSERT(!test6.find(30));
 
         TS_ASSERT(test1.find(31));
         TS_ASSERT(test2.find(41));
