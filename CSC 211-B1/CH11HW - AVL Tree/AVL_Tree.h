@@ -295,8 +295,7 @@ public:
             replace_parent(old_root, local_root->right);
 
             if (decrease) {
-                AVLNode<Item_Type>* AVL_local_root =
-                        dynamic_cast<AVLNode<Item_Type>*>(local_root);
+                AVLNode<Item_Type>* AVL_local_root = dynamic_cast<AVLNode<Item_Type>*>(local_root);
 
                 switch (AVL_local_root->balance) {
                     

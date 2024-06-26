@@ -10,6 +10,7 @@ Copyright: 2024
 
 //Include your classes header file(s) below and uncomment.
 #include "AVL_Tree.h"
+#include "pre_order_traversal.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -28,13 +29,14 @@ public:
         AVL_Tree<int> test5;
         Binary_Search_Tree<int> test6;
         BTNode<int> testNode(55);
+        AVL_Tree<int> test7;
 
-        std::ifstream testFile1 ("BSTtest1.txt");
-        std::ifstream testFile2 ("BSTtest2.txt");
-        std::ifstream testFile3 ("BSTtest3.txt");
-        std::ifstream testFile4 ("BSTtest4.txt");
-        std::ifstream testFile5 ("BSTtest1.txt");
-        std::ifstream testFile6 ("BSTtest1.txt");
+        std::ifstream testFile1 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
+        std::ifstream testFile2 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest2.txt");
+        std::ifstream testFile3 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest3.txt");
+        std::ifstream testFile4 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest4.txt");
+        std::ifstream testFile5 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
+        std::ifstream testFile6 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11HW - AVL Tree/BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
         TS_ASSERT(!test1.erase(31));
@@ -52,7 +54,7 @@ public:
             while (testFile1) {
                 testFile1 >> testInt1;
                 test1.insert(testInt1);
-                std::cout << testInt1 << std::endl;
+                //std::cout << testInt1 << std::endl;
             }
         }
 
@@ -62,7 +64,7 @@ public:
             while (testFile2) {
                 testFile2 >> testInt2;
                 test2.insert(testInt2);
-                std::cout << testInt2 << std::endl;
+                //std::cout << testInt2 << std::endl;
             }
         }
 
@@ -72,7 +74,7 @@ public:
             while (testFile3) {
                 testFile3 >> testInt3;
                 test3.insert(testInt3);
-                std::cout << testInt3 << std::endl;
+                //std::cout << testInt3 << std::endl;
             }
         }
 
@@ -82,7 +84,7 @@ public:
             while (testFile4) {
                 testFile4 >> testStr4;
                 test4.insert(testStr4);
-                std::cout << testStr4 << std::endl;
+                //std::cout << testStr4 << std::endl;
             }
         }
 
@@ -94,13 +96,13 @@ public:
             while (testFile6) {
                 testFile6 >> testInt6;
                 test6.insert(testInt6);
-                std::cout << testInt6 << std::endl;
+                //std::cout << testInt6 << std::endl;
             }
         }
 
         TS_ASSERT_DIFFERS(test5.get_data(), test1.get_data());
 
-        std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
+        //std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
         
         TS_ASSERT(test1.find(31));
         TS_ASSERT(test2.find(41));
@@ -153,7 +155,27 @@ public:
 
 
 
-        std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
+        //std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
+
+        test7.insert(50);
+        test7.insert(60);
+        test7.insert(25);
+        test7.insert(20);
+        test7.insert(40);
+        test7.insert(52);
+        test7.insert(61);
+        test7.insert(45);
+        test7.insert(30);
+        test7.insert(26);
+        /*test7.erase(40);
+        test7.erase(45);
+        test7.erase(60);*/
+        pre_order_traversal(test7, std::cout, 0);
+        TS_ASSERT(test7.verify_structure());
+        test7.erase(61);
+
+        pre_order_traversal(test7, std::cout, 0);
+        TS_ASSERT(test7.verify_structure());
 
     }
 
