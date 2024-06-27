@@ -330,12 +330,12 @@ private:
         } else if (!is_red(local_root->right) && (!local_root->right || !is_red(local_root->right->left) && !is_red(local_root->right->right))) {
             set_red(local_root, false);
             set_red(local_root->right, true);
-        } else if (!is_red(local_root->right) && is_red(local_root->right->left)) { //Case 3
+        } else if (!is_red(local_root->right) && is_red(local_root->right->left)) {
             set_red(local_root->right, true);
             set_red(local_root->right->left, false);
             this->rotate_right(local_root->right);
             fixup_left(local_root);
-        } else if (!is_red(local_root->right) && is_red(local_root->right->right)) { //Case 4
+        } else if (!is_red(local_root->right) && is_red(local_root->right->right)) {
             set_red(local_root, false);
             set_red(local_root->right, is_red(local_root));
             set_red(local_root->right->right, false);

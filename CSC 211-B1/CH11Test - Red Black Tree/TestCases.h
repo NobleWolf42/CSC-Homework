@@ -41,41 +41,41 @@ public:
 
         if (testFile1.is_open()) {
             int testInt1 = 0; 
-            std::cout << "File 1" << std::endl;
+            //std::cout << "File 1" << std::endl;
             while (testFile1) {
                 testFile1 >> testInt1;
                 test1.insert(testInt1);
-                std::cout << testInt1 << std::endl;
+                //std::cout << testInt1 << std::endl;
             }
         }
 
         if (testFile2.is_open()) {
             int testInt2 = 0;
-            std::cout << "File 2" << std::endl;
+            //std::cout << "File 2" << std::endl;
             while (testFile2) {
                 testFile2 >> testInt2;
                 test2.insert(testInt2);
-                std::cout << testInt2 << std::endl;
+                //std::cout << testInt2 << std::endl;
             }
         }
 
         if (testFile3.is_open()) {
             int testInt3 = 0;
-            std::cout << "File 3" << std::endl;
+            //std::cout << "File 3" << std::endl;
             while (testFile3) {
                 testFile3 >> testInt3;
                 test3.insert(testInt3);
-                std::cout << testInt3 << std::endl;
+                //std::cout << testInt3 << std::endl;
             }
         }
 
         if (testFile4.is_open()) {
             std::string testStr4 = "";
-            std::cout << "File 4" << std::endl;
+            //std::cout << "File 4" << std::endl;
             while (testFile4) {
                 testFile4 >> testStr4;
                 test4.insert(testStr4);
-                std::cout << testStr4 << std::endl;
+                //std::cout << testStr4 << std::endl;
             }
         }
 
