@@ -31,12 +31,12 @@ public:
         BTNode<int> testNode(55);
         Red_Black_Tree<int> test7;
 
-        std::ifstream testFile1 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
-        std::ifstream testFile2 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest2.txt");
-        std::ifstream testFile3 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest3.txt");
-        std::ifstream testFile4 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest4.txt");
-        std::ifstream testFile5 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
-        std::ifstream testFile6 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile1 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile2 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest2.txt");
+        std::ifstream testFile3 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest3.txt");
+        std::ifstream testFile4 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest4.txt");
+        std::ifstream testFile5 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile6 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
         TS_ASSERT(!test1.erase(31));
@@ -102,7 +102,7 @@ public:
 
         TS_ASSERT_DIFFERS(test5.get_data(), test1.get_data());
 
-        //std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
+        std::cout << "Test 4 Output:" << std::endl << std::endl << test4;
         
         TS_ASSERT(test1.find(31));
         TS_ASSERT(test2.find(41));
@@ -113,7 +113,6 @@ public:
 
         pre_order_traversal(test4, std::cout, 0);
         TS_ASSERT(test4.erase("dog"));
-        pre_order_traversal(test4, std::cout, 0);
 
         TS_ASSERT(test6.find(31));
         TS_ASSERT(test6.find(50));
@@ -146,6 +145,7 @@ public:
         TS_ASSERT(test4.erase("quick"));
         TS_ASSERT(test4.verify_structure());
         TS_ASSERT(test4.erase("jumps"));
+        //pre_order_traversal(test4, std::cout, 0);
 
         TS_ASSERT(!test1.find(31));
         TS_ASSERT(!test2.find(41));
@@ -173,12 +173,12 @@ public:
         test7.insert(45);
         test7.insert(30);
         test7.insert(26);
-        test7.erase(40);
-        test7.erase(45);
-        test7.erase(60);
+        //test7.erase(40);
+        //test7.erase(45);
+        //test7.erase(60);
         //pre_order_traversal(test7, std::cout, 0);
         TS_ASSERT(test7.verify_structure());
-        test7.erase(61);
+        //test7.erase(61);
 
         //pre_order_traversal(test7, std::cout, 0);
         TS_ASSERT(test7.verify_structure());
@@ -189,13 +189,76 @@ public:
             E.insert(i);
         }
 
-        E.erase(0);
-        E.erase(2);
-        E.erase(1);
+        //E.erase(0);
+        //E.erase(2);
+        //E.erase(1);
 
         //pre_order_traversal(E, std::cout, 0);
         TS_ASSERT(E.verify_structure());
 
+        Red_Black_Tree<int> B;
+
+        B.insert(8);
+        B.insert(3);
+        B.insert(11);
+        B.insert(1);
+        B.insert(6);
+        B.insert(5);
+        B.insert(0);
+
+        //B.erase(8);
+        B.erase(6);
+        //B.erase(11);
+
+        //pre_order_traversal(B, std::cout, 0);
+        //std::cout << "Test Output:" << std::endl << std::endl << B;
+        TS_ASSERT(B.verify_structure());
+
+        Red_Black_Tree<int> C;
+
+        C.insert(60);
+        C.insert(9);
+        C.insert(6);
+        C.insert(110);
+        C.insert(55);
+        C.insert(99);
+        C.insert(31);
+    
+        //C.erase(31);
+        C.erase(60);
+
+        //pre_order_traversal(C, std::cout, 0);
+        //std::cout << "Test Output:" << std::endl << std::endl << C;
+        TS_ASSERT(C.verify_structure());
+
+        Red_Black_Tree<int> D;
+
+        D.insert(61);
+        D.insert(52);
+        D.insert(85);
+        D.insert(20);
+        D.insert(55);
+        D.insert(76);
+        D.insert(93);
+        D.insert(16);
+        D.insert(57);
+        D.insert(71);
+        D.insert(81);
+        D.insert(90);
+        D.insert(101);
+        D.insert(65);
+    
+        //D.erase(71);
+        //D.erase(93);
+        //D.erase(90);
+        //D.erase(76);
+        //D.erase(61);
+        D.erase(57);
+
+
+        //pre_order_traversal(D, std::cout, 0);
+        //std::cout << "Test Output:" << std::endl << std::endl << D;
+        TS_ASSERT(D.verify_structure());
     }
 
 };

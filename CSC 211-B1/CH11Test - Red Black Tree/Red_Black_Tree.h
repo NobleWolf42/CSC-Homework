@@ -233,9 +233,12 @@ private:
         if (node->left == NULL) {
             node = node->right;
             
-            if (is_red(temp) == false && (node == NULL || is_red(node) == false)) {
+            if (!is_red(temp) && (node == NULL || is_red(node) == false)) {
                 fixup_required = true;
             } else {
+                if (!is_red(temp)) {
+                    set_red(node, false);
+                }
                 fixup_required = false;
             }
             
@@ -243,9 +246,12 @@ private:
         } else if (node->right == NULL) {
             node = node->left;
 
-            if (is_red(temp) == false && (node == NULL || is_red(node) == false)) {
+            if (!is_red(temp) && (node == NULL || is_red(node) == false)) {
                 fixup_required = true;
             } else {
+                if (!is_red(temp)) {
+                    set_red(node, false);
+                }
                 fixup_required = false;
             }
 
@@ -253,9 +259,12 @@ private:
         } else {
             node->data = find_largest_child(node->left);
 
-            if (is_red(temp) == false && (node == NULL || is_red(node) == false)) {
+            if (!is_red(temp) && (node == NULL || is_red(node) == false)) {
                 fixup_required = true;
             } else {
+                if (!is_red(temp)) {
+                    set_red(node, false);
+                }
                 fixup_required = false;
             }
         }
