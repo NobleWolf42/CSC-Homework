@@ -237,7 +237,7 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH09Test\ -\ HashMap\ Open\ Adressing/TestCases.h
             )]]
 
-    CXXTEST_ADD_TEST(11HWtest runner.cpp
+    #[[CXXTEST_ADD_TEST(11HWtest runner.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/AVL_Tree.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/AVLNode.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/Binary_Search_Tree.h
@@ -245,6 +245,16 @@ if(CXXTEST_FOUND)
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/BST_With_Rotate.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/BTNode.h
             ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11HW\ -\ AVL\ Tree/TestCases.h
+            )]]
+
+    CXXTEST_ADD_TEST(11Examtest runner.cpp
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/Red_Black_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/RBNode.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/Binary_Search_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/Binary_Tree.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/BST_With_Rotate.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/BTNode.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/CSC\ 211-B1/CH11Test\ -\ Red\ Black\ Tree/TestCases.h
             )
             
 

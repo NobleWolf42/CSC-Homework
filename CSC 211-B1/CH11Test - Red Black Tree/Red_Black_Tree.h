@@ -92,15 +92,15 @@ private:
                         //Need to change colours and rotate
                         set_red(local_root->left, false);
                         set_red(local_root, true);
-                        rotate_right(local_root);
+                        this->rotate_right(local_root);
                         return return_value;
                         //Else check right grandchild
                     } else if (is_red(local_root->left->right)) {
                         //This will require a double rotation
                         set_red(local_root->left->right, false);
                         set_red(local_root, true);
-                        rotate_left(local_root->left);
-                        rotate_right(local_root);
+                        this->rotate_left(local_root->left);
+                        this->rotate_right(local_root);
                         return return_value;
                     }
                 }
@@ -122,15 +122,15 @@ private:
                         //Need to change colours and rotate
                         set_red(local_root->right, false);
                         set_red(local_root, true);
-                        rotate_left(local_root);
+                        this->rotate_left(local_root);
                         return return_value;
                         //Else check left grandchild
                     } else if (is_red(local_root->right->left)) {
                         //This will require a double rotation
                         set_red(local_root->right->left, false);
                         set_red(local_root, true);
-                        rotate_right(local_root->right);
-                        rotate_left(local_root);
+                        this->rotate_right(local_root->right);
+                        this->rotate_left(local_root);
                         return return_value;
                     }
                 }
@@ -196,11 +196,30 @@ private:
         false if the item is not in the tree 
      */
     bool erase(BTNode<Item_Type> *&local_root, const Item_Type &item) {
-        
+        if (local_root == NULL) {
+            return false;
+        } else if (item < local_root->data) {
+            bool returnVal = erase(local_root->left, item);
+            if (fixup_required) {
+                fixup_left(local_root);
+                fixup_required = false;
+            }
+            return returnVal;
+        } else if (local_root->data < item) {
+            bool returnVal = erase(local_root->right, item);
+            if (fixup_required) {
+                fixup_left(local_root);
+                fixup_required = false;
+            }
+            return returnVal;
+        } else {
+            find_replacement(local_root);
+            return true;
+        }
     }
 
 
-    /** Function to find a replacement for a node that is being
+    /** Function to findnode a replacement for a node that is being
         deleted from a Red-Black tree.  If the node has a NULL
         child, then the replacement is the other child.  If neither
         are NULL, then the replacement is the largest value less
@@ -210,7 +229,36 @@ private:
         @param node The node to be deleted or replaced
      */
     void find_replacement(BTNode<Item_Type> *&node) {
-        
+        BTNode<Item_Type>* temp = node;
+        if (node->left == NULL) {
+            node = node->right;
+            
+            if (is_red(temp) == false && (node == NULL || is_red(node) == false)) {
+                fixup_required = true;
+            } else {
+                fixup_required = false;
+            }
+            
+            delete temp;
+        } else if (node->right == NULL) {
+            node = node->left;
+
+            if (is_red(temp) == false && (node == NULL || is_red(node) == false)) {
+                fixup_required = true;
+            } else {
+                fixup_required = false;
+            }
+
+            delete temp;
+        } else {
+            node->data = find_largest_child(node->left);
+
+            if (is_red(temp) == false && (node == NULL || is_red(node) == false)) {
+                fixup_required = true;
+            } else {
+                fixup_required = false;
+            }
+        }
     }
 
 
@@ -221,10 +269,80 @@ private:
         @return the value of the found node
      */
     Item_Type find_largest_child(BTNode<Item_Type> *&parent) {
-        
+        Item_Type returnVal = parent->data;
+        if (parent->right == NULL) {
+            returnVal = parent->data;
+
+            if (parent->left != nullptr && is_red(parent->left)) {
+                set_red(parent->left, false);
+                BTNode<Item_Type>* temp = parent;
+                parent = parent->left;
+                delete temp;
+            } else {
+                erase(parent, parent->data);
+            }
+
+        } else {
+            returnVal = find_largest_child(parent->right);
+            if (fixup_required) {
+                fixup_right(parent);
+            }
+        }
+        return returnVal;
     }
 
+    /** Method to restore black balance to a subtree whose right black
+        height is currently one less than the left black height.
+        @param local_root - The root of the tree needing fixing
+     */
+    void fixup_right(BTNode<Item_Type> *&local_root) {
+        if (is_red(local_root->left)) {
+            set_red(local_root, true);
+            set_red(local_root->left, false);
+            this->rotate_right(local_root);
+            fixup_right(local_root->right);
+        } else if (!is_red(local_root->left) && (!local_root->left || !is_red(local_root->left->left) && !is_red(local_root->left->right))) {
+            set_red(local_root, false);
+            set_red(local_root->left, true);
+        } else if (!is_red(local_root->left) && is_red(local_root->left->right)) {
+            set_red(local_root->left, true);
+            set_red(local_root->left->right, false);
+            this->rotate_left(local_root->left);
+            fixup_right(local_root);
+        } else if (!is_red(local_root->left) && is_red(local_root->left->left)) {
+            set_red(local_root, false);
+            set_red(local_root->left, is_red(local_root));
+            set_red(local_root->left->left, false);
+            this->rotate_right(local_root);
+            fixup_required = false;
+        }
+    }
 
+    /** Method to restore black balance to a subtree whose left black
+        height is currently one less than the right black height.
+        @param local_root - The root of the tree needing fixing
+     */
+    void fixup_left(BTNode<Item_Type> *&local_root) {
+        if (is_red(local_root->right)) {
+            set_red(local_root, true);
+            set_red(local_root->right, false);
+            this->rotate_left(local_root);
+        } else if (!is_red(local_root->right) && (!local_root->right || !is_red(local_root->right->left) && !is_red(local_root->right->right))) {
+            set_red(local_root, false);
+            set_red(local_root->right, true);
+        } else if (!is_red(local_root->right) && is_red(local_root->right->left)) { //Case 3
+            set_red(local_root->right, true);
+            set_red(local_root->right->left, false);
+            this->rotate_right(local_root->right);
+            fixup_left(local_root);
+        } else if (!is_red(local_root->right) && is_red(local_root->right->right)) { //Case 4
+            set_red(local_root, false);
+            set_red(local_root->right, is_red(local_root));
+            set_red(local_root->right->right, false);
+            this->rotate_left(local_root);
+            fixup_required = false;
+        }
+    }
 
     // Data Fields
     /** A boolean variable to indicate that the black height

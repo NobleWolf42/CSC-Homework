@@ -9,7 +9,7 @@ Copyright: 2024
 #include <cxxtest/TestSuite.h>
 
 //Include your classes header file(s) below and uncomment.
-#include "AVL_Tree.h"
+#include "Red_Black_Tree.h"
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -21,17 +21,17 @@ public:
     //the name of the function being tested.
 
     void testAVL() {
-        AVL_Tree<int> test1;
-        AVL_Tree<int> test2;
-        AVL_Tree<int> test3;
-        AVL_Tree<std::string> test4;
-        AVL_Tree<int> test5;
+        Red_Black_Tree<int> test1;
+        Red_Black_Tree<int> test2;
+        Red_Black_Tree<int> test3;
+        Red_Black_Tree<std::string> test4;
+        Red_Black_Tree<int> test5;
 
-        std::ifstream testFile1 ("BSTtest1.txt");
-        std::ifstream testFile2 ("BSTtest2.txt");
-        std::ifstream testFile3 ("BSTtest3.txt");
-        std::ifstream testFile4 ("BSTtest4.txt");
-        std::ifstream testFile5 ("BSTtest1.txt");
+        std::ifstream testFile1 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile2 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest2.txt");
+        std::ifstream testFile3 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest3.txt");
+        std::ifstream testFile4 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest4.txt");
+        std::ifstream testFile5 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
         TS_ASSERT(test1.is_leaf());
