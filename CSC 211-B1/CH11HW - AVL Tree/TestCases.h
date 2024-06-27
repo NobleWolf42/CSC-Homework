@@ -183,6 +183,14 @@ public:
             E.insert(i);
         }
 
+        for (int i = 90; i < 100; i++) {
+            E.insert(i);
+        }
+
+        for (int i = 90; i > 80; i--) {
+            E.insert(i);
+        }
+
         E.erase(0);
         E.erase(2);
         E.erase(1);
