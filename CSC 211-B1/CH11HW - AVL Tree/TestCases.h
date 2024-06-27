@@ -50,7 +50,7 @@ public:
 
         if (testFile1.is_open()) {
             int testInt1 = 0; 
-            std::cout << "File 1" << std::endl;
+            //std::cout << "File 1" << std::endl;
             while (testFile1) {
                 testFile1 >> testInt1;
                 test1.insert(testInt1);
@@ -60,7 +60,7 @@ public:
 
         if (testFile2.is_open()) {
             int testInt2 = 0;
-            std::cout << "File 2" << std::endl;
+            //std::cout << "File 2" << std::endl;
             while (testFile2) {
                 testFile2 >> testInt2;
                 test2.insert(testInt2);
@@ -70,7 +70,7 @@ public:
 
         if (testFile3.is_open()) {
             int testInt3 = 0;
-            std::cout << "File 3" << std::endl;
+            //std::cout << "File 3" << std::endl;
             while (testFile3) {
                 testFile3 >> testInt3;
                 test3.insert(testInt3);
@@ -80,7 +80,7 @@ public:
 
         if (testFile4.is_open()) {
             std::string testStr4 = "";
-            std::cout << "File 4" << std::endl;
+            //std::cout << "File 4" << std::endl;
             while (testFile4) {
                 testFile4 >> testStr4;
                 test4.insert(testStr4);
@@ -92,7 +92,7 @@ public:
 
         if (testFile6.is_open()) {
             int testInt6 = 0;
-            std::cout << "File 6" << std::endl;
+            //std::cout << "File 6" << std::endl;
             while (testFile6) {
                 testFile6 >> testInt6;
                 test6.insert(testInt6);
@@ -167,15 +167,28 @@ public:
         test7.insert(45);
         test7.insert(30);
         test7.insert(26);
-        /*test7.erase(40);
+        test7.erase(40);
         test7.erase(45);
-        test7.erase(60);*/
-        pre_order_traversal(test7, std::cout, 0);
+        test7.erase(60);
+        //pre_order_traversal(test7, std::cout, 0);
         TS_ASSERT(test7.verify_structure());
         test7.erase(61);
 
-        pre_order_traversal(test7, std::cout, 0);
+        //pre_order_traversal(test7, std::cout, 0);
         TS_ASSERT(test7.verify_structure());
+
+        AVL_Tree<int> E;
+
+        for (int i = 0; i < 11; i++) {
+            E.insert(i);
+        }
+
+        E.erase(0);
+        E.erase(2);
+        E.erase(1);
+
+        pre_order_traversal(E, std::cout, 0);
+        TS_ASSERT(E.verify_structure());
 
     }
 
