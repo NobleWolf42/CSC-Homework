@@ -92,15 +92,15 @@ private:
                         //Need to change colours and rotate
                         set_red(local_root->left, false);
                         set_red(local_root, true);
-                        rotate_right(local_root);
+                        this->rotate_right(local_root);
                         return return_value;
                         //Else check right grandchild
                     } else if (is_red(local_root->left->right)) {
                         //This will require a double rotation
                         set_red(local_root->left->right, false);
                         set_red(local_root, true);
-                        rotate_left(local_root->left);
-                        rotate_right(local_root);
+                        this->rotate_left(local_root->left);
+                        this->rotate_right(local_root);
                         return return_value;
                     }
                 }
@@ -122,15 +122,15 @@ private:
                         //Need to change colours and rotate
                         set_red(local_root->right, false);
                         set_red(local_root, true);
-                        rotate_left(local_root);
+                        this->rotate_left(local_root);
                         return return_value;
                         //Else check left grandchild
                     } else if (is_red(local_root->right->left)) {
                         //This will require a double rotation
                         set_red(local_root->right->left, false);
                         set_red(local_root, true);
-                        rotate_right(local_root->right);
-                        rotate_left(local_root);
+                        this->rotate_right(local_root->right);
+                        this->rotate_left(local_root);
                         return return_value;
                     }
                 }
