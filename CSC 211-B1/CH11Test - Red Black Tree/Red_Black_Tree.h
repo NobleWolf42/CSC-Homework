@@ -208,7 +208,7 @@ private:
         } else if (local_root->data < item) {
             bool returnVal = erase(local_root->right, item);
             if (fixup_required) {
-                fixup_left(local_root);
+                fixup_right(local_root);
                 fixup_required = false;
             }
             return returnVal;
@@ -372,7 +372,6 @@ private:
 }; // Red-Black tree
 
 // Implementation of member functions
-
 
 /** Verify the strucure of the Red-Black tree
     @throws BadStructure if the structure is invalid

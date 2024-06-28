@@ -3,6 +3,7 @@
 
 #include <stdexcept>
 #include "BST_With_Rotate.h"
+#include "Bad_Structure.h"
 #include "RBNode.h"
 
 /** Definition of the Red-Black Tree class 
@@ -35,6 +36,11 @@ public:
         Post: The item is no longer in the tree.
      */
     virtual bool erase(const Item_Type& item);
+
+    bool verify_structure() {
+		verify_structure(this->root, 0);
+		return true;
+	}
 
 private:
 
@@ -134,6 +140,15 @@ private:
         or one of its subfunctions. 
      */
     bool fixup_required;
+
+    /** Verify the strucure of the Red-Black tree
+		@throws BadStructure if the structure is invalid
+		@param local_root The local root
+		@param parent The parent of the local root
+		@return The black height of the tree
+	*/
+	int verify_structure(BTNode<Item_Type>* local_root,
+		       BTNode<Item_Type>* parent);
 
 }; // Red-Black tree
 
@@ -309,85 +324,49 @@ bool Red_Black_Tree<Item_Type>::erase(BTNode<Item_Type>*& local_root,
         }
     } else {
         find_replacement(local_root);
-        if (fixup_required) {
-            fixup_left(local_root);
-        }
         return true;
     }
 }
 
 template <typename Item_Type>
 void Red_Black_Tree<Item_Type>::find_replacement(BTNode<Item_Type>*& node) {
+    BTNode<Item_Type>* temp = node;
     if (node->left == NULL) {
-        if (is_red(node)) {
-            // can always remove a red node
-            BTNode<Item_Type>* deleted_node = node;
-            node = node->right;
-            delete deleted_node;
-            return;
-        } else if (node->right == NULL) {
-            // We are removing a black leaf
+        node = node->right;
+        
+        if (!is_red(temp) && (node == NULL || is_red(node) == false)) {
             fixup_required = true;
-            delete node;
-            node = NULL;
-            return;
         } else {
-            if (is_red(node->right)) {
-                // change the color of the right child to black
-                // and use it is the replacement
-                set_red(node->right, false);
-                BTNode<Item_Type>* deleted_node = node;
-                node = node->right;
-                delete deleted_node;
-                return;
-            } else {
-                // a black node cannot have only one black child
-                throw new std::runtime_error("Invalid Red-Black Tree Structure");
+            if (!is_red(temp)) {
+                set_red(node, false);
             }
+            fixup_required = false;
         }
+        
+        delete temp;
     } else if (node->right == NULL) {
-        if (is_red(node)) {
-            // can always remove a red node
-            BTNode<Item_Type>* deleted_node = node;
-            node = node->left;
-            delete deleted_node;
-            return;
-        } else if (is_red(node->left)) {
-            set_red(node->left, false);
-            BTNode<Item_Type>* deleted_node = node;
-            node = node->left;
-            delete deleted_node;
-            return;
+        node = node->left;
+
+        if (!is_red(temp) && (node == NULL || is_red(node) == false)) {
+            fixup_required = true;
         } else {
-            // a black node cannot have only one black child
-            throw std::runtime_error("Invalid Red-Black Tree structure");
+            if (!is_red(temp)) {
+                set_red(node, false);
+            }
+            fixup_required = false;
         }
+
+        delete temp;
     } else {
-        if (node->left->right == NULL) {
-            node->data = node->left->data;
-            if (is_red(node->left)) {
-                BTNode<Item_Type>* deleted_node = node->left;
-                node->left = node->left->left;
-                delete deleted_node;
-            } else if (node->left->left == NULL) {
-                fixup_required = true;
-                delete node->left;
-                node->left = NULL;
-            } else if (is_red(node->left->left)) {
-                set_red(node->left->left, false);
-                BTNode<Item_Type>* deleted_node = node->left;
-                node->left = node->left->left;
-                delete deleted_node;
-            } else {
-                throw std::runtime_error("Invalid Red-Black Tree structure");
-            }
-            return;
+        node->data = find_largest_child(node->left);
+
+        if (!is_red(temp) && (node == NULL || is_red(node) == false)) {
+            fixup_required = true;
         } else {
-            node->data = find_largest_child(node->left);
-            if (fixup_required) {
-                fixup_right(node->left);
+            if (!is_red(temp)) {
+                set_red(node, false);
             }
-            return;
+            fixup_required = false;
         }
     }
 }
@@ -420,126 +399,96 @@ Item_Type Red_Black_Tree<Item_Type>::find_largest_child(BTNode<Item_Type>* paren
 
 template <typename Item_Type>
 void Red_Black_Tree<Item_Type>::fixup_right(BTNode<Item_Type>*& local_root) {
-    // If local root is NULL, problem needs to be fixed at
-    // the next level -- just return
-    if (local_root == NULL) return;
-    if (is_red(local_root)) {
-        // If the local root is red, then make it black
+    if (is_red(local_root->left)) {
+        set_red(local_root, true);
+        set_red(local_root->left, false);
+        this->rotate_right(local_root);
+        fixup_right(local_root->right);
+    } else if (!is_red(local_root->left) && (!local_root->left || !is_red(local_root->left->left) && !is_red(local_root->left->right))) {
         set_red(local_root, false);
-        // If the local root has red left-right grand child
-        if (is_red(local_root->left->right)) {
-            // Rotate left child left
-            this->rotate_left(local_root->left);
-            // That grandchild is now the child
-            // Rotate the localRoot right
-            this->rotate_right(local_root);
-            // Fixup is complete
-            fixup_required = false;
-        } else if (is_red(local_root->left->left)) {
-            // There is a left left grandchild
-            // Set it black
-            set_red(local_root->left->left, false);
-            // Set child red
-            set_red(local_root->left, true);
-            // Rotate right
-            this->rotate_right(local_root);
-            // Fixup is complete
-            fixup_required = false;
-            return;
-        } else { // left child is a leaf or has two black children
-            // Set it red
-            set_red(local_root->left, true);
-            // Fixup is complete
-            fixup_required = false;
-            return;
-        }
-    } else { // localRoot is black
-        if (is_red(local_root->left)) {
-            // left child is red 
-            // set the local root red, and the 
-            // left child black
-            set_red(local_root, true);
-            set_red(local_root->left, false);
-            // Rotate the left child left
-            this->rotate_left(local_root->left);
-            // Rotate the local root right twice
-            this->rotate_right(local_root);
-            this->rotate_right(local_root);
-            // Fixup is now complete
-            fixup_required = false;
-            return;
-        } else {
-            // left child is black, set local root red
-            set_red(local_root, true);
-            // rotate_right
-            this->rotate_right(local_root);
-            // Fixup is not complete
-            return;
-        }
+        set_red(local_root->left, true);
+    } else if (!is_red(local_root->left) && is_red(local_root->left->right)) {
+        set_red(local_root->left, true);
+        set_red(local_root->left->right, false);
+        this->rotate_left(local_root->left);
+        fixup_right(local_root);
+    } else if (!is_red(local_root->left) && is_red(local_root->left->left)) {
+        set_red(local_root, false);
+        set_red(local_root->left, is_red(local_root));
+        set_red(local_root->left->left, false);
+        this->rotate_right(local_root);
+        fixup_required = false;
     }
 }
 
 template <typename Item_Type>
 void Red_Black_Tree<Item_Type>::fixup_left(BTNode<Item_Type>*& local_root) {
-    // If local root is NULL, problem needs to be fixed at
-    // the next level -- just return
-    if (local_root == NULL) return;
-    if (is_red(local_root)) {
-        // If the local root is red, then make it black
+    if (is_red(local_root->right)) {
+        set_red(local_root, true);
+        set_red(local_root->right, false);
+        this->rotate_left(local_root);
+    } else if (!is_red(local_root->right) && (!local_root->right || !is_red(local_root->right->left) && !is_red(local_root->right->right))) {
         set_red(local_root, false);
-        // If the local root has red right-left grand child
-        if (is_red(local_root->right->left)) {
-            // Rotate right child right
-            this->rotate_right(local_root->right);
-            // That grandchild is now the child
-            // Rotate the localRoot left
-            this->rotate_left(local_root);
-            // Fixup is complete
-            fixup_required = false;
-        } else if (is_red(local_root->right->right)) {
-            // There is a right right grandchild
-            // Set it black
-            set_red(local_root->right->right, false);
-            // Set child red
-            set_red(local_root->right, true);
-            // Rotate left
-            this->rotate_left(local_root);
-            // Fixup is complete
-            fixup_required = false;
-            return;
-        } else { // right child is a leaf or has two black children
-            // Set it red
-            set_red(local_root->right, true);
-            // Fixup is complete
-            fixup_required = false;
-            return;
-        }
-    } else { // localRoot is black
-        if (is_red(local_root->right)) {
-            // right child is red 
-            // set the local root red, and the 
-            // right child black
-            set_red(local_root, true);
-            set_red(local_root->right, false);
-            // Rotate the right child right
-            this->rotate_right(local_root->right);
-            // Rotate the local root left twice
-            this->rotate_left(local_root);
-            this->rotate_left(local_root);
-            // Fixup is now complete
-            fixup_required = false;
-            return;
-        } else {
-            // right child is black, set local root red
-            set_red(local_root, true);
-            // Rotate local root left
-            this->rotate_left(local_root);
-            // Fixup is not complete
-            return;
-        }
+        set_red(local_root->right, true);
+    } else if (!is_red(local_root->right) && is_red(local_root->right->left)) {
+        set_red(local_root->right, true);
+        set_red(local_root->right->left, false);
+        this->rotate_right(local_root->right);
+        fixup_left(local_root);
+    } else if (!is_red(local_root->right) && is_red(local_root->right->right)) {
+        set_red(local_root, false);
+        set_red(local_root->right, is_red(local_root));
+        set_red(local_root->right->right, false);
+        this->rotate_left(local_root);
+        fixup_required = false;
     }
 }
 /*</exercise>*/
+
+/** Verify the strucure of the Red-Black tree
+    @throws BadStructure if the structure is invalid
+    @param local_root The local root
+    @param parent The parent of the local root
+    @return The black height of the tree
+*/
+template<typename Item_Type>
+int Red_Black_Tree<Item_Type>::verify_structure(BTNode<Item_Type>* local_root,
+						BTNode<Item_Type>* parent)
+{
+  if (local_root == 0) return 0;
+  RBNode<Item_Type>* rb_node = dynamic_cast<RBNode<Item_Type>*>(local_root);
+  if (rb_node == 0) {
+    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				   "Node is not a RBNode");
+  }
+  if (rb_node->is_red) {
+    if (parent == 0) {
+      throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				     "Root is red");
+    }
+    RBNode<Item_Type>* rb_parent = 
+      dynamic_cast<RBNode<Item_Type>*>(parent);
+    if (rb_parent == 0) {
+      throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				     "Parent is not a RB Node");
+    }
+    if (rb_parent->is_red) {
+      throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				     "Red child of a red parent");
+    }
+  }
+  int lbh = verify_structure(rb_node->left, rb_node);
+  int rbh = verify_structure(rb_node->right, rb_node);
+  if (lbh != lbh) {
+    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				   "Unequal black heights");
+  }
+  if (rb_node->is_red) {
+    return lbh;
+  } else {
+    return lbh + 1;
+  }
+}
 
 
 #endif

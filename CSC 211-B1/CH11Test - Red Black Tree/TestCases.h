@@ -31,12 +31,12 @@ public:
         BTNode<int> testNode(55);
         Red_Black_Tree<int> test7;
 
-        std::ifstream testFile1 ("BSTtest1.txt");
-        std::ifstream testFile2 ("BSTtest2.txt");
-        std::ifstream testFile3 ("BSTtest3.txt");
-        std::ifstream testFile4 ("BSTtest4.txt");
-        std::ifstream testFile5 ("BSTtest1.txt");
-        std::ifstream testFile6 ("BSTtest1.txt");
+        std::ifstream testFile1 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile2 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest2.txt");
+        std::ifstream testFile3 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest3.txt");
+        std::ifstream testFile4 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest4.txt");
+        std::ifstream testFile5 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile6 ("D:/Hardlinks/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
         TS_ASSERT(!test1.erase(31));
@@ -259,6 +259,33 @@ public:
         //pre_order_traversal(D, std::cout, 0);
         //std::cout << "Test Output:" << std::endl << std::endl << D;
         TS_ASSERT(D.verify_structure());
+    }
+
+    void testRebalance() {
+        Red_Black_Tree<int> tree;
+
+        tree.insert(5);
+        tree.insert(3);
+        tree.insert(7);
+        tree.insert(2);
+        tree.insert(4);
+
+        //pre_order_traversal(tree, std::cout, 0);
+        //std::cout << "Test Output:" << std::endl << std::endl << tree;
+
+        tree.erase(7);
+
+        //pre_order_traversal(tree, std::cout, 0);
+        //std::cout << "Test Output:" << std::endl << std::endl << tree;
+
+        tree.verify_structure();
+        TS_ASSERT_EQUALS(tree.get_data(), 4);
+        TS_ASSERT_EQUALS(tree.get_right_subtree().get_data(), 5);
+
+        tree.erase(2);
+        tree.verify_structure();
+        TS_ASSERT_EQUALS(tree.get_data(), 4);
+        TS_ASSERT_EQUALS(tree.get_right_subtree().get_data(), 5);
     }
 
 };
