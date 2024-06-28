@@ -16,7 +16,7 @@ Copyright: 2024
  Note: Item_Type must define the less than operator as a 
  total order.
  */
-template<typename Item_Type>
+template <typename Item_Type>
 class Red_Black_Tree : public BST_With_Rotate<Item_Type> {
 public:
     // Constructor
@@ -31,7 +31,7 @@ public:
         in the tree, false otherwise.
         post: The item is in the tree.
      */
-    virtual bool insert(const Item_Type &item) {
+    virtual bool insert(const Item_Type& item) {
         if (this->root == NULL) {
             RBNode<Item_Type>* new_root = new RBNode<Item_Type>(item);
             new_root->is_red = false;
@@ -52,7 +52,7 @@ public:
         false otherwise.
         Post: The item is no longer in the tree.
      */
-    virtual bool erase(const Item_Type &item) {
+    virtual bool erase(const Item_Type& item) {
         bool return_value = erase(this->root, item);
         //Force the root to be black
         set_red(this->root, false);
@@ -75,7 +75,7 @@ private:
         tree, false otherwise
         post: The item is in the tree.
      */
-    bool insert(BTNode<Item_Type> *&local_root, const Item_Type &item) {
+    bool insert(BTNode<Item_Type>*& local_root, const Item_Type& item) {
         if (item < local_root->data) {
             if (local_root->left == NULL) {
                 local_root->left = new RBNode<Item_Type>(item);
@@ -146,16 +146,16 @@ private:
         @param RB_local_root The root of the sub-tree
         cast to a RBNode<Item_Type>*
      */
-    void move_black_down(BTNode<Item_Type> *local_root) {
-        RBNode<Item_Type>* RB_local_root = dynamic_cast<RBNode<Item_Type>*>(local_root);
-        RBNode<Item_Type>* RB_left_child = dynamic_cast<RBNode<Item_Type>*>(local_root->left);
-        RBNode<Item_Type>* RB_right_child = dynamic_cast<RBNode<Item_Type>*>(local_root->right);
+    void move_black_down(BTNode<Item_Type>* RB_local_root) {
+        RBNode<Item_Type>* Cast_RB_local_root = dynamic_cast<RBNode<Item_Type>*>(RB_local_root);
+        RBNode<Item_Type>* Cast_RB_left_child = dynamic_cast<RBNode<Item_Type>*>(RB_local_root->left);
+        RBNode<Item_Type>* Cast_RB_right_child = dynamic_cast<RBNode<Item_Type>*>(RB_local_root->right);
 
-        if (RB_local_root != NULL && RB_left_child != NULL && RB_right_child != NULL) {
-            if (RB_right_child->is_red == true && RB_left_child->is_red == true) {
-                RB_local_root->is_red = true;
-                RB_left_child->is_red = false;
-                RB_right_child->is_red = false;
+        if (Cast_RB_local_root != NULL && Cast_RB_left_child != NULL && Cast_RB_right_child != NULL) {
+            if (Cast_RB_right_child->is_red == true && Cast_RB_left_child->is_red == true) {
+                Cast_RB_local_root->is_red = true;
+                Cast_RB_left_child->is_red = false;
+                Cast_RB_right_child->is_red = false;
             }
         }
     }
@@ -164,7 +164,7 @@ private:
         @param node A pointer to a BTNode<Item_Type>
         @return true if node points to a RBNode<Item_Type> that is red
      */
-    static bool is_red(BTNode<Item_Type> *node) {
+    static bool is_red(BTNode<Item_Type>* node) {
         RBNode<Item_Type>* RB_node = dynamic_cast<RBNode<Item_Type>*>(node);
         if (RB_node != NULL) {
             return RB_node->is_red;
@@ -178,7 +178,7 @@ private:
         @param red A bool value that is true if the
                node is to be set red, false if to be set black
      */
-    static void set_red(BTNode<Item_Type> *node, bool red) {
+    static void set_red(BTNode<Item_Type>* node, bool red) {
         RBNode<Item_Type>* RB_node = dynamic_cast<RBNode<Item_Type>*>(node);
         if (RB_node != NULL) {
             RB_node->is_red = red;
@@ -195,7 +195,7 @@ private:
         @return true if the item is removed
         false if the item is not in the tree 
      */
-    bool erase(BTNode<Item_Type> *&local_root, const Item_Type &item) {
+    bool erase(BTNode<Item_Type>*& local_root, const Item_Type& item) {
         if (local_root == NULL) {
             return false;
         } else if (item < local_root->data) {
@@ -219,7 +219,7 @@ private:
     }
 
 
-    /** Function to findnode a replacement for a node that is being
+    /** Function to find a replacement for a node that is being
         deleted from a Red-Black tree.  If the node has a NULL
         child, then the replacement is the other child.  If neither
         are NULL, then the replacement is the largest value less
@@ -228,7 +228,7 @@ private:
         @post a node replaced by its replacement 
         @param node The node to be deleted or replaced
      */
-    void find_replacement(BTNode<Item_Type> *&node) {
+    void find_replacement(BTNode<Item_Type>*& node) {
         BTNode<Item_Type>* temp = node;
         if (node->left == NULL) {
             node = node->right;
@@ -304,7 +304,7 @@ private:
         height is currently one less than the left black height.
         @param local_root - The root of the tree needing fixing
      */
-    void fixup_right(BTNode<Item_Type> *&local_root) {
+    void fixup_right(BTNode<Item_Type>*& local_root) {
         if (is_red(local_root->left)) {
             set_red(local_root, true);
             set_red(local_root->left, false);
@@ -331,7 +331,7 @@ private:
         height is currently one less than the right black height.
         @param local_root - The root of the tree needing fixing
      */
-    void fixup_left(BTNode<Item_Type> *&local_root) {
+    void fixup_left(BTNode<Item_Type>*& local_root) {
         if (is_red(local_root->right)) {
             set_red(local_root, true);
             set_red(local_root->right, false);
@@ -356,17 +356,18 @@ private:
     // Data Fields
     /** A boolean variable to indicate that the black height
         was reduced by a call to the recursive erase function
-        or one of its subfunctions.
+        or one of its subfunctions. 
      */
     bool fixup_required;
 
     /** Verify the strucure of the Red-Black tree
-        @throws BadStructure if the structure is invalid
-        @param local_root The local root
-        @param parent The parent of the local root
-        @return The black height of the tree
-    */
-    int verify_structure(BTNode<Item_Type> *local_root, BTNode<Item_Type> *parent);
+		@throws BadStructure if the structure is invalid
+		@param local_root The local root
+		@param parent The parent of the local root
+		@return The black height of the tree
+	*/
+	int verify_structure(BTNode<Item_Type>* local_root,
+		       BTNode<Item_Type>* parent);
 
 }; // Red-Black tree
 
@@ -380,43 +381,42 @@ private:
     @return The black height of the tree
 */
 template<typename Item_Type>
-int Red_Black_Tree<Item_Type>::verify_structure(BTNode<Item_Type> *local_root,
-                                                BTNode<Item_Type> *parent) {
-    if (local_root == 0)
-        return 0;
-
-    RBNode<Item_Type> *rb_node = dynamic_cast<RBNode<Item_Type> *>(local_root);
-    if (rb_node == 0) {
-        throw Bad_Structure<Item_Type>(local_root, parent, this->root,
-                                       "Node is not a RBNode");
+int Red_Black_Tree<Item_Type>::verify_structure(BTNode<Item_Type>* local_root,
+						BTNode<Item_Type>* parent)
+{
+  if (local_root == 0) return 0;
+  RBNode<Item_Type>* rb_node = dynamic_cast<RBNode<Item_Type>*>(local_root);
+  if (rb_node == 0) {
+    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				   "Node is not a RBNode");
+  }
+  if (rb_node->is_red) {
+    if (parent == 0) {
+      throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				     "Root is red");
     }
-    if (rb_node->is_red) {
-        if (parent == 0) {
-            throw Bad_Structure<Item_Type>(local_root, parent, this->root,
-                                           "Root is red");
-        }
-        RBNode<Item_Type> *rb_parent =
-                dynamic_cast<RBNode<Item_Type> *>(parent);
-        if (rb_parent == 0) {
-            throw Bad_Structure<Item_Type>(local_root, parent, this->root,
-                                           "Parent is not a RB Node");
-        }
-        if (rb_parent->is_red) {
-            throw Bad_Structure<Item_Type>(local_root, parent, this->root,
-                                           "Red child of a red parent");
-        }
+    RBNode<Item_Type>* rb_parent = 
+      dynamic_cast<RBNode<Item_Type>*>(parent);
+    if (rb_parent == 0) {
+      throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				     "Parent is not a RB Node");
     }
-    int lbh = verify_structure(rb_node->left, rb_node);
-    int rbh = verify_structure(rb_node->right, rb_node);
-    if (lbh != lbh) {
-        throw Bad_Structure<Item_Type>(local_root, parent, this->root,
-                                       "Unequal black heights");
+    if (rb_parent->is_red) {
+      throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				     "Red child of a red parent");
     }
-    if (rb_node->is_red) {
-        return lbh;
-    } else {
-        return lbh + 1;
-    }
+  }
+  int lbh = verify_structure(rb_node->left, rb_node);
+  int rbh = verify_structure(rb_node->right, rb_node);
+  if (lbh != lbh) {
+    throw Bad_Structure<Item_Type>(local_root, parent, this->root,
+				   "Unequal black heights");
+  }
+  if (rb_node->is_red) {
+    return lbh;
+  } else {
+    return lbh + 1;
+  }
 }
 
 #endif

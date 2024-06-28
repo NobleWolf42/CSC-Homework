@@ -31,12 +31,12 @@ public:
         BTNode<int> testNode(55);
         Red_Black_Tree<int> test7;
 
-        std::ifstream testFile1 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
-        std::ifstream testFile2 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest2.txt");
-        std::ifstream testFile3 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest3.txt");
-        std::ifstream testFile4 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest4.txt");
-        std::ifstream testFile5 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
-        std::ifstream testFile6 ("C:/Users/NobleWolf42/Documents/School/CSC-Homework/CSC 211-B1/CH11Test - Red Black Tree/BSTtest1.txt");
+        std::ifstream testFile1 ("BSTtest1.txt");
+        std::ifstream testFile2 ("BSTtest2.txt");
+        std::ifstream testFile3 ("BSTtest3.txt");
+        std::ifstream testFile4 ("BSTtest4.txt");
+        std::ifstream testFile5 ("BSTtest1.txt");
+        std::ifstream testFile6 ("BSTtest1.txt");
 
         TS_ASSERT(test1.is_null());
         TS_ASSERT(!test1.erase(31));

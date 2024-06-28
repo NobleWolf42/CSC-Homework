@@ -1,8 +1,3 @@
-/*
-Author: Ben Carpenter
-Copyright: 2024
-*/
-
 #ifndef BINARY_SEARCH_TREE_H
 #define BINARY_SEARCH_TREE_H
 
@@ -55,7 +50,8 @@ template<typename Item_Type>
       @return true if the item was not already in the
               tree, false otherwise
   */  
-  virtual bool insert(BTNode<Item_Type>*& local_root, const Item_Type& item);
+  virtual bool insert(BTNode<Item_Type>*& local_root, 
+		      const Item_Type& item);
 
   /** Remove an item from the tree. 
       post: The item is no longer in the tree.
@@ -64,7 +60,8 @@ template<typename Item_Type>
       @return true if the item was in the tree,
               false otherwise
   */  
-  virtual bool erase(BTNode<Item_Type>*& local_root, const Item_Type& item);
+  virtual bool erase(BTNode<Item_Type>*& local_root, 
+		     const Item_Type& item);
 
   /** Determine whether an item is in the tree.
       @param local_root A reference to the current root
@@ -83,7 +80,8 @@ template<typename Item_Type>
       @param old_root Reference to the pointer to old parent
       @param local_root Reference to the pointer to local root
   */
-  virtual void replace_parent(BTNode<Item_Type>*& old_root, BTNode<Item_Type>*& local_root);
+  virtual void replace_parent(BTNode<Item_Type>*& old_root, 
+                              BTNode<Item_Type>*& local_root);
 
 }; // End binary search tree
 
@@ -103,11 +101,11 @@ const Item_Type& item) {
       new BTNode<Item_Type>(item);
     return true;
   } else {
-    if (item < local_root->data) {
+    if (item < local_root->data)
       return insert(local_root->left, item);
-    } else if (local_root->data < item) {
+    else if (local_root->data < item)
       return insert(local_root->right, item);
-    } else {
+    else {
       return false;
     }
   }
@@ -126,11 +124,11 @@ template<typename Item_Type>
   if (local_root == NULL) {
     return false;
   } else {
-    if (item < local_root->data) {
+    if (item < local_root->data)
       return erase(local_root->left, item);
-    } else if (local_root->data < item) {
+    else if (local_root->data < item)
       return erase(local_root->right, item);
-    } else { // Found item
+    else { // Found item
       BTNode<Item_Type>* old_root = local_root;
       if (local_root->left == NULL) {
         local_root = local_root->right;

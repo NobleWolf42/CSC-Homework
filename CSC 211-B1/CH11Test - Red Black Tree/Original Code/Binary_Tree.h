@@ -1,8 +1,3 @@
-/*
-Author: Ben Carpenter
-Copyright: 2024
-*/
-
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 
@@ -58,6 +53,7 @@ Binary_Tree(const Item_Type& the_data,
 
   /** Return a string representation of this tree. */
   virtual std::string to_string() const;
+  
 
   /** Read a Binary_Tree */
   static Binary_Tree<Item_Type> read_binary_tree(std::istream& in);
@@ -134,18 +130,17 @@ template<typename Item_Type>
   bool Binary_Tree<Item_Type>::is_leaf() const {
   if (root != NULL) {
    return root->left == NULL && root->right == NULL;
-  } else {
+  } else
     return true;
-  }
 }
 
 /** Return a string representation of this tree */
 template<typename Item_Type>
 std::string Binary_Tree<Item_Type>::to_string() const {
   std::ostringstream os;
-  if (is_null()) {
+  if (is_null())
     os << "NULL\n";
-  } else {
+  else {
     os << *root << '\n';
     os << get_left_subtree().to_string();
     os << get_right_subtree().to_string();
@@ -158,7 +153,7 @@ template<typename Item_Type>
     read_binary_tree(std::istream& in) {
   std::string next_line;
   getline(in, next_line);
-  if (next_line == "" || next_line == "NULL") {
+  if (next_line == "NULL") {
     return Binary_Tree<Item_Type>();
   } else {
     Item_Type the_data;

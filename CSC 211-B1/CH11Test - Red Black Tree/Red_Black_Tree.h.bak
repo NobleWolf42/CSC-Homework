@@ -1,0 +1,545 @@
+#ifndef RED_BLACK_TREE_H
+#define RED_BLACK_TREE_H
+
+#include <stdexcept>
+#include "BST_With_Rotate.h"
+#include "RBNode.h"
+
+/** Definition of the Red-Black Tree class 
+ @param Item_Type the type of item to be stored in the tree
+ Note: Item_Type must define the less than operator as a 
+ total order.
+ */
+template <typename Item_Type>
+class Red_Black_Tree : public BST_With_Rotate<Item_Type> {
+public:
+    // Constructor
+
+    /** Construct an empty Red_Black_Tree */
+    Red_Black_Tree() : BST_With_Rotate<Item_Type>() {
+    }
+
+    // Public Member Functions
+    /** Insert an item into the tree 
+        @param item The item to be inserted
+        @return true if the item was not already
+        in the tree, false otherwise.
+        post: The item is in the tree.
+     */
+    virtual bool insert(const Item_Type& item);
+
+    /** Remove an item from the tree 
+        @param item The item to be removed
+        @return true if the item was in the tree,
+        false otherwise.
+        Post: The item is no longer in the tree.
+     */
+    virtual bool erase(const Item_Type& item);
+
+private:
+
+    // Private member functions
+
+    /** Insert an item into a the tree 
+        @param local_root A reference to the current root
+        @param item The item to be inserted
+        @return true if the item was not already in the
+        tree, false otherwise
+        post: The item is in the tree.
+     */
+    bool insert(BTNode<Item_Type>*& local_root,
+            const Item_Type& item);
+
+    /** Function to make the two children of the a sub-tree
+        black and the localRoot black.
+        @param RB_local_root The root of the sub-tree
+        cast to a RBNode<Item_Type>*
+     */
+    void move_black_down(BTNode<Item_Type>* RB_local_root);
+
+    /** Determine whether a node is red.
+        @param node A pointer to a BTNode<Item_Type>
+        @return true if node points to a RBNode<Item_Type> that is red
+     */
+    static bool is_red(BTNode<Item_Type>* node) {
+        RBNode<Item_Type>* RB_node =
+                dynamic_cast<RBNode<Item_Type>*> (node);
+        if (RB_node != NULL) {
+            return RB_node->is_red;
+        } else {
+            return false;
+        }
+    }
+
+    /** Set the color of a node.
+        @param node A pointer to a BTNode<Item_Type>
+        @param red A bool value that is true if the
+               node is to be set red, false if to be set black
+     */
+    static void set_red(BTNode<Item_Type>* node, bool red) {
+        RBNode<Item_Type>* RB_node =
+                dynamic_cast<RBNode<Item_Type>*> (node);
+        if (RB_node != NULL) {
+            RB_node->is_red = red;
+        }
+    }
+
+    /** Recursive erase from method.  
+        Removes the given item from the Red-Black tree.  
+        Note that the item must implement the less-than operator.
+        Pre: The values of local_root is not NULL
+        @post The object is removed from the tree
+        @param local_root - Root of the subtree
+        @param item - The item to be removed
+        @return true if the item is removed
+        false if the item is not in the tree 
+     */
+    bool erase(BTNode<Item_Type>*& local_root, const Item_Type& item);
+
+    /** Function to find a replacement for a node that is being
+        deleted from a Red-Black tree.  If the node has a NULL
+        child, then the replacement is the other child.  If neither
+        are NULL, then the replacement is the largest value less
+        than the item being removed.
+        @pre  node is not NULL
+        @post a node replaced by its replacement 
+        @param node The node to be deleted or replaced
+     */
+    void find_replacement(BTNode<Item_Type>*& node);
+
+    /** Find the node such that parent->right->right == NULL
+        @post The found node is removed from the tree and replaced
+        by its left child (if any)
+        @param parent - The possible parent
+        @return the value of the found node
+     */
+    Item_Type find_largest_child(BTNode<Item_Type>* parent);
+
+    /** Method to restore black balance to a subtree whose right black
+        height is currently one less than the left black height.
+        @param local_root - The root of the tree needing fixing
+     */
+    void fixup_right(BTNode<Item_Type>*& local_root);
+
+    /** Method to restore black balance to a subtree whose left black
+        height is currently one less than the right black height.
+        @param local_root - The root of the tree needing fixing
+     */
+    void fixup_left(BTNode<Item_Type>*& local_root);
+
+
+    // Data Fields
+    /** A boolean variable to indicate that the black height
+        was reduced by a call to the recursive erase function
+        or one of its subfunctions. 
+     */
+    bool fixup_required;
+
+}; // Red-Black tree
+
+// Implementation of member functions
+
+template<typename Item_Type>
+bool Red_Black_Tree<Item_Type>::insert(const Item_Type& item) {
+    if (this->root == NULL) {
+        RBNode<Item_Type>* new_root = new RBNode<Item_Type>(item);
+        new_root->is_red = false;
+        this->root = new_root;
+        return true;
+    } else {
+        // Call the recursive insert function.
+        bool return_value = insert(this->root, item);
+        // Force the root to be black
+        set_red(this->root, false);
+        return return_value;
+    }
+}
+
+template<typename Item_Type>
+bool
+Red_Black_Tree<Item_Type>::insert(BTNode<Item_Type>*& local_root,
+        const Item_Type& item) {
+    if (item < local_root->data) {
+        if (local_root->left == NULL) {
+            local_root->left = new RBNode<Item_Type>(item);
+            return true;
+        } else {
+            // Check for two red children, swap colors if found
+            move_black_down(local_root);
+            // Recusively insert into the left subtree
+            bool return_value = insert(local_root->left, item);
+            // See if the left-child is red
+            if (is_red(local_root->left)) {
+                // Need to check grandchildren
+                // Now check left grand child
+                if (is_red(local_root->left->left)) {
+                    // Child and left-left grandchild are both red
+                    // Need to change colors and rotate
+                    set_red(local_root->left, false);
+                    set_red(local_root, true);
+                    this->rotate_right(local_root);
+                    return return_value;
+                }                    // Else check right grandchild
+                else if (is_red(local_root->left->right)) {
+                    // This will require a double rotation.
+                    set_red(local_root->left->right, false);
+                    set_red(local_root, true);
+                    this->rotate_left(local_root->left);
+                    this->rotate_right(local_root);
+                    return return_value;
+                }
+                // else do nothing, the grandchildren are black
+            } // else do nothing, the left child is black
+            return return_value;
+        }
+    }
+    else if (local_root->data < item) {
+        /*<exercise chapter="11" section="3" type="programming" number="1">*/
+        if (local_root->right == NULL) {
+            local_root->right = new RBNode<Item_Type>(item);
+            return true;
+        } else {
+            // Check for two red children, swap colors if found
+            move_black_down(local_root);
+            // Recusively insert into the right sub-tree
+            bool return_value = insert(local_root->right, item);
+            // See if the right-child is red
+            if (is_red(local_root->right)) {
+                // Need to check grandchildren
+                // Now check right grand child
+                if (is_red(local_root->right->right)) {
+                    // Need to change colors and rotate
+                    set_red(local_root->right, false);
+                    set_red(local_root, true);
+                    this->rotate_left(local_root);
+                    return return_value;
+                    // Else check left grand child
+                } else if (is_red(local_root->right->left)) {
+                    // This will require a double rotation.
+                    set_red(local_root->right->left, false);
+                    set_red(local_root, true);
+                    this->rotate_right(local_root->right);
+                    this->rotate_left(local_root);
+                    return return_value;
+                } // else do nothing, the grandchildren are black
+            } // else do nothing, the right child is black
+            return return_value;
+        }
+        /*</exercise>*/
+    }
+    else {
+        return false;
+    }
+}
+
+template<typename Item_Type>
+void Red_Black_Tree<Item_Type>::move_black_down(BTNode<Item_Type>* local_root) {
+    // see if both children are red
+    if (is_red(local_root->left) && is_red(local_root->right)) {
+        //make them black and local root red
+        set_red(local_root->left, false);
+        set_red(local_root->right, false);
+        set_red(local_root, true);
+    }
+}
+
+/*<exercise chapter="11" type="programming-project" number="6">*/
+template<typename Item_Type>
+bool Red_Black_Tree<Item_Type>::erase(const Item_Type& item) {
+    fixup_required = false;
+    if (this->root == NULL) {
+        return false;
+    } else {
+        if (item < this->root->data) {
+            if (this->root->left == NULL) {
+                return false;
+            } else {
+                bool return_value = erase(this->root->left, item);
+                if (fixup_required) {
+                    fixup_left(this->root);
+                }
+                //	// Root is always balck
+                //	set_red(root, false);
+                return return_value;
+            }
+        } else if (this->root->data < item) {
+            if (this->root->right == NULL) {
+                return false;
+            } else {
+                bool return_value = erase(this->root->right, item);
+                if (fixup_required) {
+                    fixup_right(this->root);
+                }
+                //	// Root is always black
+                //	set_red(root, false);
+                return return_value;
+            }
+        } else {
+            find_replacement(this->root);
+            if (fixup_required) {
+                fixup_left(this->root);
+            }
+            return true;
+        }
+    }
+}
+
+template<typename Item_Type>
+bool Red_Black_Tree<Item_Type>::erase(BTNode<Item_Type>*& local_root,
+        const Item_Type& item) {
+    if (item < local_root->data) {
+        if (local_root->left == NULL) {
+            return false;
+        } else {
+            bool return_value = erase(local_root->left, item);
+            if (fixup_required) {
+                fixup_left(local_root);
+            }
+            return return_value;
+        }
+    } else if (local_root->data < item) {
+        if (local_root->right == NULL) {
+            return false;
+        } else {
+            bool return_value = erase(local_root->right, item);
+            if (fixup_required) {
+                fixup_right(local_root);
+            }
+            return return_value;
+        }
+    } else {
+        find_replacement(local_root);
+        if (fixup_required) {
+            fixup_left(local_root);
+        }
+        return true;
+    }
+}
+
+template <typename Item_Type>
+void Red_Black_Tree<Item_Type>::find_replacement(BTNode<Item_Type>*& node) {
+    if (node->left == NULL) {
+        if (is_red(node)) {
+            // can always remove a red node
+            BTNode<Item_Type>* deleted_node = node;
+            node = node->right;
+            delete deleted_node;
+            return;
+        } else if (node->right == NULL) {
+            // We are removing a black leaf
+            fixup_required = true;
+            delete node;
+            node = NULL;
+            return;
+        } else {
+            if (is_red(node->right)) {
+                // change the color of the right child to black
+                // and use it is the replacement
+                set_red(node->right, false);
+                BTNode<Item_Type>* deleted_node = node;
+                node = node->right;
+                delete deleted_node;
+                return;
+            } else {
+                // a black node cannot have only one black child
+                throw new std::runtime_error("Invalid Red-Black Tree Structure");
+            }
+        }
+    } else if (node->right == NULL) {
+        if (is_red(node)) {
+            // can always remove a red node
+            BTNode<Item_Type>* deleted_node = node;
+            node = node->left;
+            delete deleted_node;
+            return;
+        } else if (is_red(node->left)) {
+            set_red(node->left, false);
+            BTNode<Item_Type>* deleted_node = node;
+            node = node->left;
+            delete deleted_node;
+            return;
+        } else {
+            // a black node cannot have only one black child
+            throw std::runtime_error("Invalid Red-Black Tree structure");
+        }
+    } else {
+        if (node->left->right == NULL) {
+            node->data = node->left->data;
+            if (is_red(node->left)) {
+                BTNode<Item_Type>* deleted_node = node->left;
+                node->left = node->left->left;
+                delete deleted_node;
+            } else if (node->left->left == NULL) {
+                fixup_required = true;
+                delete node->left;
+                node->left = NULL;
+            } else if (is_red(node->left->left)) {
+                set_red(node->left->left, false);
+                BTNode<Item_Type>* deleted_node = node->left;
+                node->left = node->left->left;
+                delete deleted_node;
+            } else {
+                throw std::runtime_error("Invalid Red-Black Tree structure");
+            }
+            return;
+        } else {
+            node->data = find_largest_child(node->left);
+            if (fixup_required) {
+                fixup_right(node->left);
+            }
+            return;
+        }
+    }
+}
+
+template<typename Item_Type>
+Item_Type Red_Black_Tree<Item_Type>::find_largest_child(BTNode<Item_Type>* parent) {
+    if (parent->right->right == NULL) {
+        if (!is_red(parent->right)) {
+            if (parent->right->left == NULL) {
+                fixup_required = true;
+            } else if (is_red(parent->right->left)) {
+                set_red(parent->right->left, false);
+            } else {
+                throw std::runtime_error("Invalid Red-Black Tree structure");
+            }
+        }
+        Item_Type return_value = parent->right->data;
+        BTNode<Item_Type>* deleted_node = parent->right;
+        parent->right = parent->right->left;
+        delete deleted_node;
+        return return_value;
+    } else {
+        Item_Type return_value = find_largest_child(parent->right);
+        if (fixup_required) {
+            fixup_right(parent->right);
+        }
+        return return_value;
+    }
+}
+
+template <typename Item_Type>
+void Red_Black_Tree<Item_Type>::fixup_right(BTNode<Item_Type>*& local_root) {
+    // If local root is NULL, problem needs to be fixed at
+    // the next level -- just return
+    if (local_root == NULL) return;
+    if (is_red(local_root)) {
+        // If the local root is red, then make it black
+        set_red(local_root, false);
+        // If the local root has red left-right grand child
+        if (is_red(local_root->left->right)) {
+            // Rotate left child left
+            this->rotate_left(local_root->left);
+            // That grandchild is now the child
+            // Rotate the localRoot right
+            this->rotate_right(local_root);
+            // Fixup is complete
+            fixup_required = false;
+        } else if (is_red(local_root->left->left)) {
+            // There is a left left grandchild
+            // Set it black
+            set_red(local_root->left->left, false);
+            // Set child red
+            set_red(local_root->left, true);
+            // Rotate right
+            this->rotate_right(local_root);
+            // Fixup is complete
+            fixup_required = false;
+            return;
+        } else { // left child is a leaf or has two black children
+            // Set it red
+            set_red(local_root->left, true);
+            // Fixup is complete
+            fixup_required = false;
+            return;
+        }
+    } else { // localRoot is black
+        if (is_red(local_root->left)) {
+            // left child is red 
+            // set the local root red, and the 
+            // left child black
+            set_red(local_root, true);
+            set_red(local_root->left, false);
+            // Rotate the left child left
+            this->rotate_left(local_root->left);
+            // Rotate the local root right twice
+            this->rotate_right(local_root);
+            this->rotate_right(local_root);
+            // Fixup is now complete
+            fixup_required = false;
+            return;
+        } else {
+            // left child is black, set local root red
+            set_red(local_root, true);
+            // rotate_right
+            this->rotate_right(local_root);
+            // Fixup is not complete
+            return;
+        }
+    }
+}
+
+template <typename Item_Type>
+void Red_Black_Tree<Item_Type>::fixup_left(BTNode<Item_Type>*& local_root) {
+    // If local root is NULL, problem needs to be fixed at
+    // the next level -- just return
+    if (local_root == NULL) return;
+    if (is_red(local_root)) {
+        // If the local root is red, then make it black
+        set_red(local_root, false);
+        // If the local root has red right-left grand child
+        if (is_red(local_root->right->left)) {
+            // Rotate right child right
+            this->rotate_right(local_root->right);
+            // That grandchild is now the child
+            // Rotate the localRoot left
+            this->rotate_left(local_root);
+            // Fixup is complete
+            fixup_required = false;
+        } else if (is_red(local_root->right->right)) {
+            // There is a right right grandchild
+            // Set it black
+            set_red(local_root->right->right, false);
+            // Set child red
+            set_red(local_root->right, true);
+            // Rotate left
+            this->rotate_left(local_root);
+            // Fixup is complete
+            fixup_required = false;
+            return;
+        } else { // right child is a leaf or has two black children
+            // Set it red
+            set_red(local_root->right, true);
+            // Fixup is complete
+            fixup_required = false;
+            return;
+        }
+    } else { // localRoot is black
+        if (is_red(local_root->right)) {
+            // right child is red 
+            // set the local root red, and the 
+            // right child black
+            set_red(local_root, true);
+            set_red(local_root->right, false);
+            // Rotate the right child right
+            this->rotate_right(local_root->right);
+            // Rotate the local root left twice
+            this->rotate_left(local_root);
+            this->rotate_left(local_root);
+            // Fixup is now complete
+            fixup_required = false;
+            return;
+        } else {
+            // right child is black, set local root red
+            set_red(local_root, true);
+            // Rotate local root left
+            this->rotate_left(local_root);
+            // Fixup is not complete
+            return;
+        }
+    }
+}
+/*</exercise>*/
+
+
+#endif
