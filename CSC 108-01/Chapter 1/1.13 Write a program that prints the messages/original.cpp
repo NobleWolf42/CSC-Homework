@@ -25,15 +25,18 @@ When running the program, remember to hit the Enter key after typing the last wo
 
 using namespace std;
 
-int main() {
-    
-    //Prints "Hello, My name is Hal!";
+int main()
+{
 
-    //Prints "What would you like me to do?";
+    // Prints "Hello, My name is Hal!";
 
-    //Gets a string input from the user
-    
-    //Prints "I am sorry, I cannot do that"
+    // Prints "What would you like me to do?";
+
+    // Gets a string input from the user
+    string user_input;
+    getline(cin, user_input);
+
+    // Prints "I am sorry, I cannot do that"
 
     return 0;
 }
