@@ -8,9 +8,10 @@ Write a program that outputs "Hello World!" as shown below. For ALL labs, end wi
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
 
-   /* Type your code here. */
+    /* Type your code here. */
 
-   return 0;
+    return 0;
 }

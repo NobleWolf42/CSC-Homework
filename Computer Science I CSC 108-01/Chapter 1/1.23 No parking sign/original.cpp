@@ -9,9 +9,10 @@ Write a program that prints a formatted "No parking" sign as shown below. Note t
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
 
-   /* Type your code here. */
+    /* Type your code here. */
 
-   return 0;
+    return 0;
 }

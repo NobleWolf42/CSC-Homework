@@ -12,9 +12,12 @@ Then write the numbers as reciprocals of the input numbers, 1/x1, 1/x2, . . ., 1
 
 using namespace std;
 
-int main() {
-
-   /* Type your code here. */
-
-   return 0;
+int main()
+{
+    // ask the user to enter 10 numbers and output
+    cout << // Multiply your numbers here
+        cout << "\n";
+    cout << // Sum up the reciprocals of each number
+        cout << "\n";
+    return 0;
 }

@@ -18,11 +18,12 @@ the output is:
 #include <iostream>
 using namespace std;
 
-int main() {
-   int baseDigit;
-   int headDigit;
+int main()
+{
+    int baseDigit;
+    int headDigit;
 
-   /* Type your code here. */
+    /* Type your code here. */
 
-   return 0;
+    return 0;
 }

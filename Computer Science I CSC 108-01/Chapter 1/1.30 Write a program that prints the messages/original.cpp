@@ -5,7 +5,7 @@ Write a program that prints the message, “Hello, my name is Hal!” Then, on a
     *getline(cin, user_input);
 
 Finally, the program should ignore the user input and print the message “I am sorry, I cannot do that.” This program uses the string data type. To access this feature, you must place the line
-    
+
     *#include
 
 before the main function. Here is a typical program run. The user input is printed in boldface.
@@ -19,11 +19,16 @@ When running the program, remember to hit the Enter key after typing the last wo
 */
 
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-int main() {
-
-   /* Type your code here. */
-
-   return 0;
+int main()
+{
+    // print "Hello, My name is Hal!\n";
+    // print "What would you like me to do?\n";
+    string user_input;
+    getline(cin, user_input);
+    // print "I am sorry, I cannot do that\n"
+    return 0;
 }

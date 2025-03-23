@@ -27,16 +27,10 @@ using namespace std;
 
 int main()
 {
-
-    // Prints "Hello, My name is Hal!";
-
-    // Prints "What would you like me to do?";
-
-    // Gets a string input from the user
+    // print "Hello, My name is Hal!\n";
+    // print "What would you like me to do?\n";
     string user_input;
     getline(cin, user_input);
-
-    // Prints "I am sorry, I cannot do that"
-
+    // print "I am sorry, I cannot do that\n"
     return 0;
 }

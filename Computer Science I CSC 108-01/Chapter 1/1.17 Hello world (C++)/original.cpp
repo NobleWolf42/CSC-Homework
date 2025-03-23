@@ -13,7 +13,7 @@ For each of the following steps, end the program's output with a newline.
 (2) Update to output the following. (1 pt)
 
     *Hello world!
-    *How are you? 
+    *How are you?
 
 (3) Finally, update to output the following. (1 pt)
 
@@ -26,9 +26,10 @@ For each of the following steps, end the program's output with a newline.
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
 
-   /* Type your code here. */
+    /* Type your code here. */
 
-   return 0;
+    return 0;
 }

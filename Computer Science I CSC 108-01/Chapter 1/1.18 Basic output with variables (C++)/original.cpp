@@ -17,7 +17,7 @@ Note: This zyLab outputs a newline after each user-input prompt. For convenience
     *Enter integer:
     *<b>4</b>
     *You entered: 4
-    *4 squared is 16 
+    *4 squared is 16
     *And 4 cubed is 64!!
 
 (3) Extend to get a second user input into userNum2. Output sum and product. (1 pt) (User Input in Bold)
@@ -25,7 +25,7 @@ Note: This zyLab outputs a newline after each user-input prompt. For convenience
     *Enter integer:
     *<b>4</b>
     *You entered: 4
-    *4 squared is 16 
+    *4 squared is 16
     *And 4 cubed is 64!!
     *Enter another integer:
     *<b>5</b>
@@ -37,13 +37,14 @@ Note: This zyLab outputs a newline after each user-input prompt. For convenience
 #include <iostream>
 using namespace std;
 
-int main() {
-   int userNum;
+int main()
+{
+    int userNum;
 
-   cout << "Enter integer:" << endl;
-   cin  >> userNum;
-   
-   /* Type your code here */
+    cout << "Enter integer:" << endl;
+    cin >> userNum;
 
-   return 0;
+    /* Type your code here */
+
+    return 0;
 }

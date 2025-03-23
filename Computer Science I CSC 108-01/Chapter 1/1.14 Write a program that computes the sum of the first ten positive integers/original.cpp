@@ -9,13 +9,16 @@ Hint: write a program of the form:
     *}
 
 */
+
 #include <iostream>
 
 using namespace std;
 
-int main() {
+int main()
+{
 
-    /* Your Code Here*/
-    
+    // Type your code here
+
+    cout << endl;
     return 0;
 }

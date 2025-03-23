@@ -1,7 +1,7 @@
 /*
 Auto-graded programming assignments have numerous advantages, but have some challenges too. Students commonly struggle with realizing that example input / output provided in an assignment's specification interleaves input and output, but the program should only output the output parts. If a program should double its input, an instructor might provide this example: (User Input in Bold)
 
-    *Enter x: 
+    *Enter x:
     *<b>5</b>
     *x doubled is: 10
 
@@ -24,14 +24,15 @@ The program below incorrectly echoes the user's input to the output.
 #include <iostream>
 using namespace std;
 
-int main() {
-   int x;
+int main()
+{
+    int x;
 
-   cout << "Enter x: " << endl;
-   cin  >> x;
-   
-   cout << x << endl;  // Student mistakenly is echoing the input to output to match example
-   cout << "x doubled is: " << 2 * x << endl;
-   
-   return 0;
+    cout << "Enter x: " << endl;
+    cin >> x;
+
+    cout << x << endl; // Student mistakenly is echoing the input to output to match example
+    cout << "x doubled is: " << 2 * x << endl;
+
+    return 0;
 }

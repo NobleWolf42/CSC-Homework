@@ -16,14 +16,15 @@ Note: Getting the precise spacing, punctuation, and newlines exactly right is a 
 #include <iostream>
 using namespace std;
 
-int main() {
-   int currentPrice;
-   int lastMonthsPrice;
-   
-   cin >> currentPrice;
-   cin >> lastMonthsPrice;
+int main()
+{
+    int currentPrice;
+    int lastMonthsPrice;
 
-   /* Type your code here. */
+    cin >> currentPrice;
+    cin >> lastMonthsPrice;
 
-   return 0;
+    /* Type your code here. */
+
+    return 0;
 }

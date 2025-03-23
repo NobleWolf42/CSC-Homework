@@ -24,12 +24,12 @@ Hint: A backslash \ in a string acts as an escape character, such as with a newl
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
+    // Draw tree
+    cout << "   *" << endl;
+    cout << "  ***" << endl;
+    /* Type your code here. */
 
-   // Draw tree
-   cout << "   *"    << endl;
-   cout << "  ***"   << endl;
-   /* Type your code here. */
-
-   return 0;
+    return 0;
 }
